@@ -1,0 +1,1904 @@
+{
+ "url": "http://127.0.0.1:3000/mrcog",
+ "at": "2026-11-02T15:27:08.318Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.44,
+    0.81,
+    0.63,
+    0.49
+   ],
+   "motion": {
+    "elements": 7,
+    "css": 0,
+    "transitions": 5,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2894,
+     "screens": 3.2,
+     "words": 221,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "a-medical-student-starting-out-plate-12.jpg",
+      "opengraph-image",
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "MRCOG recalls",
+     "words": 2,
+     "chars": 13,
+     "lines": 1,
+     "size": 92.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.47,
+     "top": 504,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "MRCOG recalls",
+     "words": 2,
+     "lines": 1,
+     "size": 92.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 2,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.12,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG recalls",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.47,
+      "top": 504,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 32,
+      "vw": 2.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.14,
+      "top": 772,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 32,
+      "vw": 2.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.14,
+      "top": 867,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "The MRCOG exams",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 1124,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.27,
+      "top": 1368,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.27,
+      "top": 1368,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Learned around one table",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.46,
+      "top": 2016,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 2402,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 5,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      20,
+      22,
+      24,
+      28,
+      29,
+      32,
+      40,
+      52,
+      60,
+      92
+     ],
+     "sizeCount": 12,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.4
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "MRCOG recalls"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.4,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 206,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 994,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 1637,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.46
+      },
+      {
+       "color": "#465650",
+       "share": 0.3
+      },
+      {
+       "color": "#59665f",
+       "share": 0.13
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.09
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.1
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2894,
+    "margins": {
+     "left": 40,
+     "right": 64
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 918,
+      "words": 37,
+      "media": 1,
+      "middle": 369,
+      "heading": {
+       "text": "MRCOG recalls",
+       "size": 92,
+       "tag": "h1"
+      },
+      "left": 40,
+      "right": 98,
+      "textLeft": 40,
+      "textRight": 128,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 994,
+      "height": 643,
+      "words": 48,
+      "media": 2,
+      "middle": 65,
+      "heading": {
+       "text": "The",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 64,
+      "textLeft": 40,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 1637,
+      "height": 630,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Learned around one table",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 404,
+      "right": 404,
+      "textLeft": 404,
+      "textRight": 404,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2267,
+      "height": 627,
+      "words": 103,
+      "media": 0,
+      "middle": 264,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 40,
+       "tag": "p"
+      },
+      "left": 98,
+      "right": 100,
+      "textLeft": 98,
+      "textRight": 451,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "MRCOG recalls",
+      "size": 92,
+      "top": 504,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 98,
+      "n": 2
+     },
+     {
+      "x": 40,
+      "n": 1
+     },
+     {
+      "x": 133,
+      "n": 1
+     },
+     {
+      "x": 318,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.24,
+    "voidBox": {
+     "x": 0,
+     "y": 180,
+     "w": 1020,
+     "h": 300
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.52,
+    0.88,
+    0.51
+   ],
+   "motion": {
+    "elements": 7,
+    "css": 0,
+    "transitions": 5,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2945,
+     "screens": 2.9,
+     "words": 221,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "a-medical-student-starting-out-plate-12.jpg",
+      "opengraph-image",
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "MRCOG recalls",
+     "words": 2,
+     "chars": 13,
+     "lines": 1,
+     "size": 49.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.86,
+     "top": 202,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "MRCOG recalls",
+     "words": 2,
+     "lines": 1,
+     "size": 49.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG recalls",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 202,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "The MRCOG exams",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 989,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 1250,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.41,
+      "top": 1250,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Learned around one table",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.85,
+      "top": 1999,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 2264,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 7,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 3,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      24,
+      28,
+      29,
+      30,
+      34,
+      49
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.4
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "MRCOG recalls"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.4,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 172,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 917,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 1462,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.46
+      },
+      {
+       "color": "#465650",
+       "share": 0.3
+      },
+      {
+       "color": "#59665f",
+       "share": 0.13
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.09
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#16261f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 4,
+     "inHero": 4,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in",
+      "MRCOG Part 1 0 questions · 0 sittings",
+      "MRCOG Part 2 0 questions · 0 sittings"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2945,
+    "margins": {
+     "left": 22,
+     "right": 46
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 841,
+      "words": 37,
+      "media": 1,
+      "middle": 11,
+      "heading": {
+       "text": "MRCOG recalls",
+       "size": 49,
+       "tag": "h1"
+      },
+      "left": 22,
+      "right": 83,
+      "textLeft": 22,
+      "textRight": 83,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 917,
+      "height": 545,
+      "words": 48,
+      "media": 2,
+      "middle": 54,
+      "heading": {
+       "text": "The",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 46,
+      "textLeft": 22,
+      "textRight": 47,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 1462,
+      "height": 717,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 74,
+      "right": 74,
+      "textLeft": 74,
+      "textRight": 74,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2179,
+      "height": 766,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 52,
+      "right": 55,
+      "textLeft": 52,
+      "textRight": 115,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "MRCOG recalls",
+      "size": 49,
+      "top": 202,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 52,
+      "n": 2
+     },
+     {
+      "x": 22,
+      "n": 1
+     },
+     {
+      "x": 82,
+      "n": 1
+     },
+     {
+      "x": 203,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.6,
+    0.69,
+    0.88,
+    0.44,
+    0.5
+   ],
+   "motion": {
+    "elements": 7,
+    "css": 0,
+    "transitions": 5,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 3529,
+     "screens": 4.2,
+     "words": 221,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "a-medical-student-starting-out-plate-12.jpg",
+      "opengraph-image",
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "MRCOG recalls",
+     "words": 2,
+     "chars": 13,
+     "lines": 1,
+     "size": 46,
+     "vw": 11.8,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.77,
+     "top": 237,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "MRCOG recalls",
+     "words": 2,
+     "lines": 1,
+     "size": 46,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 650,
+      "tracking": -0.036,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 14,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG recalls",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 237,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1 0 questions · 0 sittings",
+      "words": 8,
+      "chars": 37,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 813,
+      "mixedFonts": [
+       "Georgia",
+       "-apple-system"
+      ],
+      "tag": "li",
+      "kind": "statement"
+     },
+     {
+      "text": "MRCOG Part 2 0 questions · 0 sittings",
+      "words": 8,
+      "chars": 37,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 934,
+      "mixedFonts": [
+       "Georgia",
+       "-apple-system"
+      ],
+      "tag": "li",
+      "kind": "statement"
+     },
+     {
+      "text": "The MRCOG exams",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1148,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 1409,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 1753,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Learned around one table",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 2290,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.58,
+      "top": 2636,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 5,
+     "centered": 1,
+     "medianWords": 4,
+     "mixedFontHeadings": 3
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      24,
+      25,
+      28,
+      30,
+      34,
+      46
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.4
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "text": "MRCOG recalls"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.4,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 119,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 209,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 1076,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 1965,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.46
+      },
+      {
+       "color": "#465650",
+       "share": 0.3
+      },
+      {
+       "color": "#59665f",
+       "share": 0.13
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.09
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.18
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 119,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 3529,
+    "margins": {
+     "left": 16,
+     "right": 38
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 119,
+      "height": 957,
+      "words": 37,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "MRCOG recalls",
+       "size": 46,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 45,
+      "textLeft": 16,
+      "textRight": 45,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 1076,
+      "height": 889,
+      "words": 48,
+      "media": 2,
+      "middle": 0,
+      "heading": {
+       "text": "The",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 40,
+      "textLeft": 16,
+      "textRight": 40,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 1965,
+      "height": 591,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Learned around one table",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 54,
+      "right": 54,
+      "textLeft": 54,
+      "textRight": 54,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2556,
+      "height": 973,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 40,
+      "right": 38,
+      "textLeft": 40,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "MRCOG recalls",
+      "size": 46,
+      "top": 237,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 44,
+      "n": 2
+     },
+     {
+      "x": 16,
+      "n": 1
+     },
+     {
+      "x": 77,
+      "n": 1
+     },
+     {
+      "x": 198,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #f6f5ef, section #f6f5ef, text #f6f5ef).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "12 different font sizes (14, 17, 20, 22, 24, 28, 29, 32, 40, 52, 60, 92).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 40px on the left, 64px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 7 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "FAIL",
+   "id": "off-centre",
+   "width": 390,
+   "message": "The page sits off-centre: its content comes to 16px from the left edge but only to 38px from the right, at 390px.",
+   "fix": "Give the page one pair of equal margins. Check the wrapper for a max-width without margin-inline: auto, a grid with an empty last column, or padding on one side only. If one side is meant to hold air, it must still be closed by something that reaches the margin (a picture, the navigation's last item, a figure)."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-mrcog\\desktop-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-mrcog\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-mrcog\\tablet-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-mrcog\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-mrcog\\mobile-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-mrcog\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

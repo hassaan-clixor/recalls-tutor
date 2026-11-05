@@ -1,0 +1,757 @@
+Recalls Tutor — Product Requirements Document
+Oct 28, 2026 · @Someone
+1. Overview
+Recalls Tutor is a responsive web platform that sells exam recall question banks, refined by an AI Recall Studio and sold per exam sitting through Stripe in USD. There is no native mobile app; every screen must work fully in a mobile browser.
+Vision: become the go-to recall QBank for postgraduate medical licensing exams. Students buy access for their exam date, practise in Exam and Revision modes, sit complete mock papers, and pass.
+Business goals
+• Turn raw, messy recall dumps (WhatsApp exports, PDFs, Word files, screenshots) into a clean, tagged, exam-ready QBank with minimal manual effort.
+• Sell simple 3, 6 and 12-month plans per exam that renew automatically.
+• Rank organically for recall-related searches per exam (e.g. "MRCOG Part 1 recalls September 2026").
+• Keep the QBank fresh by adding each new exam diet's recalls soon after the exam.
+In scope (v1)
+1. SEO marketing website (public).
+2. Student portal (signup, purchase, practice, renewals, analytics).
+3. Admin portal (QBank, plans, users, billing, reports).
+4. Recall AI Studio (ingest, refine, dedupe, tag, review, publish).
+5. Subscription plans (3, 6 and 12 months per exam).
+6. Stripe USD billing.
+Launch exams: MRCOG Part 1, MRCOG Part 2 and AMC Part 1. The data model must support any exam family (PLAB, MRCP, FCPS, USMLE etc.) with no code changes. Many exam recalls will be added over time, so exams, tags, blueprints, style profiles, SEO pages and plans are all created from admin, never hard-coded.
+Out of scope (v1): native iOS/Android apps, offline mode, live tutoring, multi-currency pricing.
+Success metrics (first 6 months)
+Metric
+Target
+Raw recall to published question time
+< 5 minutes of human review per question
+Published questions per launch exam
+Open question: confirm target per exam
+Checkout conversion (pricing page to paid)
+Open question: set baseline after launch
+Renewal rate for students who fail and resit
+Track from first resit cycle
+Organic share of new signups
+Track monthly; goal is majority organic
+2. Users and roles
+Five human roles and one AI agent. Permissions are role-based (RBAC) and every admin action is written to an audit log.
+Role
+Who
+Can do
+Cannot do
+Visitor
+Anyone on the public site
+Browse exams, read SEO pages, try free sample questions, view pricing
+Access paid content
+Student
+Paying or registered user
+Sign up, buy/renew plans, practise, sit mock papers, view analytics, report a question
+See unpublished content, other users' data
+Content Reviewer
+Doctor / subject expert
+Review AI-refined questions, edit, approve or reject, add notes
+Change pricing, users, billing
+Content Manager
+MEE content lead
+Everything a Reviewer can, plus run AI Studio jobs, build papers, publish, manage taxonomy
+Billing, refunds, role changes
+Super Admin
+Hassan / ops
+Everything: plans, pricing, users, refunds, roles, agent settings, reports
+—
+Recall AI Agent
+System
+Ingest files, extract, refine, dedupe, tag, propose papers
+Publish without human approval
+Rule: AI agents only ever create drafts or proposals. A human with the right role publishes. This protects accuracy, which is the product's whole value.
+3. Content model
+A question is stored once and linked to every exam sitting it appeared in. This is what powers the "Seen in" attempt tags and lets one question appear in many papers without duplicates.
+Hierarchy: Exam Family → Exam (part) → Sitting (attempt) → Paper → Question. Questions also map to a Topic taxonomy that is independent of sittings.
+Entity
+Key fields
+Notes
+Exam Family
+name, slug, governing body, country, logo
+e.g. MRCOG (RCOG), AMC (Australian Medical Council)
+Exam
+family, name (Part 1, Part 2), format, question types, total questions, duration, pass mark (if published), papers per sitting
+Defines the real exam blueprint used to build complete papers
+Sitting
+exam, sitting date(s), year, exam diet (e.g. September), label (e.g. "Sep 2026"), region/centre notes, status (upcoming / live / past), source of date
+One row per real exam diet; created by admins, or proposed by the AI Studio when uploads mention a new diet. Used for year/diet tags and SEO pages, not for selling
+Paper
+exam, type (Recall Paper / Mock / Topic set), linked sitting(s), paper number, question order, time limit
+"Complete papers as per real exam" = a Paper that matches the Exam blueprint
+Question
+stem, question type (SBA, EMQ, MCQ, true/false), options A–E, correct answer(s), explanation, key learning notes, references, images, difficulty, topic, sub-topic, status, version
+Rich text + LaTeX + images in stem, options and explanation
+Attempt Tag (QuestionSitting)
+question, sitting, recall confidence, number of independent sources, recalled-by count
+Displayed as "Seen in: Sep 2025, Jan 2026"
+Topic
+parent topic, name, slug, exam mapping (syllabus module)
+e.g. MRCOG Part 1: Anatomy, Physiology, Endocrinology…
+Source Upload
+file, uploader, file type, sitting hint, processing status, linked questions
+Raw evidence kept for audit; never shown to students
+Plan
+exam (or bundle), duration (3, 6 or 12 months), price (USD), status, Stripe product/price IDs
+Set by Super Admin. Each student purchase creates a Subscription record (plan, start, renewal date, status)
+
+
+
+Question statuses: Raw → AI Refined → In Review → Approved → Published → Retired. Students only ever see Published.
+Versioning: every edit creates a new version. Student attempt history points to the version they answered, so analytics stay correct after edits.
+Attempt tags shown to students
+• "Seen in" chips listing every sitting the question was recalled from, newest first.
+• "High-yield" badge when a question appears in 2 or more sittings (threshold configurable).
+• "New this sitting" badge for questions first recalled in the latest sitting.
+• Filters in practice: by sitting, by "seen 2+ times", by topic.
+4. Recall AI Studio
+The Studio turns any pile of poor-quality recalls into publish-ready questions: the team dumps files in, the Recall AI Agent extracts, refines, de-duplicates and tags them, and a human reviewer approves. Target: under 5 minutes of human time per published question.
+Raw files flow through AI extraction, refinement and de-duplication, then stop at human review; student error reports re-enter at the same review step.
+4.1 Ingestion ("dump zone")
+• Drag-and-drop bulk upload, up to 500 MB per batch.
+• Supported inputs: PDF (text and scanned), DOCX, XLSX/CSV, TXT, WhatsApp/Telegram chat exports (.txt/.zip), images (JPG/PNG/HEIC screenshots), and pasted text.
+• On upload the user sets optional hints: exam, sitting, source name. The agent infers anything missing and flags low confidence.
+• OCR for scans and screenshots, including handwritten notes where legible.
+• Each upload becomes a Job with live status: Queued → Extracting → Refining → Deduping → Ready for review.
+4.2 Extraction
+• Split raw text into individual recall fragments (a fragment may be one line like "Q about nerve supply to levator ani").
+• Separate stems, partial options, student guesses, and chat noise (greetings, emojis, off-topic messages are discarded).
+• Pull out images and attach them to the right fragment.
+• Capture student-claimed answers and discussion as evidence, not as truth.
+4.3 Refinement (per fragment)
+The agent produces a complete, exam-style question:
+1. Reconstructed stem in the real exam's style and length (e.g. MRCOG SBA clinical vignette).
+2. Options: completes to the exam's format (A–E for SBA, theme + option list for EMQ) with plausible, evidence-based distractors.
+3. Correct answer with a confidence score (0–100). Below a threshold (default 80) the question is flagged for expert attention.
+4. Explanation: why the right answer is right and why each distractor is wrong.
+5. Key learning notes: 3–5 bullet revision points.
+6. References: guideline or textbook source (RCOG Green-top, NICE, eTG, standard texts) — the agent must cite only real sources and the reviewer verifies them.
+7. Taxonomy: exam, topic, sub-topic, difficulty, question type.
+8. Image handling: keep, clean up or flag images; suggest a placeholder description when an image is referenced but missing.
+Each exam has an editable Exam Style Profile (prompt template, option count, stem length, guideline sources, tone) so output matches that exam.
+4.3.1 Auto-tagging (every question)
+The agent tags every question so students can filter on any combination. Tags come from a controlled list per exam; the agent can propose a new tag, but it only goes live once an admin approves it.
+Tag
+Example
+Values per question
+Set by
+Exam family
+MRCOG
+One
+Upload hint or AI
+Exam / part
+Part 1
+One
+Upload hint or AI
+Year
+2025, 2026
+Many (one per year it appeared)
+Linked sittings
+Exam diet
+January, March, September
+Many (one per diet it appeared)
+Linked sittings
+Topic (syllabus module)
+Endocrinology
+One primary, optional secondary
+AI, reviewer confirms
+Subtopic
+Thyroid disease in pregnancy
+One or more
+AI, reviewer confirms
+Question type
+SBA, EMQ
+One
+AI
+Difficulty
+Easy / Medium / Hard
+One; recalibrated from student accuracy after 100+ answers
+AI, then data
+Frequency
+High-yield (seen 2+ diets), New this diet
+Derived
+System
+Has image
+Yes / No
+One
+System
+Guideline source
+RCOG Green-top 37a, NICE NG133
+Optional
+AI, reviewer verifies
+Year and diet are never typed by hand: they come from the Sittings the question is linked to, so a repeat recall automatically adds the new year and diet. Admins can bulk retag (e.g. move 200 questions to a renamed subtopic) and the reviewer screen shows all tags for one-click correction.
+4.4 De-duplication and attempt tagging
+• Semantic similarity check (embeddings) against the full QBank and the current batch.
+• Match above the high threshold → merge: no new question; add the new sitting as an Attempt Tag and attach the new upload as extra evidence.
+• Possible match (middle band) → reviewer sees both side by side and picks Merge, Keep both, or Replace.
+• Different recalls of the same question improve it: the agent proposes edits when new evidence adds detail (e.g. a missing option).
+• Each Attempt Tag stores how many independent sources recalled it, which feeds the High-yield badge.
+4.5 Review workflow
+• Review queue sorted by confidence (lowest first), filterable by exam, sitting, topic, reviewer.
+• Side-by-side view: raw source evidence on the left, refined question on the right, with inline editing.
+• Actions: Approve, Edit and approve, Send back to AI with instructions ("make distractors harder"), Reject, Merge.
+• Optional two-step approval for an exam (Reviewer, then Content Manager).
+• Every change logged with who, when and what.
+• Bulk actions for high-confidence questions (approve 20 at once after a skim).
+4.6 Paper builder
+• Agent proposes Complete Papers for a sitting that match the Exam blueprint (question count, type mix, topic weighting).
+• Content Manager can drag to reorder, swap questions, and lock a paper.
+• Papers labelled e.g. "MRCOG Part 1 — Sep 2026 Recall Paper 1".
+4.7 Student feedback loop
+• Students can report a question (wrong answer, unclear, typo, image missing).
+• Reports return to the review queue with the student's note; the agent drafts a fix.
+• Questions with high error rates in practice are auto-flagged for a quality check.
+4.8 AI guardrails
+• Agent never publishes; humans do.
+• Confidence and "needs expert" flags are mandatory on every AI output.
+• References must be verifiable; unverifiable claims are flagged.
+• Raw sources and student identities from chat exports are never shown publicly, and personal data in uploads (names, phone numbers) is stripped on ingestion.
+• Usage and cost per job tracked in admin.
+5. Plans and renewals
+Each exam is sold as a simple 3, 6 or 12-month subscription that renews automatically until the student cancels. There is no exam-date logic: access depends only on an active plan.
+5.1 Plan structure
+Plan
+Billing
+Positioning
+3 months
+Charged every 3 months
+Final-stretch revision
+6 months
+Charged every 6 months
+Highlighted as best value; covers a typical prep cycle
+12 months
+Charged every 12 months
+Lowest price per month; covers a resit
+• Plans are per exam (e.g. MRCOG Part 1). Each plan includes every published diet of that exam's recalls, plus new diets added during the plan.
+• Super Admin sets the three USD prices per exam; the website shows the price per month and the saving for longer plans.
+• Optional bundles (e.g. MRCOG Part 1 + Part 2) use the same three durations.
+5.2 Access rules
+Rule
+Behaviour
+Access starts
+Immediately on payment
+Auto-renew
+On by default; student can turn it off any time in My Plans
+Cancel
+Access continues to the end of the paid period, then stops
+Renewal payment fails
+7-day grace period with Stripe retries and emails, then access pauses until paid
+Upgrade (e.g. 3 to 12 months)
+Immediate, with the unused time credited (Stripe proration)
+Downgrade
+Takes effect at the next renewal
+Lapsed and re-subscribe
+All progress, notes and bookmarks are restored
+5.3 Renewal communication
+• Reminder email 7 days before each renewal (required for 6 and 12-month plans), showing the date and amount.
+• Receipt on each renewal; payment-failed emails during the grace period.
+• Win-back offer (e.g. 20% off) 14 days after a plan lapses.
+5.4 Exam date (optional, for planning only)
+• Students can enter their exam date in their profile. It drives the dashboard countdown, daily targets and the Pass Predictor, but never changes access.
+6. Student portal
+The portal is where students sign up, buy a sitting plan, practise, sit complete papers, track progress and renew. It must be fast and fully usable on a phone.
+6.1 Account
+• Sign up with email + password, Google, or Apple. Email verification required before purchase.
+• Profile: name, country, exam(s) of interest, exam date (prefilled from purchase), timezone.
+• Forgot password, change email, delete account (GDPR/Australian Privacy Act compliant).
+• Free trial available per exam (see 6.2.1).
+6.2 Purchase
+• Choose exam → choose 3, 6 or 12-month plan → Stripe Checkout.
+• Coupon / promo code field.
+• After payment, access is instant and a receipt email is sent (Stripe receipt + branded welcome email).
+• "My Plans" page: active plans, access end dates, invoices, renewal date, turn auto-renew on/off, upgrade to a longer plan.
+6.2.1 Free trial
+Every exam offers a no-card free trial so students can judge question quality before paying. All limits are set per exam in admin.
+Setting
+Default
+Length
+3 days or 50 questions, whichever comes first
+Card required
+No (optional card-required trial via Stripe for paid-ads traffic)
+Content
+A fixed trial pool from older diets, never the newest diet's recalls
+Modes
+Revision Mode + one 25-question mini mock in Exam Mode
+Pass Predictor
+Teaser only ("Complete a full mock to unlock your prediction")
+Limit
+One trial per exam per account; email verification; device fingerprint to block repeat trials
+Conversion
+Trial-ending emails on day 2 and day 3; trial-only coupon (e.g. 15% off within 48 hours of trial end)
+Carry-over
+All trial progress, notes and bookmarks stay when the student buys
+Admin reports trial starts, trial-to-paid conversion by exam, and questions answered before purchase.
+6.3 Dashboard
+• Countdown to exam day (if the student entered an exam date) and recommended daily target.
+• Progress: questions attempted / total, % correct overall and by topic.
+• Weakest 3 topics with a "Practise these" button.
+• Continue where you left off.
+• What's new: questions added from the latest sitting.
+6.4 Practice modes
+
+Revision Mode
+Exam Mode
+Purpose
+Learn
+Simulate the real exam
+Question selection
+Custom filters, combinable: year, exam diet, topic, subtopic, question type, difficulty, high-yield, has image, unanswered, incorrect, bookmarked, flagged; choose number of questions
+A complete paper, or a timed random set matching the exam blueprint
+Timer
+Optional, per question or none
+Mandatory, matches the real exam duration
+Feedback
+Instant after each answer: correct answer, explanation, notes, "Seen in" tags
+None until submission
+Navigation
+Free
+Question navigator, flag for review, change answers until submit
+Pause / resume
+Yes
+Optional pause (configurable); auto-submit when time ends
+Results
+Running score
+Score, pass/fail vs pass mark (if known), time per question, topic breakdown, full review with explanations
+6.5 Complete papers
+• Library of complete papers for the purchased exam, grouped by year and diet, e.g. "Sep 2026 Recall Paper 1, 2, 3" mirroring the real exam structure.
+• Each paper can be sat in Exam Mode or browsed in Revision Mode.
+• Attempt history: every attempt's score and date, retake any time.
+• Percentile vs other students who sat the same paper (shown once 30+ attempts exist).
+6.6 Question view
+• Stem, images (tap to zoom), options, and lab-value / reference-range panel where relevant.
+• After answering: explanation, key notes, references, "Seen in" chips, % of students who chose each option.
+• Actions: bookmark, flag, personal note, report an error.
+• Strike-through options (as in real CBT exams), keyboard shortcuts on desktop, swipe navigation on mobile.
+6.7 Analytics
+• Score trend over time.
+• Topic heatmap (strong / weak).
+• Accuracy on high-yield vs other questions.
+• Average time per question vs exam pace.
+• Readiness indicator ("On track" / "Needs work") based on recent mock scores.
+6.8 Notifications
+• Email: welcome, receipt, new questions added for your exam, weekly progress summary, upcoming renewal notices, payment-failed alerts, win-back offers.
+• Optional browser push (web push) — no app needed.
+6.9 Pass Predictor
+The Pass Predictor tells each student how likely they are to pass on their exam date and what to fix. It unlocks after one complete Exam Mode paper and at least 300 answered questions.
+Output shown to the student
+• Pass likelihood band: Low / Borderline / Likely / Very likely, with a predicted score range against the pass mark (where the exam body publishes one).
+• Trend line: how the prediction has moved over the last 4 weeks.
+• "What would move you up": the 3 topics and subtopics with the biggest gain per hour of study.
+• Days left and the daily question target needed to reach "Likely" before the exam.
+Inputs
+Signal
+Why it matters
+Complete-paper scores in Exam Mode (recent weighted higher)
+Closest match to the real exam
+Accuracy on high-yield questions (seen 2+ diets)
+These are most likely to reappear
+Coverage of the exam blueprint by topic
+Unseen topics are a risk
+Accuracy on the latest diet's recalls
+Reflects current exam focus
+Time per question vs real exam pace
+Finishing on time affects the score
+Confidence ratings (sure / unsure / guess) per answer
+Separates knowledge from lucky guesses
+First-attempt accuracy only
+Re-answers of seen questions inflate scores
+How it learns: v1 is a transparent rule-based score. After each diet, students are asked "Did you pass?" (with a small reward, e.g. a renewal discount). Once there are enough outcomes per exam (e.g. 200), the model is calibrated against real results and shows its accuracy in admin.
+Disclaimer on every prediction: an estimate from practice performance, not a guarantee.
+6.10 More features for recall practice
+Feature
+What it does
+Phase
+Mistakes deck
+Every wrong answer goes into an auto-deck; re-practise until answered right twice
+1
+Spaced repetition
+Missed and "unsure" questions come back on a schedule (1, 3, 7, 14 days)
+2
+High-yield sprint
+Last-2-weeks mode: only questions seen in 2+ diets, ranked by frequency
+1
+Latest diet pack
+One click to practise only the newest diet's recalls
+1
+Study planner
+Builds a day-by-day plan from today to exam date, adjusts if the student falls behind
+2
+Confidence tagging
+Mark each answer sure / unsure / guess; feeds Pass Predictor and spaced repetition
+1
+Flashcards
+Auto-generated from each question's key learning notes
+2
+AI tutor on a question
+"Explain more simply", "Why not option C?" — answers grounded in the approved explanation, rate-limited
+2
+Question discussion
+Moderated comments per question; reviewers can mark a best answer
+3
+Submit your recalls
+After their exam, students submit what they remember; accepted recalls earn credit or a renewal discount and feed the AI Studio
+2
+Streaks and goals
+Daily goal, streak counter, weekly summary email
+2
+Exam switcher
+One account, several exams; switch the whole portal between purchased exams
+1
+Reference panel
+Normal lab values and key formulas per exam, in a side drawer
+1
+Personal notes export
+Students can export their own notes (not questions)
+2
+7. Billing (Stripe, USD)
+Billing uses Stripe Subscriptions in USD: each exam has 3, 6 and 12-month recurring prices that auto-renew until the student cancels (section 5).
+7.1 Stripe setup
+• Currency: USD only.
+• One Stripe Product per Exam with three recurring Prices (every 3, 6 and 12 months); price changes create a new Price and existing subscribers keep their old price unless migrated.
+• Stripe Checkout (hosted) for payment — handles cards, Apple Pay, Google Pay, Link and 3-D Secure, and keeps the platform out of PCI scope.
+• Stripe Customer Portal for invoices and saved payment methods.
+• Stripe Tax (optional) for VAT/GST where required — open question, see section 11.
+• Coupons and promotion codes managed in admin and synced to Stripe.
+7.2 Optional add-ons (phase 2)
+• Bundles: e.g. MRCOG Part 1 + Part 2.
+• Pause subscription (e.g. up to 2 months) for students whose exam is delayed.
+• One-time (non-renewing) passes for students who don't want auto-renew.
+7.3 Webhooks (source of truth for access)
+Stripe event
+Platform action
+checkout.session.completed
+Create Enrollment, grant access, send welcome email
+payment_intent.payment_failed
+Show failure, keep no access, send retry email
+charge.refunded
+Revoke or shorten access per refund policy, log it
+charge.dispute.created
+Flag account, suspend access pending review, alert Super Admin
+invoice.paid / customer.subscription.*
+Extend access on each renewal; on payment failure start the 7-day grace period; on cancel keep access to period end; on upgrade/downgrade update the plan
+Webhooks are verified by signature, processed idempotently, and retried; a nightly job reconciles Stripe payments against Enrollments.
+7.4 Refunds and policy
+• Refund policy shown at checkout (e.g. full refund within 48 hours if fewer than 50 questions attempted — Super Admin confirms the final rule).
+• Super Admin issues refunds from the admin portal; access updates automatically via webhook.
+7.5 Revenue reporting
+• Revenue by exam, by sitting, by day/month; new vs renewal; coupon usage; refunds and disputes.
+• Export to CSV for accounting.
+8. Admin portal
+The admin portal runs the business: catalogue, QBank, AI Studio, plans, students, payments and reports. AI is the main route for adding questions; manual entry is the backup.
+Module
+Key functions
+Dashboard
+Revenue today/month, active students, new signups, questions in review queue, AI jobs running, active subscriptions and MRR, renewals due this week, open reports
+Catalogue
+Create/edit Exam Families, Exams (blueprint, duration, question types, pass mark), Topics/syllabus, Exam Style Profiles
+Plans and Diets
+Set 3, 6 and 12-month USD prices per exam, bundles, trial settings; manage exam diets (year/diet tags) used for filters and SEO pages
+QBank
+Search and filter all questions (exam, topic, sitting, status, confidence, error rate); edit; bulk tag; retire; view version history and attempt tags
+Manual question entry
+Rich-text editor with LaTeX, image upload, options builder, explanation, notes, references, topic and sitting tags; "Improve with AI" button to polish a manual draft; same review/approval flow
+Bulk import
+CSV/XLSX template import for already-clean questions, with validation report
+Recall AI Studio
+Upload, jobs, review queue, duplicate resolver, paper builder (section 4)
+Papers
+Build, reorder, lock, publish, unpublish complete papers
+Students
+Search, view profile, plans, progress, payments; extend access; grant complimentary access; reset password; suspend
+Payments
+Transactions, refunds, disputes, coupons, revenue reports, CSV export
+Reports from students
+Error reports queue with AI-drafted fixes
+Content analytics
+Most-missed questions, questions with high report rates, topic coverage per exam vs blueprint, high-yield list
+Team and roles
+Invite staff, assign roles (section 2), audit log
+AI settings
+AI confidence thresholds, Exam Style Profiles, notification channels, AI usage and cost
+Site content
+Edit SEO pages, blog, FAQs, testimonials, banners (headless CMS)
+Emails
+Edit transactional email templates
+9. SEO marketing website
+The public site must rank for exam-and-sitting recall searches and convert visitors to paid plans. Every exam and every sitting gets its own indexable page, generated from the database so new sittings create new landing pages automatically.
+9.1 Page types and URL structure
+Page
+Example URL
+Purpose
+Home
+/
+Brand, exams covered, how it works, social proof
+Exam family hub
+/mrcog
+All MRCOG parts, why recalls help
+Exam page
+/mrcog/part-1-recalls
+Main money page: what's included, question count, sample questions, pricing, FAQs
+Sitting page
+/mrcog/part-1-recalls/september-2026
+Ranks for "MRCOG Part 1 recalls September 2026"; sitting date, questions added, buy button
+Topic page
+/mrcog/part-1-recalls/topics/anatomy
+Long-tail topic searches with 3–5 free sample questions
+Free sample question pages
+/mrcog/part-1-recalls/questions/{slug}
+A limited set of public questions with full explanations (indexable)
+Pricing
+/pricing
+3, 6 and 12-month prices per exam
+Blog / guides
+/blog/{slug}
+Exam tips, pass rates, syllabus guides, "what came up" summaries
+About, contact, FAQ, terms, privacy, refund policy
+/about etc.
+Trust and compliance
+Diet pages stay live permanently as part of the past-recalls archive, so earned rankings are never lost.
+9.2 Technical SEO requirements
+• Server-side rendering or static generation for all public pages (no client-only rendering).
+• Core Web Vitals: LCP < 2.5 s, INP < 200 ms, CLS < 0.1 on mobile.
+• Unique, editable title tag, meta description and H1 per page, with database-driven defaults (e.g. "{Exam} Recalls — {Sitting} | Recalls Tutor").
+• Clean URLs, canonical tags, auto-generated XML sitemap (updated when sittings or pages change), robots.txt.
+• Structured data (schema.org JSON-LD): Organization, Product + Offer (price in USD, availability) on exam and sitting pages, FAQPage, BreadcrumbList, Article on blog posts, Quiz on sample question pages.
+• Open Graph and Twitter cards with auto-generated share images per exam/sitting.
+• Image optimisation (WebP/AVIF, lazy loading, alt text).
+• Internal linking: family hub → exam → sitting → topic, and related exams.
+• 301 redirects manager in admin.
+• Google Search Console and GA4 (or equivalent) plus Meta/Google Ads conversion tracking for purchases.
+• Paid question content is never in public HTML; only designated free samples are indexable.
+9.3 Conversion elements
+• 3 / 6 / 12-month plan selector on every exam page, 6 months highlighted as best value, price per month and savings shown.
+• Free 20-question sample test without card.
+• Trust: number of questions, sittings covered, testimonials, pass stories, refund policy.
+• Sticky buy button on mobile.
+• Exit-intent or email capture for a free sample PDF / mini-mock (lead magnet).
+9.4 Content strategy (ongoing)
+• After each sitting: a "What came up in {Exam} {Sitting}" blog post summarising themes (no full questions) linking to the sitting page.
+• Topic guides per syllabus module.
+• AI-assisted drafting in the CMS, with human editing before publishing.
+10. Non-functional requirements and tech stack
+The content is the asset, so protecting it from copying matters as much as speed and uptime.
+10.1 Content protection
+• Questions load one at a time via authenticated API calls; never a full bank in one response.
+• Rate limiting per user (e.g. max questions viewed per hour) with alerts on scraping patterns.
+• Text selection and right-click disabled in practice views; dynamic watermark (student email + ID) faintly overlaid on questions and images.
+• One active session per account (new login signs out the old one); device limit (e.g. 2 devices) to stop account sharing.
+• Images served via signed, expiring URLs.
+• No PDF export of paid questions.
+10.2 Security and privacy
+• HTTPS everywhere, HSTS, OWASP Top 10 protections, secure password hashing, optional 2FA for admins (mandatory for Super Admin).
+• Role-based access on every API endpoint; audit log for admin actions.
+• PII stripped from uploaded recall sources on ingestion.
+• Compliance: Australian Privacy Act, GDPR (UK/EU students), cookie consent banner, data export and deletion on request.
+• Daily encrypted backups, 30-day retention, tested restore.
+10.3 Performance and reliability
+• Page and question loads < 1 s on 4G for the 95th percentile.
+• 99.9% uptime target; status monitoring and error tracking (e.g. Sentry).
+• Must handle exam-week spikes (assume 10× normal traffic) without degradation.
+• CDN for static assets and images.
+10.4 Accessibility and devices
+• WCAG 2.1 AA.
+• Responsive from 360 px phones to large desktops; tested on iOS Safari, Android Chrome, desktop Chrome, Edge, Safari, Firefox.
+• Installable as a PWA (home-screen icon) — gives an app-like feel without a native app.
+• Dark mode.
+10.5 Suggested tech stack (developer to confirm)
+Layer
+Suggestion
+Why
+Frontend + SEO site
+Next.js (React) with server rendering, Tailwind CSS
+SEO-friendly, one codebase for site, portal and admin
+Backend / API
+Next.js API routes or NestJS (Node.js, TypeScript)
+Same language end to end
+Database
+PostgreSQL with pgvector
+Relational model + embeddings for de-duplication in one place
+Background jobs
+Queue (e.g. BullMQ + Redis)
+AI Studio jobs, agent schedules, emails
+File storage
+S3-compatible storage + CDN
+Uploads and question images
+AI
+Claude API for extraction, refinement and the agents; an embeddings model for similarity; OCR service for scans
+Strong reasoning and long documents; agents run as scheduled jobs
+Auth
+Auth.js / Clerk or similar
+Email, Google, Apple sign-in, session limits
+Payments
+Stripe Checkout, Customer Portal, webhooks
+Section 7
+Email
+Postmark / Resend / SendGrid
+Transactional reliability
+CMS
+Built-in admin or headless CMS (e.g. Payload / Sanity)
+Edit SEO pages and blog without developer
+Hosting
+Vercel or AWS
+Scales for exam-week spikes
+11. Release phases, acceptance criteria and open questions
+Ship in three phases so recalls can be sold before every automation is finished; the AI Studio comes first because content is the bottleneck.
+11.1 Phases
+Phase
+Scope
+Exit condition
+1 — Content engine + MVP sales
+Data model, Recall AI Studio (ingest, refine, dedupe, review), manual entry, admin QBank, student signup, Stripe subscriptions (3, 6, 12 months), Revision + Exam modes, complete papers, tag filters (year, diet, topic, subtopic), free trial, mistakes deck, high-yield sprint, core SEO pages (home, exam, sitting, pricing), GHL outbound sync (section 13)
+First launch exam live with paid students
+2 — Automation + growth
+Win-back flows, analytics dashboard, paper builder AI proposals, topic + sample question SEO pages, blog/CMS, student error reports loop, Pass Predictor, spaced repetition and study planner, Partner Portal + API (section 12)
+All 3 launch exams running without manual plan admin
+3 — Scale
+More exam families, bundles, monthly subscription option, percentiles, web push, affiliate/referral codes, deeper content analytics
+Open question: set after phase 2 data
+11.2 Key acceptance criteria
+[ ] Uploading a 50-message WhatsApp recall export produces refined draft questions with options, answer, explanation, notes, references, topic and confidence, with no manual typing.
+[ ] A recall matching an existing question adds a new "Seen in" sitting tag instead of creating a duplicate.
+[ ] Nothing reaches students without human approval.
+[ ] A student can buy a 3, 6 or 12-month plan, is charged again automatically at the end of the period, and can turn off auto-renew from My Plans.
+[ ] When a renewal payment fails, the student gets a 7-day grace period and reminder emails before access pauses.
+[ ] A student can sign up, pay in USD via Stripe, and start practising on a phone in under 3 minutes.
+[ ] Exam Mode timer, navigator, flagging and auto-submit work like the real CBT exam; Revision Mode shows explanations instantly.
+[ ] Each sitting has an indexable page with Product/Offer schema and appears in the sitemap automatically.
+[ ] Paid questions are not present in public page source.
+[ ] Lighthouse mobile score ≥ 90 for performance and SEO on exam and sitting pages.
+11.3 Open questions
+[ ] Which legal entity and Stripe account receives Recalls Tutor revenue (Med Exam Expert LLC's existing Stripe, or a new one)?
+[ ] Domain name and brand: confirm final domain and whether the existing UI designs (17 student, 10 admin screens) are the build basis.
+[ ] Launch prices for the 3, 6 and 12-month plans per exam.
+[ ] Final refund policy wording.
+[ ] Should all plans auto-renew, or should the 12-month plan be one-time?
+[ ] Target number of published questions per exam before launch.
+[ ] Confirm every plan includes all diets' recalls for that exam (assumed yes).
+[ ] Is Stripe Tax / VAT-GST collection required at launch?
+[ ] Legal review of how recall content is described and sold, given exam bodies' candidate confidentiality rules.
+[ ] Who are the named reviewers per exam (e.g. MRCOG expert reviewer)?
+12. Partner program and API (phase 2)
+Partners (course providers, academies, hospitals, MEE itself) buy access in bulk and hand it to their own students, either manually in a Partner Portal or automatically through the API when a student buys their course. The data model in phase 1 must already support an Organisation that owns seats, so phase 2 needs no migration.
+12.1 Commercial models
+Model
+How it works
+Billing
+Prepaid seat packs
+Partner buys e.g. 50 seats for MRCOG Part 1; each assignment uses one seat
+Stripe Checkout or USD invoice; volume tiers (e.g. 10+, 50+, 200+ seats)
+Postpaid per assignment
+Partner assigns freely; billed monthly for seats activated
+Stripe invoice at month end, credit limit per partner
+White-label (optional)
+Partner logo and colours on the student portal, custom subdomain
+Setup fee + seats
+A seat = one student's access to one exam for 3, 6 or 12 months (non-renewing unless the student subscribes themselves). Unused seats roll over until a pack expiry date set by Super Admin.
+12.2 Partner Portal
+• Organisation account with multiple partner admins.
+• Seat balance per exam, purchase history, invoices.
+• Assign seats: one email at a time, CSV upload, or a shareable invite link with a seat cap.
+• Revoke unactivated seats (seat returns to balance); extend access.
+• Cohort reports: activation rate, questions answered, average mock score, Pass Predictor bands — only for students who consented to share progress with the partner.
+• Low-balance and expiring-pack alerts.
+12.3 Partner API
+• REST API over HTTPS, JSON, versioned (/v1). Authentication by API key per partner (secret, rotatable) with IP allow-list option.
+• Sandbox environment with test seats.
+• Idempotency keys on every write, so a retried course purchase never uses two seats.
+• Rate limits per key; full request log visible in the Partner Portal.
+Endpoint
+Purpose
+GET /v1/products
+Exams and plan durations the partner may assign
+GET /v1/seats
+Seat balance per product
+POST /v1/enrollments
+Assign a QBank to a student email (creates account and sends invite if new)
+GET /v1/enrollments/{id}
+Status, access dates, activation
+PATCH /v1/enrollments/{id}
+Extend or change plan duration
+DELETE /v1/enrollments/{id}
+Revoke (returns seat if not activated)
+GET /v1/enrollments/{id}/progress
+Progress summary (consent required)
+Outbound webhooks to the partner: enrollment.activated, enrollment.expiring, enrollment.expired, seats.low_balance. Signed payloads with retries.
+12.4 No-code connections
+• Zapier and Make apps ("New course purchase → Assign Recalls Tutor QBank").
+• Ready recipes for common course platforms: GoHighLevel, Thinkific, Teachable, Kajabi, LearnDash, WooCommerce.
+• Optional SSO (OIDC/SAML) for large partners so students log in with the partner account.
+12.5 Admin controls
+• Create and approve partners, set pricing tiers, credit limits, allowed exams and white-label settings.
+• Partner revenue reporting, separate from direct sales.
+• Suspend a partner's API key instantly.
+12.6 Acceptance criteria
+[ ] A partner's course checkout calls POST /v1/enrollments and the student receives access within 60 seconds.
+[ ] Retrying the same request with the same idempotency key does not use a second seat.
+[ ] A partner admin can assign 100 seats by CSV in one step and see activation status per student.
+[ ] Partners see student progress only for students who consented.
+13. GoHighLevel (GHL) integration
+Recalls Tutor connects to GHL in both directions. Every student signup, trial and purchase is pushed to GHL for marketing and sales follow-up. GHL workflows and funnels can also grant access in Recalls Tutor. Stripe stays the payment source of truth for direct sales.
+13.1 Connection
+• Connect one or more GHL sub-accounts (locations) from Admin → Integrations, using GHL API v2 (OAuth app or Private Integration token).
+• Each connection is set per exam or for all exams, so different exams can feed different sub-accounts or pipelines.
+• Partners (section 12) can connect their own GHL sub-account to receive events for their students.
+• Tokens stored encrypted; connection health and last sync shown in admin.
+13.2 Recalls Tutor → GHL (outbound)
+On each event the system upserts the contact (matched by email, then phone), updates custom fields, adds tags, and can move an opportunity or fire a GHL inbound-webhook workflow trigger.
+Event
+Tag added (example)
+Typical GHL use
+Account created
+rt-signup, rt-mrcog-p1
+Welcome nurture
+Trial started / trial ending / trial expired
+rt-trial-active, rt-trial-expired
+Trial conversion sequence, SMS/WhatsApp nudge
+Checkout started but not paid
+rt-abandoned-checkout
+Abandoned cart follow-up
+Purchase completed
+rt-paid-mrcog-p1-6m
+Move opportunity to Won; onboarding
+Renewal due (7 days), payment failed, cancelled
+rt-renewal-due, rt-payment-failed, rt-cancelled
+Renewal campaign
+Renewal purchased
+rt-renewed
+Upsell / referral ask
+Inactive for 7 days
+rt-inactive
+Re-engagement
+Pass Predictor band changes
+rt-predictor-borderline
+Offer tutoring or courses on MEE
+Exam result reported (pass / fail)
+rt-passed, rt-resit
+Testimonial request or resit offer
+Free sample / lead magnet form on website
+rt-lead-mrcog-p1
+Lead nurture
+Custom fields synced: exam, exam part, exam diet, exam date, plan name and duration, renewal date, auto-renew on/off, trial status, questions answered, latest mock score, Pass Predictor band, partner name (if seat-based), country, marketing consent.
+13.3 GHL → Recalls Tutor (inbound)
+• GHL workflow "Custom Webhook" action calls the Recalls Tutor API to: grant a QBank plan, start a trial, extend access, or revoke access.
+• Uses the same endpoints as the Partner API (section 12.3), under a dedicated internal organisation, so a sale closed by the MEE sales team or a GHL funnel/order form purchase can assign access automatically.
+• Option to pass a coupon code from GHL to create a personalised Stripe checkout link that the sales team sends from GHL.
+• Idempotency key required, so a re-run workflow never grants access twice.
+13.4 Admin settings
+• Event toggles: choose which events sync to each connection.
+• Field and tag mapping: map Recalls Tutor fields to existing GHL custom fields; edit tag naming patterns.
+• Pipeline mapping: which pipeline and stage each event moves the opportunity to.
+• Sync log per contact with status, retry button, and automatic retries with backoff when GHL is unavailable.
+• Backfill: one-click sync of existing students to a newly connected sub-account.
+13.5 Rules
+• Marketing consent captured at signup is synced; contacts without consent receive only transactional messages.
+• Question content is never sent to GHL — only contact, plan and progress summary data.
+• A GHL outage never blocks signup, purchase or practice; events queue and replay.
+13.6 Phasing
+Phase
+GHL scope
+1
+One sub-account, outbound contact upsert, tags and core custom fields for signup, trial, purchase, abandoned checkout, renewal, cancellation
+2
+Inbound webhooks (grant/extend/revoke), pipelines, Pass Predictor and inactivity events, multiple sub-accounts, partner connections, backfill
+13.7 Acceptance criteria
+[ ] A new signup appears in the connected GHL sub-account with the correct tags and custom fields within 60 seconds.
+[ ] A completed Stripe purchase updates the GHL contact and moves the opportunity to the mapped stage.
+[ ] A GHL workflow webhook grants a plan, and the student can log in and practise straight away.
+[ ] When GHL is down, events are queued and delivered once it recovers, with no lost events.

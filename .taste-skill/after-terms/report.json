@@ -1,0 +1,1545 @@
+{
+ "url": "http://127.0.0.1:3000/terms",
+ "at": "2026-11-02T15:26:35.435Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.95,
+    0.84,
+    0.49
+   ],
+   "motion": {
+    "elements": 8,
+    "css": 0,
+    "transitions": 7,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2226,
+     "screens": 2.5,
+     "words": 280,
+     "img": 4,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "the-anatomical-lesson-of-professor-pauw.jpg",
+      "a-sheet-of-anatomical-studies.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Terms of use",
+     "words": 3,
+     "chars": 12,
+     "lines": 1,
+     "size": 68,
+     "vw": 4.7,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.035,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.47,
+     "top": 234,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Terms of use",
+     "words": 3,
+     "lines": 1,
+     "size": 68,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 2,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.12,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Terms of use",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 68,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.47,
+      "top": 234,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Your account",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.47,
+      "top": 478,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.47,
+      "top": 732,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Content",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.47,
+      "top": 929,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 1733,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 6,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.93,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.07,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      20,
+      22,
+      28,
+      29,
+      40,
+      68
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.7,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.6
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 68,
+      "vw": 4.7,
+      "font": "Georgia",
+      "text": "Terms of use"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.24,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 162,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 1639,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.64
+      },
+      {
+       "color": "#465650",
+       "share": 0.25
+      },
+      {
+       "color": "#59665f",
+       "share": 0.1
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 1,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.92
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "__nextjs-geist"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2226,
+    "margins": {
+     "left": 46,
+     "right": 100
+    },
+    "sections": [
+     {
+      "sel": "main#main.pub.prose-sheet",
+      "tag": "main",
+      "top": 76,
+      "height": 1523,
+      "words": 169,
+      "media": 2,
+      "middle": 0,
+      "heading": {
+       "text": "Terms of use",
+       "size": 68,
+       "tag": "h1"
+      },
+      "left": 382,
+      "right": 385,
+      "textLeft": 382,
+      "textRight": 391,
+      "fullBleed": true,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 1599,
+      "height": 627,
+      "words": 103,
+      "media": 0,
+      "middle": 264,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 40,
+       "tag": "p"
+      },
+      "left": 98,
+      "right": 100,
+      "textLeft": 98,
+      "textRight": 451,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Terms of use",
+      "size": 68,
+      "top": 234,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 382,
+      "n": 6
+     }
+    ],
+    "leftBlocks": 6,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.98,
+    0.56,
+    0.51
+   ],
+   "motion": {
+    "elements": 8,
+    "css": 0,
+    "transitions": 7,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2183,
+     "screens": 2.1,
+     "words": 280,
+     "img": 4,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "the-anatomical-lesson-of-professor-pauw.jpg",
+      "a-sheet-of-anatomical-studies.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Terms of use",
+     "words": 3,
+     "chars": 12,
+     "lines": 1,
+     "size": 40,
+     "vw": 5.2,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.035,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.84,
+     "top": 160,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Terms of use",
+     "words": 3,
+     "lines": 1,
+     "size": 40,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Terms of use",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 40,
+      "vw": 5.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 160,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Your account",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 371,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 625,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Content",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 821,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 1503,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 6,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.93,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.07,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      28,
+      29,
+      30,
+      40
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.7,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.6
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 40,
+      "vw": 5.2,
+      "font": "Georgia",
+      "text": "Terms of use"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.24,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 122,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 1439,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.64
+      },
+      {
+       "color": "#465650",
+       "share": 0.25
+      },
+      {
+       "color": "#59665f",
+       "share": 0.1
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 1,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.93
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2183,
+    "margins": {
+     "left": 28,
+     "right": 55
+    },
+    "sections": [
+     {
+      "sel": "main#main.pub.prose-sheet",
+      "tag": "main",
+      "top": 76,
+      "height": 1341,
+      "words": 169,
+      "media": 2,
+      "middle": 0,
+      "heading": {
+       "text": "Terms of use",
+       "size": 40,
+       "tag": "h1"
+      },
+      "left": 60,
+      "right": 61,
+      "textLeft": 60,
+      "textRight": 61,
+      "fullBleed": true,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 1417,
+      "height": 766,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 52,
+      "right": 55,
+      "textLeft": 52,
+      "textRight": 115,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Terms of use",
+      "size": 40,
+      "top": 160,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 60,
+      "n": 6
+     }
+    ],
+    "leftBlocks": 6,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.93,
+    0.99,
+    0.62,
+    0.5
+   ],
+   "motion": {
+    "elements": 8,
+    "css": 0,
+    "transitions": 7,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 2918,
+     "screens": 3.5,
+     "words": 280,
+     "img": 4,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "the-anatomical-lesson-of-professor-pauw.jpg",
+      "a-sheet-of-anatomical-studies.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Terms of use",
+     "words": 3,
+     "chars": 12,
+     "lines": 2,
+     "size": 40,
+     "vw": 10.3,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.035,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.75,
+     "top": 191,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Terms of use",
+     "words": 3,
+     "lines": 2,
+     "size": 40,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 650,
+      "tracking": -0.036,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 14,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Terms of use",
+      "words": 3,
+      "chars": 12,
+      "lines": 2,
+      "size": 40,
+      "vw": 10.3,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 191,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Your account",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 535,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 962,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Content",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 1274,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.58,
+      "top": 2025,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 6,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.93,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.07,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      25,
+      28,
+      30,
+      40
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.7,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.6
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 40,
+      "vw": 10.3,
+      "font": "Georgia",
+      "text": "Terms of use"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.24,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 119,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 159,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 1961,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.64
+      },
+      {
+       "color": "#465650",
+       "share": 0.25
+      },
+      {
+       "color": "#59665f",
+       "share": 0.1
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 1,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.86
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 119,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 2918,
+    "margins": {
+     "left": 21,
+     "right": 38
+    },
+    "sections": [
+     {
+      "sel": "div.plate",
+      "tag": "div",
+      "top": 119,
+      "height": 1826,
+      "words": 0,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": null,
+      "right": null,
+      "textLeft": null,
+      "textRight": null,
+      "fullBleed": true,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "article",
+      "tag": "article",
+      "top": 159,
+      "height": 1746,
+      "words": 169,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Terms of use",
+       "size": 40,
+       "tag": "h1"
+      },
+      "left": 48,
+      "right": 48,
+      "textLeft": 48,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 1945,
+      "height": 973,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 40,
+      "right": 38,
+      "textLeft": 40,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Terms of use",
+      "size": 40,
+      "top": 191,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 48,
+      "n": 6
+     }
+    ],
+    "leftBlocks": 6,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #f6f5ef, section #fffefa, section #f6f5ef).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "few-pictures",
+   "width": 1440,
+   "message": "Only 2 picture(s) on the page (2 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.",
+   "fix": "Find real pictures of the subject's world with scripts/assets.mjs (photographs, archival images, maps, engravings, footage), download them to assets/ and give them room: a hero picture, one per section that has a subject, a full-width band. At least four, usually six to twelve."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 46px on the left, 100px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Little motion: 8 element(s) moved while the page loaded and scrolled.",
+   "fix": "Give every section an entrance for its parts (not one fade of the whole block) and add one moving picture: a looping clip or a slow move on a photograph."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-terms\\desktop-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-terms\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-terms\\tablet-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-terms\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-terms\\mobile-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-terms\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

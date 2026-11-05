@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1440"><title>Overlapping sittings</title>
+<style>
+:root{--ink:#1d1838;--muted:#5d5878;--indigo:#4b3df0;--madder:#e2446b;--saffron:#f6a623;--sky:#fbfbff}
+*{box-sizing:border-box;margin:0}
+body{width:1440px;height:900px;overflow:hidden;font-family:"Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--sky)}
+nav{position:relative;z-index:2;display:flex;align-items:center;gap:36px;height:76px;padding:0 64px}
+.mark{font-weight:800;font-size:22px}nav a{font-size:15px;color:var(--muted)}nav .cta{margin-left:auto;background:var(--ink);color:#fff;padding:11px 20px;border-radius:12px;font-weight:700}
+.band{position:absolute;left:-60px;width:1600px;height:190px;border-radius:120px;mix-blend-mode:multiply;opacity:.55}
+.b1{top:120px;background:linear-gradient(90deg,transparent,var(--indigo) 30%,var(--indigo) 70%,transparent);transform:rotate(-6deg)}
+.b2{top:300px;background:linear-gradient(90deg,transparent,var(--madder) 25%,var(--madder) 75%,transparent);transform:rotate(4deg)}
+.b3{top:470px;background:linear-gradient(90deg,transparent,var(--saffron) 30%,var(--saffron) 70%,transparent);transform:rotate(-3deg)}
+.copy{position:relative;z-index:2;padding:110px 64px 0;max-width:820px}
+h1{font-size:72px;line-height:1.02;letter-spacing:-.035em;font-weight:800}
+.lead{font-size:21px;margin-top:20px;max-width:34em;color:#2d2850}
+.go{display:inline-block;margin-top:26px;padding:17px 28px;border-radius:14px;background:var(--ink);color:#fff;font-weight:800;font-size:18px}
+.legend{position:absolute;z-index:2;right:64px;bottom:64px;background:#fff;border-radius:20px;padding:22px 26px;width:420px;box-shadow:0 30px 60px -40px rgba(29,24,56,.5)}
+.legend p{font-size:16px;font-weight:700;margin-bottom:10px}.legend div{display:flex;gap:10px;align-items:center;font-size:15px;margin-top:8px}
+.legend i{width:26px;height:14px;border-radius:7px}
+</style></head><body>
+<div class="band b1"></div><div class="band b2"></div><div class="band b3"></div>
+<nav><span class="mark">Recalls Tutor</span><a>Exams</a><a>How it works</a><a>Plans</a><a class="cta">Start free trial</a></nav>
+<div class="copy"><h1>Where the sittings overlap, the exam repeats itself.</h1><p class="lead">Each band is one sitting’s student-shared recalls. A question remembered in two or more sittings is marked high-yield, so you practise what keeps coming back first.</p><a class="go">Start MRCOG Part 1 free</a></div>
+<div class="legend"><p>MRCOG Part 1 recalls</p><div><i style="background:#4b3df0"></i>September 2026 sitting</div><div><i style="background:#e2446b"></i>March 2025 sitting</div><div><i style="background:linear-gradient(90deg,#4b3df0,#e2446b)"></i>Seen in both · high-yield</div></div>
+</body></html>

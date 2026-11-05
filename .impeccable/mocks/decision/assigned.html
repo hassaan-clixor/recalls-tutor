@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1440"><title>Thumb-index handbook</title>
+<style>
+:root{--ink:#14213d;--muted:#5b6478;--ground:#f5f6fb;--paper:#fff;--coral:#ff6b57;--saffron:#ffb547;--teal:#13b3a4;--violet:#7c5cff;--sky:#3a9bff}
+*{box-sizing:border-box;margin:0}
+body{width:1440px;height:900px;overflow:hidden;font-family:"Segoe UI",system-ui,sans-serif;background:var(--ground);color:var(--ink)}
+nav{display:flex;align-items:center;gap:36px;height:76px;padding:0 64px}
+.mark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.02em}
+.mark i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--sky))}
+nav a{font-size:15px;color:var(--muted);text-decoration:none}
+nav .cta{margin-left:auto;background:var(--ink);color:#fff;padding:11px 20px;border-radius:12px;font-weight:700}
+main{display:grid;grid-template-columns:560px 1fr;gap:56px;padding:40px 0 0 64px}
+h1{font-size:68px;line-height:1.02;letter-spacing:-.035em;font-weight:800}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--violet),var(--sky));-webkit-background-clip:text;color:transparent}
+.lead{font-size:20px;line-height:1.5;color:var(--muted);margin-top:22px;max-width:30em}
+.pick{display:flex;gap:10px;margin-top:34px}
+.pick span{padding:12px 18px;border-radius:14px;background:var(--paper);font-weight:700;font-size:16px;box-shadow:0 1px 0 #e3e6ef}
+.pick span.on{color:#fff;background:linear-gradient(135deg,var(--coral),var(--saffron))}
+.go{display:inline-block;margin-top:22px;padding:17px 28px;border-radius:14px;color:#fff;font-weight:800;font-size:18px;background:linear-gradient(135deg,var(--violet),var(--sky))}
+.note{font-size:14px;color:var(--muted);margin-top:12px}
+.book{position:relative;height:760px;background:var(--paper);border-radius:28px 0 0 0;padding:48px 150px 0 56px;box-shadow:-30px 30px 80px -40px rgba(20,33,61,.25)}
+.tabs{position:absolute;right:0;top:56px;display:flex;flex-direction:column;gap:8px}
+.tabs b{display:block;width:118px;padding:22px 16px;border-radius:16px 0 0 16px;color:#fff;font-size:15px;font-weight:800;writing-mode:horizontal-tb}
+.t1{background:linear-gradient(135deg,var(--coral),#ff8f6b)}.t2{background:linear-gradient(135deg,var(--saffron),#ffd27a);color:var(--ink)!important}.t3{background:linear-gradient(135deg,var(--teal),#4fd1c5)}.t4{background:linear-gradient(135deg,var(--violet),#a18bff)}.t5{background:linear-gradient(135deg,var(--sky),#7cc0ff)}
+.tabs small{display:block;font-weight:600;opacity:.85;margin-top:4px}
+.chapter{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:.04em}
+.q{margin-top:14px;font-size:26px;line-height:1.4;font-weight:600;max-width:24em}
+.origin{display:flex;gap:8px;margin-top:20px}
+.origin span{font-size:14px;font-weight:700;padding:7px 12px;border-radius:999px;background:#fff1ec;color:#c2412d}
+.origin span.hy{background:linear-gradient(90deg,var(--saffron),#ffd27a);color:var(--ink)}
+ol{list-style:none;padding:0;margin-top:26px;display:grid;gap:10px;max-width:640px}
+ol li{display:flex;gap:16px;align-items:center;padding:16px 18px;border-radius:14px;border:2px solid #eceef5;font-size:19px}
+ol li b{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--ground);font-size:16px}
+ol li.right{border-color:var(--teal);background:#effaf8}ol li.right b{background:var(--teal);color:#fff}
+</style></head><body>
+<nav><span class="mark"><i></i>Recalls Tutor</span><a>Exams</a><a>How it works</a><a>Plans</a><a>FAQ</a><a class="cta">Start free trial</a></nav>
+<main>
+ <div>
+  <h1>Prepare with the questions <em>students remember.</em></h1>
+  <p class="lead">After every sitting, students share what came up. We collect, compile and review those recalls into a question bank you can practise on your phone, ten minutes at a time.</p>
+  <div class="pick"><span class="on">MRCOG Part 1</span><span>MRCOG Part 2</span><span>AMC Part 1</span></div>
+  <a class="go">Start your free trial</a>
+  <p class="note">No card needed · Not official exam questions · Independent of every exam body</p>
+ </div>
+ <div class="book">
+  <div class="tabs"><b class="t1">Obstetrics<small>18 left</small></b><b class="t2">Gynaecology<small>24 left</small></b><b class="t3">Anatomy<small>9 left</small></b><b class="t4">Physiology<small>31 left</small></b><b class="t5">Statistics<small>12 left</small></b></div>
+  <p class="chapter">OBSTETRICS · SAMPLE QUESTION</p>
+  <p class="q">A 31-year-old woman has a spontaneous vaginal delivery at term. Ten minutes after the placenta is delivered she is bleeding heavily, and the uterus feels soft and boggy. What is the most appropriate first-line drug?</p>
+  <div class="origin"><span>Seen in Sep 2026</span><span>Seen in Mar 2025</span><span class="hy">High-yield</span></div>
+  <ol><li><b>A</b>Carboprost</li><li><b>B</b>Ergometrine</li><li><b>C</b>Misoprostol</li><li class="right"><b>D</b>Oxytocin</li><li><b>E</b>Tranexamic acid</li></ol>
+ </div>
+</main>
+</body></html>

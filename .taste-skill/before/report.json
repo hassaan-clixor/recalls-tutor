@@ -1,0 +1,2670 @@
+{
+ "url": "http://127.0.0.1:3000/",
+ "at": "2026-11-02T14:51:39.017Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.3,
+    0.38,
+    0.46
+   ],
+   "motion": {
+    "elements": 3,
+    "css": 2,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2565,
+     "screens": 2.9,
+     "words": 321,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Build knowledge. Find your focus.",
+     "words": 5,
+     "chars": 33,
+     "lines": 2,
+     "size": 84,
+     "vw": 5.8,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.055,
+     "leading": 1.05,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.46,
+     "top": 230,
+     "mixedFonts": [
+      "Georgia",
+      "Georgia italic"
+     ],
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Build knowledge. Find your focus.",
+     "words": 5,
+     "lines": 2,
+     "size": 84,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 2,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.11,
+      "top": 33,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Build knowledge. Find your focus.",
+      "words": 5,
+      "chars": 33,
+      "lines": 2,
+      "size": 84,
+      "vw": 5.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.46,
+      "top": 230,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Don’t just recall. Understand.",
+      "words": 4,
+      "chars": 30,
+      "lines": 2,
+      "size": 42,
+      "vw": 2.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1.13,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.29,
+      "top": 287,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "One ambition. Your exam.",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 797,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.67,
+      "top": 1045,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.67,
+      "top": 1196,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "AMC Part 1",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.67,
+      "top": 1347,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "A little more intention. In every session.",
+      "words": 7,
+      "chars": 42,
+      "lines": 2,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.32,
+      "top": 1626,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good preparation starts with clarity.",
+      "words": 5,
+      "chars": 37,
+      "lines": 2,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.83,
+      "top": 2158,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 6
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.86,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.14,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      9,
+      10,
+      12,
+      13,
+      14,
+      15,
+      16,
+      19,
+      24,
+      25,
+      27,
+      29,
+      30,
+      42,
+      52,
+      84
+     ],
+     "sizeCount": 16,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 12,
+      "leading": 1.7,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.1
+     },
+     "measureChars": 117,
+     "max": {
+      "size": 84,
+      "vw": 5.8,
+      "font": "Georgia",
+      "text": "Build knowledge.Find your"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 10,
+     "microLabelShare": 0.1,
+     "microSamples": [
+      "For the next chapter in medicine",
+      "The study principle",
+      "Find your path",
+      "Exam directory",
+      "Availability",
+      "Designed around understanding"
+     ],
+     "upperShare": 0.11,
+     "centerShare": 0.01,
+     "smallText": 26
+    },
+    "eyebrows": [
+     {
+      "text": "For the next chapter in medicine",
+      "above": "Build knowledge. Find your focus.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 189
+     },
+     {
+      "text": "01 / 03",
+      "above": "Don’t just recall. Understand.",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 248
+     },
+     {
+      "text": "Find your path",
+      "above": "One ambition. Your exam.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 765
+     },
+     {
+      "text": "MRCOG",
+      "above": "MRCOG Part 1",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1028
+     },
+     {
+      "text": "MRCOG",
+      "above": "MRCOG Part 2",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1179
+     },
+     {
+      "text": "AMC",
+      "above": "AMC Part 1",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1330
+     },
+     {
+      "text": "Designed around understanding",
+      "above": "A little more intention. In every sessio",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 1594
+     },
+     {
+      "text": "A considered beginning",
+      "above": "Good preparation starts with clarity.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 2124
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01 / 03",
+      "size": 10,
+      "top": 248
+     },
+     {
+      "text": "01",
+      "size": 14,
+      "top": 1020
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 1171
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 1322
+     },
+     {
+      "text": "01",
+      "size": 14,
+      "top": 1806
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 1806
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 1806
+     }
+    ],
+    "color": {
+     "bodyBg": "#f8f7f1",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.33,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 1528,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#59665f",
+       "share": 0.43
+      },
+      {
+       "color": "#1d302b",
+       "share": 0.23
+      },
+      {
+       "color": "#d1dcd1",
+       "share": 0.14
+      },
+      {
+       "color": "#f8f7f1",
+       "share": 0.06
+      },
+      {
+       "color": "#c5d3c6",
+       "share": 0.06
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 45,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Browse the exams →"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 11,
+     "hairlineSamples": [
+      "header.site-header.wrap 1200px",
+      "span.note-bottom 409px",
+      "section#exams.exam-section.wrap 1200px",
+      "div.directory-label 1200px",
+      "a.exam-row 1200px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 1781
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 5,
+     "fixed": false,
+     "height": 106,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "__nextjs-geist"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2565,
+    "margins": {
+     "left": 120,
+     "right": 137
+    },
+    "sections": [
+     {
+      "sel": "section.hero.wrap",
+      "tag": "section",
+      "top": 106,
+      "height": 613,
+      "words": 72,
+      "media": 0,
+      "middle": 190,
+      "heading": {
+       "text": "Build knowledge.",
+       "size": 84,
+       "tag": "h1"
+      },
+      "left": 120,
+      "right": 148,
+      "textLeft": 120,
+      "textRight": 148,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#exams.exam-section.wrap",
+      "tag": "section",
+      "top": 719,
+      "height": 809,
+      "words": 91,
+      "media": 0,
+      "middle": 300,
+      "heading": {
+       "text": "One ambition.",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 120,
+      "right": 137,
+      "textLeft": 120,
+      "textRight": 137,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#approach.approach-section",
+      "tag": "section",
+      "top": 1528,
+      "height": 523,
+      "words": 93,
+      "media": 0,
+      "middle": 133,
+      "heading": {
+       "text": "A little more intention.",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 120,
+      "right": 149,
+      "textLeft": 120,
+      "textRight": 149,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.closing.wrap",
+      "tag": "section",
+      "top": 2051,
+      "height": 293,
+      "words": 11,
+      "media": 0,
+      "middle": 706,
+      "heading": {
+       "text": "Good preparation",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 120,
+      "right": 155,
+      "textLeft": 120,
+      "textRight": 155,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer.wrap",
+      "tag": "footer",
+      "top": 2345,
+      "height": 220,
+      "words": 44,
+      "media": 0,
+      "middle": 18,
+      "heading": {
+       "text": "Recalls Tutor",
+       "size": 25,
+       "tag": "a"
+      },
+      "left": 120,
+      "right": 120,
+      "textLeft": 120,
+      "textRight": 120,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Build knowledge. Find your focus.",
+      "size": 84,
+      "top": 230,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 120,
+      "n": 9
+     },
+     {
+      "x": 190,
+      "n": 3
+     },
+     {
+      "x": 341,
+      "n": 1
+     },
+     {
+      "x": 456,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 14,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.15,
+    "voidBox": {
+     "x": 360,
+     "y": 600,
+     "w": 1080,
+     "h": 180
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.36,
+    0.62,
+    0.59
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2411,
+     "screens": 2.4,
+     "words": 321,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Build knowledge. Find your focus.",
+     "words": 5,
+     "chars": 33,
+     "lines": 2,
+     "size": 48,
+     "vw": 6.3,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.055,
+     "leading": 1.05,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.51,
+     "top": 213,
+     "mixedFonts": [
+      "Georgia",
+      "Georgia italic"
+     ],
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Build knowledge. Find your focus.",
+     "words": 5,
+     "lines": 2,
+     "size": 48,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 33,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Build knowledge. Find your focus.",
+      "words": 5,
+      "chars": 33,
+      "lines": 2,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.51,
+      "top": 213,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Don’t just recall. Understand.",
+      "words": 4,
+      "chars": 30,
+      "lines": 2,
+      "size": 35,
+      "vw": 4.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1.13,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.31,
+      "top": 235,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "One ambition. Your exam.",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.26,
+      "top": 669,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.66,
+      "top": 883,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.66,
+      "top": 1034,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "AMC Part 1",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.66,
+      "top": 1205,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "A little more intention. In every session.",
+      "words": 7,
+      "chars": 42,
+      "lines": 2,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 1484,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Start with care.",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 27,
+      "vw": 3.5,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.28,
+      "top": 1670,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Practise with purpose.",
+      "words": 3,
+      "chars": 22,
+      "lines": 2,
+      "size": 27,
+      "vw": 3.5,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.28,
+      "top": 1670,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Make room to revisit.",
+      "words": 4,
+      "chars": 21,
+      "lines": 2,
+      "size": 27,
+      "vw": 3.5,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.28,
+      "top": 1670,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Good preparation starts with clarity.",
+      "words": 5,
+      "chars": 37,
+      "lines": 2,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.93,
+      "top": 2039,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 12,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 6
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.86,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.14,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      8,
+      9,
+      10,
+      12,
+      13,
+      14,
+      15,
+      19,
+      24,
+      25,
+      27,
+      29,
+      30,
+      35,
+      36,
+      48
+     ],
+     "sizeCount": 16,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 12,
+      "leading": 1.7,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.1
+     },
+     "measureChars": 110,
+     "max": {
+      "size": 48,
+      "vw": 6.3,
+      "font": "Georgia",
+      "text": "Build knowledge.Find your"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 10,
+     "microLabelShare": 0.1,
+     "microSamples": [
+      "For the next chapter in medicine",
+      "The study principle",
+      "Find your path",
+      "Exam directory",
+      "Availability",
+      "Designed around understanding"
+     ],
+     "upperShare": 0.11,
+     "centerShare": 0.01,
+     "smallText": 26
+    },
+    "eyebrows": [
+     {
+      "text": "For the next chapter in medicine",
+      "above": "Build knowledge. Find your focus.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 172
+     },
+     {
+      "text": "01 / 03",
+      "above": "Don’t just recall. Understand.",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 194
+     },
+     {
+      "text": "Find your path",
+      "above": "One ambition. Your exam.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 637
+     },
+     {
+      "text": "MRCOG",
+      "above": "MRCOG Part 1",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 866
+     },
+     {
+      "text": "MRCOG",
+      "above": "MRCOG Part 2",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1017
+     },
+     {
+      "text": "AMC",
+      "above": "AMC Part 1",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1188
+     },
+     {
+      "text": "Designed around understanding",
+      "above": "A little more intention. In every sessio",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 1452
+     },
+     {
+      "text": "A considered beginning",
+      "above": "Good preparation starts with clarity.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 2005
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01 / 03",
+      "size": 10,
+      "top": 194
+     },
+     {
+      "text": "01",
+      "size": 14,
+      "top": 858
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 1009
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 1180
+     },
+     {
+      "text": "01",
+      "size": 14,
+      "top": 1631
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 1631
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 1631
+     }
+    ],
+    "color": {
+     "bodyBg": "#f8f7f1",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.33,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 1386,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#59665f",
+       "share": 0.43
+      },
+      {
+       "color": "#1d302b",
+       "share": 0.23
+      },
+      {
+       "color": "#d1dcd1",
+       "share": 0.14
+      },
+      {
+       "color": "#f8f7f1",
+       "share": 0.06
+      },
+      {
+       "color": "#c5d3c6",
+       "share": 0.06
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 45,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Browse the exams →"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 7,
+     "hairlineSamples": [
+      "header.site-header.wrap 712px",
+      "section#exams.exam-section.wrap 712px",
+      "div.directory-label 712px",
+      "a.exam-row 712px",
+      "a.exam-row 712px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 1606
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 5,
+     "fixed": false,
+     "height": 106,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2411,
+    "margins": {
+     "left": 28,
+     "right": 30
+    },
+    "sections": [
+     {
+      "sel": "section.hero.wrap",
+      "tag": "section",
+      "top": 106,
+      "height": 485,
+      "words": 72,
+      "media": 0,
+      "middle": 59,
+      "heading": {
+       "text": "Build knowledge.",
+       "size": 48,
+       "tag": "h1"
+      },
+      "left": 28,
+      "right": 48,
+      "textLeft": 28,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#exams.exam-section.wrap",
+      "tag": "section",
+      "top": 591,
+      "height": 795,
+      "words": 91,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "One ambition.",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 28,
+      "right": 45,
+      "textLeft": 28,
+      "textRight": 45,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#approach.approach-section",
+      "tag": "section",
+      "top": 1386,
+      "height": 546,
+      "words": 93,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "A little more intention.",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 28,
+      "right": 31,
+      "textLeft": 28,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.closing.wrap",
+      "tag": "section",
+      "top": 1932,
+      "height": 260,
+      "words": 11,
+      "media": 0,
+      "middle": 331,
+      "heading": {
+       "text": "Good preparation",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 28,
+      "right": 63,
+      "textLeft": 28,
+      "textRight": 63,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer.wrap",
+      "tag": "footer",
+      "top": 2191,
+      "height": 220,
+      "words": 44,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Recalls Tutor",
+       "size": 25,
+       "tag": "a"
+      },
+      "left": 28,
+      "right": 28,
+      "textLeft": 28,
+      "textRight": 28,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Build knowledge. Find your focus.",
+      "size": 48,
+      "top": 213,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 28,
+      "n": 9
+     },
+     {
+      "x": 78,
+      "n": 3
+     },
+     {
+      "x": 181,
+      "n": 1
+     },
+     {
+      "x": 220,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 14,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.64,
+    0.32,
+    0.81,
+    0.63
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 3205,
+     "screens": 3.8,
+     "words": 321,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Build knowledge. Find your focus.",
+     "words": 5,
+     "chars": 33,
+     "lines": 2,
+     "size": 47,
+     "vw": 12.1,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.055,
+     "leading": 1.05,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 186,
+     "mixedFonts": [
+      "Georgia",
+      "Georgia italic"
+     ],
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Build knowledge. Find your focus.",
+     "words": 5,
+     "lines": 2,
+     "size": 47,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 25,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.04,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 18,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Build knowledge. Find your focus.",
+      "words": 5,
+      "chars": 33,
+      "lines": 2,
+      "size": 47,
+      "vw": 12.1,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 186,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Don’t just recall. Understand.",
+      "words": 4,
+      "chars": 30,
+      "lines": 2,
+      "size": 37,
+      "vw": 9.5,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1.13,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 595,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "One ambition. Your exam.",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 40,
+      "vw": 10.3,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 993,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 27,
+      "vw": 6.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.7,
+      "top": 1261,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 27,
+      "vw": 6.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.7,
+      "top": 1452,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "AMC Part 1",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 27,
+      "vw": 6.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.7,
+      "top": 1644,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "A little more intention. In every session.",
+      "words": 7,
+      "chars": 42,
+      "lines": 3,
+      "size": 40,
+      "vw": 10.3,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1910,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Start with care.",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 26,
+      "vw": 6.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 2154,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Practise with purpose.",
+      "words": 3,
+      "chars": 22,
+      "lines": 1,
+      "size": 26,
+      "vw": 6.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 2317,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Make room to revisit.",
+      "words": 4,
+      "chars": 21,
+      "lines": 1,
+      "size": 26,
+      "vw": 6.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 2480,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Good preparation starts with clarity.",
+      "words": 5,
+      "chars": 37,
+      "lines": 2,
+      "size": 42,
+      "vw": 10.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2719,
+      "mixedFonts": [
+       "Georgia",
+       "Georgia italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Recalls Tutor.",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 25,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.65,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.37,
+      "top": 2941,
+      "tag": "a",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 13,
+     "maxLines": 3,
+     "over2Lines": 1,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 6
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.86,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.14,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      19,
+      22,
+      25,
+      26,
+      27,
+      37,
+      40,
+      42,
+      47
+     ],
+     "sizeCount": 17,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 12,
+      "leading": 1.8,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.6
+     },
+     "measureChars": 54,
+     "max": {
+      "size": 47,
+      "vw": 12.1,
+      "font": "Georgia",
+      "text": "Build knowledge.Find your"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 10,
+     "microLabelShare": 0.1,
+     "microSamples": [
+      "For the next chapter in medicine",
+      "The study principle",
+      "Find your path",
+      "Exam directory",
+      "Availability",
+      "Designed around understanding"
+     ],
+     "upperShare": 0.11,
+     "centerShare": 0.01,
+     "smallText": 28
+    },
+    "eyebrows": [
+     {
+      "text": "For the next chapter in medicine",
+      "above": "Build knowledge. Find your focus.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 149
+     },
+     {
+      "text": "01 / 03",
+      "above": "Don’t just recall. Understand.",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 556
+     },
+     {
+      "text": "Find your path",
+      "above": "One ambition. Your exam.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 961
+     },
+     {
+      "text": "MRCOG",
+      "above": "MRCOG Part 1",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1244
+     },
+     {
+      "text": "MRCOG",
+      "above": "MRCOG Part 2",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1436
+     },
+     {
+      "text": "AMC",
+      "above": "AMC Part 1",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 9,
+      "top": 1627
+     },
+     {
+      "text": "Designed around understanding",
+      "above": "A little more intention. In every sessio",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 1878
+     },
+     {
+      "text": "Reviewed content",
+      "above": "Practise with purpose.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 8,
+      "top": 2255
+     },
+     {
+      "text": "Thoughtful practice",
+      "above": "Make room to revisit.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 8,
+      "top": 2418
+     },
+     {
+      "text": "A considered beginning",
+      "above": "Good preparation starts with clarity.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 10,
+      "top": 2685
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01 / 03",
+      "size": 10,
+      "top": 556
+     },
+     {
+      "text": "01",
+      "size": 12,
+      "top": 1236
+     },
+     {
+      "text": "02",
+      "size": 12,
+      "top": 1428
+     },
+     {
+      "text": "03",
+      "size": 12,
+      "top": 1619
+     },
+     {
+      "text": "01",
+      "size": 14,
+      "top": 2154
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 2317
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 2480
+     }
+    ],
+    "color": {
+     "bodyBg": "#f8f7f1",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.33,
+      "l": 0.96
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#e9eddf",
+       "top": 530,
+       "hsl": {
+        "h": 77,
+        "s": 0.28,
+        "l": 0.9
+       }
+      },
+      {
+       "color": "#183f32",
+       "top": 1835,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#59665f",
+       "share": 0.43
+      },
+      {
+       "color": "#1d302b",
+       "share": 0.23
+      },
+      {
+       "color": "#d1dcd1",
+       "share": 0.14
+      },
+      {
+       "color": "#f8f7f1",
+       "share": 0.06
+      },
+      {
+       "color": "#c5d3c6",
+       "share": 0.06
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 45,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Browse the exams →"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 11,
+     "hairlineSamples": [
+      "header.site-header.wrap 350px",
+      "span.note-bottom 300px",
+      "section#exams.exam-section.wrap 350px",
+      "div.directory-label 350px",
+      "a.exam-row 350px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 2133
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 5,
+     "fixed": false,
+     "height": 105,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 3205,
+    "margins": {
+     "left": 20,
+     "right": 20
+    },
+    "sections": [
+     {
+      "sel": "section.hero.wrap",
+      "tag": "section",
+      "top": 105,
+      "height": 817,
+      "words": 72,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Build knowledge.",
+       "size": 47,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 34,
+      "textLeft": 20,
+      "textRight": 34,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#exams.exam-section.wrap",
+      "tag": "section",
+      "top": 923,
+      "height": 912,
+      "words": 91,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "One ambition.",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 20,
+      "textLeft": 20,
+      "textRight": 20,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#approach.approach-section",
+      "tag": "section",
+      "top": 1835,
+      "height": 805,
+      "words": 93,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "A little more intention.",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 22,
+      "textLeft": 20,
+      "textRight": 22,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.closing.wrap",
+      "tag": "section",
+      "top": 2640,
+      "height": 266,
+      "words": 11,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good preparation",
+       "size": 42,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 74,
+      "textLeft": 20,
+      "textRight": 74,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer.wrap",
+      "tag": "footer",
+      "top": 2906,
+      "height": 299,
+      "words": 44,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Recalls Tutor",
+       "size": 25,
+       "tag": "a"
+      },
+      "left": 20,
+      "right": 34,
+      "textLeft": 20,
+      "textRight": 34,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Build knowledge. Find your focus.",
+      "size": 47,
+      "top": 186,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 20,
+      "n": 9
+     },
+     {
+      "x": 54,
+      "n": 3
+     },
+     {
+      "x": 198,
+      "n": 1
+     },
+     {
+      "x": 208,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 14,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "6 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "8 eyebrow/kicker label(s) above headings: \"For the next chapter in medicine\" above \"Build knowledge. Find your focus.\"; \"01 / 03\" above \"Don’t just recall. Understand.\"; \"Find your path\" above \"One ambition. Your exam.\"; \"MRCOG\" above \"MRCOG Part 1\"; \"MRCOG\" above \"MRCOG Part 2\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "numbering",
+   "width": 1440,
+   "message": "Decorative index numbers: \"01 / 03\", \"01\", \"02\", \"03\", \"01\", \"02\"",
+   "fix": "Remove them. If order truly matters, write it into the words (\"First, …\") or use a real <ol>.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "10 tiny uppercase letter-spaced labels (e.g. \"For the next chapter in medicine\", \"The study principle\", \"Find your path\", \"Exam directory\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "hairline",
+   "width": 1440,
+   "message": "11 thin rule(s)/divider line(s): header.site-header.wrap 1200px | span.note-bottom 409px | section#exams.exam-section.wrap 1200px | div.directory-label 1200px",
+   "fix": "Delete. Separate with space, a tone change, or scale. Lines are only for real tables and form fields.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #f8f7f1, text #f8f7f1).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "16 different font sizes (9, 10, 12, 13, 14, 15, 16, 19, 24, 25, 27, 29, 30, 42, 52, 84).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "body-size",
+   "width": 1440,
+   "message": "Body text is 12px (the size most of the running text is set in).",
+   "fix": "Body copy 16–20px. Map small sizes from blueprints onto your body step.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "grey-body",
+   "width": 1440,
+   "message": "The running text is a soft grey on its ground (5.1:1).",
+   "fix": "Set body copy in the full ink (7:1 or more). Keep the muted ink for secondary notes; pages read thin and unfinished when everything is grey.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "few-pictures",
+   "width": 1440,
+   "message": "Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.",
+   "fix": "Find real pictures of the subject's world with scripts/assets.mjs (photographs, archival images, maps, engravings, footage), download them to assets/ and give them room: a hero picture, one per section that has a subject, a full-width band. At least four, usually six to twelve."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "measure",
+   "width": 1440,
+   "message": "Longest paragraph runs about 117 characters per line.",
+   "fix": "Cap paragraphs at 45–75 characters (max-width: 60ch).",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 1440,
+   "message": "26 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 120px on the left, 137px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page."
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 3 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 390,
+   "message": "1 headline(s) wrap past two lines at 390px: \"A little more intention. In every session.\" → 3 lines (7 words, 40px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 24px or less."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\before\\desktop-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\before\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\before\\tablet-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\before\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\before\\mobile-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\before\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

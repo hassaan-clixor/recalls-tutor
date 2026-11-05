@@ -1,0 +1,2692 @@
+{
+ "url": "http://127.0.0.1:3000/pricing",
+ "at": "2026-11-02T15:32:27.362Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.62,
+    0.41,
+    0.71,
+    0.7,
+    0.49
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 0,
+    "transitions": 18,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 4287,
+     "screens": 4.8,
+     "words": 388,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 6,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "opengraph-image",
+      "opengraph-image",
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Plans by exam",
+     "words": 3,
+     "chars": 13,
+     "lines": 1,
+     "size": 92.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.47,
+     "top": 226,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Plans by exam",
+     "words": 3,
+     "lines": 1,
+     "size": 92.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 2,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.12,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans by exam",
+      "words": 3,
+      "chars": 13,
+      "lines": 1,
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.47,
+      "top": 226,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "3",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.09,
+      "top": 341,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "6",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.09,
+      "top": 341,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.09,
+      "top": 341,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.58,
+      "top": 652,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 860,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.58,
+      "top": 1308,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 1516,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.58,
+      "top": 1964,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "AMC Part 1",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 2172,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "How plans work",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 2593,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Renews until you stop it",
+      "words": 5,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.27,
+      "top": 2617,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "If a payment fails",
+      "words": 4,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.27,
+      "top": 2617,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Your progress stays",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.27,
+      "top": 2787,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Refunds",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.27,
+      "top": 2787,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Every sitting, one plan",
+      "words": 4,
+      "chars": 23,
+      "lines": 1,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.46,
+      "top": 3408,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 3794,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 8,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      20,
+      22,
+      24,
+      28,
+      29,
+      40,
+      52,
+      60,
+      92
+     ],
+     "sizeCount": 11,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12.7
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "Plans by exam"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.25,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 168,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 494,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 3030,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.67
+      },
+      {
+       "color": "#465650",
+       "share": 0.18
+      },
+      {
+       "color": "#59665f",
+       "share": 0.08
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.07
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 2593
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 4287,
+    "margins": {
+     "left": 40,
+     "right": 100
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 418,
+      "words": 37,
+      "media": 0,
+      "middle": 215,
+      "heading": {
+       "text": "Plans by exam",
+       "size": 92,
+       "tag": "h1"
+      },
+      "left": 98,
+      "right": 198,
+      "textLeft": 98,
+      "textRight": 198,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-1-recalls.band.frame",
+      "tag": "section",
+      "top": 494,
+      "height": 656,
+      "words": 48,
+      "media": 1,
+      "middle": 68,
+      "heading": {
+       "text": "MRCOG Part 1",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 362,
+      "textLeft": 40,
+      "textRight": 362,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-2-recalls.band.frame",
+      "tag": "section",
+      "top": 1151,
+      "height": 656,
+      "words": 49,
+      "media": 1,
+      "middle": 68,
+      "heading": {
+       "text": "MRCOG Part 2",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 362,
+      "textLeft": 40,
+      "textRight": 362,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-1-recalls.band.frame",
+      "tag": "section",
+      "top": 1807,
+      "height": 656,
+      "words": 46,
+      "media": 1,
+      "middle": 68,
+      "heading": {
+       "text": "AMC Part 1",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 385,
+      "textLeft": 40,
+      "textRight": 385,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 2463,
+      "height": 567,
+      "words": 73,
+      "media": 0,
+      "middle": 143,
+      "heading": {
+       "text": "How plans work",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 102,
+      "textLeft": 40,
+      "textRight": 102,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 3030,
+      "height": 630,
+      "words": 24,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Every sitting, one plan",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 413,
+      "right": 413,
+      "textLeft": 413,
+      "textRight": 413,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3660,
+      "height": 627,
+      "words": 103,
+      "media": 0,
+      "middle": 264,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 40,
+       "tag": "p"
+      },
+      "left": 98,
+      "right": 100,
+      "textLeft": 98,
+      "textRight": 451,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Plans by exam",
+      "size": 92,
+      "top": 226,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 40,
+      "n": 7
+     },
+     {
+      "x": 535,
+      "n": 6
+     },
+     {
+      "x": 98,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 15,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.13,
+    "voidBox": {
+     "x": 0,
+     "y": 480,
+     "w": 1440,
+     "h": 120
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.85,
+    0.57,
+    0.77,
+    0.68,
+    0.51
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 0,
+    "transitions": 18,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 5006,
+     "screens": 4.9,
+     "words": 388,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 6,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "opengraph-image",
+      "opengraph-image",
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Plans by exam",
+     "words": 3,
+     "chars": 13,
+     "lines": 1,
+     "size": 49.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.86,
+     "top": 165,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Plans by exam",
+     "words": 3,
+     "lines": 1,
+     "size": 49.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans by exam",
+      "words": 3,
+      "chars": 13,
+      "lines": 1,
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 165,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "3",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.24,
+      "top": 369,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "6",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.24,
+      "top": 369,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.24,
+      "top": 369,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 944,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.87,
+      "top": 1143,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 1797,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.87,
+      "top": 1996,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "AMC Part 1",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 2649,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.87,
+      "top": 2822,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "How plans work",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 3082,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Renews until you stop it",
+      "words": 5,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 3168,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "If a payment fails",
+      "words": 4,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.41,
+      "top": 3168,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Your progress stays",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 3338,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Refunds",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.41,
+      "top": 3338,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Every sitting, one plan",
+      "words": 4,
+      "chars": 23,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.85,
+      "top": 4060,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 4326,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 8,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      28,
+      29,
+      30,
+      34,
+      36,
+      49
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12.7
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "Plans by exam"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.25,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 134,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 480,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 3524,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.67
+      },
+      {
+       "color": "#465650",
+       "share": 0.18
+      },
+      {
+       "color": "#59665f",
+       "share": 0.08
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.07
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 3144
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.35
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 5006,
+    "margins": {
+     "left": 22,
+     "right": 22
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 404,
+      "words": 37,
+      "media": 0,
+      "middle": 18,
+      "heading": {
+       "text": "Plans by exam",
+       "size": 49,
+       "tag": "h1"
+      },
+      "left": 52,
+      "right": 207,
+      "textLeft": 52,
+      "textRight": 207,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-1-recalls.band.frame",
+      "tag": "section",
+      "top": 480,
+      "height": 852,
+      "words": 48,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "MRCOG Part 1",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 22,
+      "textLeft": 22,
+      "textRight": 175,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-2-recalls.band.frame",
+      "tag": "section",
+      "top": 1332,
+      "height": 852,
+      "words": 49,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "MRCOG Part 2",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 22,
+      "textLeft": 22,
+      "textRight": 175,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-1-recalls.band.frame",
+      "tag": "section",
+      "top": 2184,
+      "height": 826,
+      "words": 46,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "AMC Part 1",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 22,
+      "textLeft": 22,
+      "textRight": 198,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 3010,
+      "height": 513,
+      "words": 73,
+      "media": 0,
+      "middle": 58,
+      "heading": {
+       "text": "How plans work",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 85,
+      "textLeft": 22,
+      "textRight": 85,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 3524,
+      "height": 717,
+      "words": 24,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 67,
+      "right": 67,
+      "textLeft": 67,
+      "textRight": 67,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 4240,
+      "height": 766,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 52,
+      "right": 55,
+      "textLeft": 52,
+      "textRight": 115,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Plans by exam",
+      "size": 49,
+      "top": 165,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 50,
+      "n": 8
+     },
+     {
+      "x": 22,
+      "n": 7
+     }
+    ],
+    "leftBlocks": 15,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    0.75,
+    0.76,
+    0.69,
+    0.44,
+    0.72,
+    0.51,
+    0.5
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 0,
+    "transitions": 18,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 5146,
+     "screens": 6.1,
+     "words": 388,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 6,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "opengraph-image",
+      "opengraph-image",
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Plans by exam",
+     "words": 3,
+     "chars": 13,
+     "lines": 1,
+     "size": 46,
+     "vw": 11.8,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.92,
+     "top": 203,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Plans by exam",
+     "words": 3,
+     "lines": 1,
+     "size": 46,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 650,
+      "tracking": -0.036,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 14,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans by exam",
+      "words": 3,
+      "chars": 13,
+      "lines": 1,
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 203,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "3",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.24,
+      "top": 427,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "6",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.24,
+      "top": 427,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.24,
+      "top": 427,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "MRCOG Part 1",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 833,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 1032,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 2",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1573,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 1799,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "AMC Part 1",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2340,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2539,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "How plans work",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2854,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Renews until you stop it",
+      "words": 5,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 2940,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "If a payment fails",
+      "words": 4,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3110,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Your progress stays",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3254,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Refunds",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3397,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Every sitting, one plan",
+      "words": 4,
+      "chars": 23,
+      "lines": 2,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 3907,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.58,
+      "top": 4253,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 8,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      25,
+      28,
+      30,
+      34,
+      36,
+      46
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12.7
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "text": "Plans by exam"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.25,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 119,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 171,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 561,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 3583,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.67
+      },
+      {
+       "color": "#465650",
+       "share": 0.18
+      },
+      {
+       "color": "#59665f",
+       "share": 0.08
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.07
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#183f32",
+      "hsl": {
+       "h": 160,
+       "s": 0.45,
+       "l": 0.17
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 46,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.2
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 119,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 5146,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 119,
+      "height": 442,
+      "words": 37,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Plans by exam",
+       "size": 46,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 21,
+      "textLeft": 16,
+      "textRight": 21,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-1-recalls.band.frame",
+      "tag": "section",
+      "top": 561,
+      "height": 740,
+      "words": 48,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "MRCOG Part 1",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-2-recalls.band.frame",
+      "tag": "section",
+      "top": 1302,
+      "height": 767,
+      "words": 49,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "MRCOG Part 2",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#part-1-recalls.band.frame",
+      "tag": "section",
+      "top": 2068,
+      "height": 714,
+      "words": 46,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "AMC Part 1",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 2782,
+      "height": 800,
+      "words": 73,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "How plans work",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 42,
+      "textLeft": 16,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 3583,
+      "height": 591,
+      "words": 24,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Every sitting, one plan",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 58,
+      "right": 58,
+      "textLeft": 58,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 4173,
+      "height": 973,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 40,
+      "right": 38,
+      "textLeft": 40,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Plans by exam",
+      "size": 46,
+      "top": 203,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 9
+     },
+     {
+      "x": 44,
+      "n": 6
+     }
+    ],
+    "leftBlocks": 15,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #f6f5ef, section #f6f5ef, text #f6f5ef).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "11 different font sizes (14, 17, 20, 22, 24, 28, 29, 40, 52, 60, 92).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 40px on the left, 100px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\final-pricing\\desktop-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\final-pricing\\desktop-page-01.jpg",
+    "F:\\Recalls Tutor\\.taste-skill\\final-pricing\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\final-pricing\\tablet-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\final-pricing\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\final-pricing\\mobile-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\final-pricing\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

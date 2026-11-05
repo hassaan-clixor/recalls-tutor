@@ -1,0 +1,2830 @@
+{
+ "url": "http://127.0.0.1:3000/mrcog/part-1-recalls",
+ "at": "2026-11-02T15:24:04.740Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    0.49,
+    0.37,
+    0.61,
+    0.67,
+    0.46,
+    0.59,
+    0.38
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 0,
+    "transitions": 18,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 5614,
+     "screens": 6.2,
+     "words": 496,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 7,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 1,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 1,
+     "pictureSamples": [
+      "opengraph-image",
+      "a-sheet-of-anatomical-studies.jpg",
+      "a-medical-student-starting-out-plate-12.jpg",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "MRCOG Part 1 recalls",
+     "words": 4,
+     "chars": 20,
+     "lines": 2,
+     "size": 92.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.47,
+     "top": 263,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "MRCOG Part 1 recalls",
+     "words": 4,
+     "lines": 2,
+     "size": 92.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 2,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.12,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1 recalls",
+      "words": 4,
+      "chars": 20,
+      "lines": 2,
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.47,
+      "top": 263,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.09,
+      "top": 583,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.09,
+      "top": 583,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 51.8,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.09,
+      "top": 583,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Try a question",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 866,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 1739,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.58,
+      "top": 1767,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Sittings",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 2494,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Sittings to be confirmed",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.58,
+      "top": 2522,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Why recalls",
+      "words": 2,
+      "chars": 11,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 2871,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Reviewed by people",
+      "words": 3,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.27,
+      "top": 2895,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Refreshed every sitting",
+      "words": 3,
+      "chars": 23,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.27,
+      "top": 2895,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "High-yield, made visible",
+      "words": 3,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.27,
+      "top": 3039,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Practise like the real exam",
+      "words": 5,
+      "chars": 27,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.27,
+      "top": 3039,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Questions",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 3617,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Learn from the people who sat it",
+      "words": 7,
+      "chars": 32,
+      "lines": 2,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.46,
+      "top": 4535,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 5121,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 8,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.84,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.16,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      20,
+      22,
+      24,
+      28,
+      29,
+      40,
+      52,
+      60,
+      92
+     ],
+     "sizeCount": 11,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.4
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "MRCOG Part 1 recalls"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.15,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 206,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 866,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 1610,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 4251,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.74
+      },
+      {
+       "color": "#465650",
+       "share": 0.16
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.05
+      },
+      {
+       "color": "#59665f",
+       "share": 0.04
+      },
+      {
+       "color": "#dfe6d3",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f6f5ef",
+      "hsl": {
+       "h": 51,
+       "s": 0.28,
+       "l": 0.95
+      },
+      "fg": "#16261f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 8,
+     "inHero": 3,
+     "radius": 0,
+     "height": 56,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in",
+      "See plans"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 565
+      },
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 2871
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.11
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "__nextjs-geist"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 5614,
+    "margins": {
+     "left": 40,
+     "right": 98
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 661,
+      "words": 45,
+      "media": 1,
+      "middle": 177,
+      "heading": {
+       "text": "MRCOG Part 1 recalls",
+       "size": 92,
+       "tag": "h1"
+      },
+      "left": 40,
+      "right": 98,
+      "textLeft": 40,
+      "textRight": 187,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 737,
+      "height": 873,
+      "words": 90,
+      "media": 0,
+      "middle": 78,
+      "heading": {
+       "text": "Try a question",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 248,
+      "textLeft": 40,
+      "textRight": 258,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#plans.band.sage",
+      "tag": "section",
+      "top": 1610,
+      "height": 754,
+      "words": 40,
+      "media": 1,
+      "middle": 95,
+      "heading": {
+       "text": "Plans",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 362,
+      "textLeft": 40,
+      "textRight": 362,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 2364,
+      "height": 378,
+      "words": 36,
+      "media": 0,
+      "middle": 88,
+      "heading": {
+       "text": "Sittings",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 379,
+      "textLeft": 40,
+      "textRight": 379,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 2742,
+      "height": 745,
+      "words": 76,
+      "media": 1,
+      "middle": 84,
+      "heading": {
+       "text": "Why recalls",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 75,
+      "textLeft": 40,
+      "textRight": 75,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 3487,
+      "height": 764,
+      "words": 206,
+      "media": 0,
+      "middle": 274,
+      "heading": {
+       "text": "Questions",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 345,
+      "textLeft": 40,
+      "textRight": 345,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 4251,
+      "height": 630,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Learn from the people who sat it",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 416,
+      "right": 416,
+      "textLeft": 416,
+      "textRight": 416,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 4986,
+      "height": 627,
+      "words": 103,
+      "media": 0,
+      "middle": 264,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 40,
+       "tag": "p"
+      },
+      "left": 98,
+      "right": 100,
+      "textLeft": 98,
+      "textRight": 451,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 1448,
+      "height": 284
+     }
+    ],
+    "h1s": [
+     {
+      "text": "MRCOG Part 1 recalls",
+      "size": 92,
+      "top": 263,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 529,
+      "n": 11
+     },
+     {
+      "x": 40,
+      "n": 9
+     },
+     {
+      "x": 98,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 23,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.2,
+    "voidBox": {
+     "x": 360,
+     "y": 660,
+     "w": 1080,
+     "h": 240
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.66,
+    0.53,
+    0.45,
+    0.57,
+    0.78,
+    0.42
+   ],
+   "motion": {
+    "elements": 18,
+    "css": 0,
+    "transitions": 16,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 5503,
+     "screens": 5.4,
+     "words": 496,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 7,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 1,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 1,
+     "pictureSamples": [
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "MRCOG Part 1 recalls",
+     "words": 4,
+     "chars": 20,
+     "lines": 1,
+     "size": 49.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.86,
+     "top": 202,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "MRCOG Part 1 recalls",
+     "words": 4,
+     "lines": 1,
+     "size": 49.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1 recalls",
+      "words": 4,
+      "chars": 20,
+      "lines": 1,
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 202,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.24,
+      "top": 878,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.24,
+      "top": 878,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.24,
+      "top": 878,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Try a question",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 1061,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 1874,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.87,
+      "top": 2004,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Sittings",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 2265,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Sittings to be confirmed",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.87,
+      "top": 2422,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Why recalls",
+      "words": 2,
+      "chars": 11,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 2656,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Reviewed by people",
+      "words": 3,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 2783,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Refreshed every sitting",
+      "words": 3,
+      "chars": 23,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.41,
+      "top": 2783,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "High-yield, made visible",
+      "words": 3,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 2952,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Practise like the real exam",
+      "words": 5,
+      "chars": 27,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.41,
+      "top": 2952,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Questions",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 3236,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Learn from the people who sat it",
+      "words": 7,
+      "chars": 32,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.85,
+      "top": 4452,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 4823,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 8,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.84,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.16,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      28,
+      29,
+      30,
+      34,
+      36,
+      49
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.4
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "MRCOG Part 1 recalls"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.15,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 172,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 1190,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 1802,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 3916,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.74
+      },
+      {
+       "color": "#465650",
+       "share": 0.16
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.05
+      },
+      {
+       "color": "#59665f",
+       "share": 0.04
+      },
+      {
+       "color": "#dfe6d3",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f6f5ef",
+      "hsl": {
+       "h": 51,
+       "s": 0.28,
+       "l": 0.95
+      },
+      "fg": "#16261f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 8,
+     "inHero": 3,
+     "radius": 0,
+     "height": 56,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in",
+      "See plans"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 2,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 860
+      },
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 2759
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.29
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 5503,
+    "margins": {
+     "left": 22,
+     "right": 47
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 913,
+      "words": 45,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "MRCOG Part 1 recalls",
+       "size": 49,
+       "tag": "h1"
+      },
+      "left": 22,
+      "right": 52,
+      "textLeft": 22,
+      "textRight": 191,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 989,
+      "height": 813,
+      "words": 90,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Try a question",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 47,
+      "textLeft": 22,
+      "textRight": 57,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#plans.band.sage",
+      "tag": "section",
+      "top": 1802,
+      "height": 391,
+      "words": 40,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Plans",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 175,
+      "textLeft": 22,
+      "textRight": 175,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 2193,
+      "height": 391,
+      "words": 36,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Sittings",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 192,
+      "textLeft": 22,
+      "textRight": 192,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 2584,
+      "height": 580,
+      "words": 76,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Why recalls",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 48,
+      "textLeft": 22,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 3164,
+      "height": 751,
+      "words": 206,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Questions",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 158,
+      "textLeft": 22,
+      "textRight": 158,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 3916,
+      "height": 717,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 76,
+      "right": 76,
+      "textLeft": 76,
+      "textRight": 76,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 4737,
+      "height": 766,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 52,
+      "right": 55,
+      "textLeft": 52,
+      "textRight": 115,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "MRCOG Part 1 recalls",
+      "size": 49,
+      "top": 202,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 44,
+      "n": 14
+     },
+     {
+      "x": 22,
+      "n": 9
+     }
+    ],
+    "leftBlocks": 23,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 8,
+   "filled": [
+    0.68,
+    0.59,
+    0.55,
+    0.58,
+    0.65,
+    0.88,
+    0.59,
+    0.52
+   ],
+   "motion": {
+    "elements": 18,
+    "css": 0,
+    "transitions": 16,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 6322,
+     "screens": 7.5,
+     "words": 499,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 7,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 1,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 1,
+     "pictureSamples": [
+      "opengraph-image",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "MRCOG Part 1 recalls",
+     "words": 4,
+     "chars": 20,
+     "lines": 2,
+     "size": 46,
+     "vw": 11.8,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.77,
+     "top": 237,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "MRCOG Part 1 recalls",
+     "words": 4,
+     "lines": 2,
+     "size": 46,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 650,
+      "tracking": -0.036,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 14,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "MRCOG Part 1 recalls",
+      "words": 4,
+      "chars": 20,
+      "lines": 2,
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 237,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 816,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 816,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "0",
+      "words": 1,
+      "chars": 1,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 816,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Try a question",
+      "words": 3,
+      "chars": 14,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1018,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Plans",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2019,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Pricing hasn’t been announced",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2176,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Sittings",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2517,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Sittings to be confirmed",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2674,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Why recalls",
+      "words": 2,
+      "chars": 11,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2934,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Reviewed by people",
+      "words": 3,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3087,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Refreshed every sitting",
+      "words": 3,
+      "chars": 23,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3231,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "High-yield, made visible",
+      "words": 3,
+      "chars": 24,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3400,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Practise like the real exam",
+      "words": 5,
+      "chars": 27,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3570,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Questions",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3828,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Learn from the people who sat it",
+      "words": 7,
+      "chars": 32,
+      "lines": 2,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 4865,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.58,
+      "top": 5429,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 8,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.84,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.16,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      25,
+      28,
+      30,
+      34,
+      36,
+      46
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.4
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "text": "MRCOG Part 1 recalls"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.14,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 119,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 209,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 1173,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 1947,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 4569,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.73
+      },
+      {
+       "color": "#465650",
+       "share": 0.16
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.05
+      },
+      {
+       "color": "#59665f",
+       "share": 0.04
+      },
+      {
+       "color": "#dfe6d3",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f6f5ef",
+      "hsl": {
+       "h": 51,
+       "s": 0.28,
+       "l": 0.95
+      },
+      "fg": "#16261f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 9,
+     "inHero": 4,
+     "radius": 0,
+     "height": 56,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in",
+      "See plans",
+      "Pricing coming soon"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 2,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.15
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 119,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 6322,
+    "margins": {
+     "left": 16,
+     "right": 28
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero",
+      "tag": "section",
+      "top": 119,
+      "height": 827,
+      "words": 45,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "MRCOG Part 1 recalls",
+       "size": 46,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 44,
+      "textLeft": 16,
+      "textRight": 63,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 946,
+      "height": 1001,
+      "words": 90,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Try a question",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 30,
+      "textLeft": 16,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#plans.band.sage",
+      "tag": "section",
+      "top": 1947,
+      "height": 498,
+      "words": 40,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Plans",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 39,
+      "textLeft": 16,
+      "textRight": 39,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 2445,
+      "height": 417,
+      "words": 36,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Sittings",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 30,
+      "textLeft": 16,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 2862,
+      "height": 893,
+      "words": 76,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Why recalls",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 25,
+      "textLeft": 16,
+      "textRight": 25,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.frame",
+      "tag": "section",
+      "top": 3756,
+      "height": 813,
+      "words": 181,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Questions",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 41,
+      "textLeft": 16,
+      "textRight": 41,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 4569,
+      "height": 591,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Learn from the people who sat it",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 54,
+      "right": 54,
+      "textLeft": 54,
+      "textRight": 54,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 5349,
+      "height": 973,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 40,
+      "right": 38,
+      "textLeft": 40,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "MRCOG Part 1 recalls",
+      "size": 46,
+      "top": 237,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 38,
+      "n": 14
+     },
+     {
+      "x": 16,
+      "n": 9
+     }
+    ],
+    "leftBlocks": 23,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "card-rows",
+   "width": 1440,
+   "message": "2 rows of identical boxed cards.",
+   "fix": "Vary the composition; not every section is a card grid.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #f6f5ef, section #f6f5ef, section #fffefa).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "11 different font sizes (14, 17, 20, 22, 24, 28, 29, 40, 52, 60, 92).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 40px on the left, 98px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-mrcog-part-1-recalls\\desktop-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-mrcog-part-1-recalls\\desktop-page-01.jpg",
+    "F:\\Recalls Tutor\\.taste-skill\\after-mrcog-part-1-recalls\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-mrcog-part-1-recalls\\tablet-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-mrcog-part-1-recalls\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\after-mrcog-part-1-recalls\\mobile-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\after-mrcog-part-1-recalls\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

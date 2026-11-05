@@ -1,0 +1,1745 @@
+{
+ "url": "http://127.0.0.1:3000/faq",
+ "at": "2026-11-02T15:33:13.196Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.44,
+    0.51,
+    0.88,
+    0.79,
+    0.49
+   ],
+   "motion": {
+    "elements": 10,
+    "css": 0,
+    "transitions": 8,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3955,
+     "screens": 4.4,
+     "words": 320,
+     "img": 4,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 1,
+     "uiAbuse": false,
+     "realPictures": 3,
+     "videoCount": 0,
+     "uiPictures": 1,
+     "pictureSamples": [
+      "a-medical-student-starting-out-plate-12.jpg",
+      "a-sheet-of-anatomical-studies.jpg",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Questions about Recalls Tutor",
+     "words": 4,
+     "chars": 29,
+     "lines": 2,
+     "size": 92.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.47,
+     "top": 332,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Questions about Recalls Tutor",
+     "words": 4,
+     "lines": 2,
+     "size": 92.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 2,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.12,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Questions about Recalls Tutor",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.47,
+      "top": 332,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "What a question looks like",
+      "words": 5,
+      "chars": 26,
+      "lines": 2,
+      "size": 52,
+      "vw": 3.6,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 1954,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Learned around one table",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.46,
+      "top": 3076,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 3462,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 1,
+     "medianWords": 5,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.79,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.21,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      20,
+      22,
+      24,
+      28,
+      29,
+      40,
+      52,
+      60,
+      92
+     ],
+     "sizeCount": 11,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12.7
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 92.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "Questions about Recalls Tutor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.3,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 168,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 1824,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 1954,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 2697,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.59
+      },
+      {
+       "color": "#465650",
+       "share": 0.25
+      },
+      {
+       "color": "#59665f",
+       "share": 0.09
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.07
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f6f5ef",
+      "hsl": {
+       "h": 51,
+       "s": 0.28,
+       "l": 0.95
+      },
+      "fg": "#16261f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 7,
+     "inHero": 2,
+     "radius": 0,
+     "height": 56,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 3,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.13
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "__nextjs-geist"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3955,
+    "margins": {
+     "left": 40,
+     "right": 98
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero.faq-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 720,
+      "words": 24,
+      "media": 1,
+      "middle": 303,
+      "heading": {
+       "text": "Questions about Recalls Tutor",
+       "size": 92,
+       "tag": "h1"
+      },
+      "left": 98,
+      "right": 98,
+      "textLeft": 98,
+      "textRight": 741,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.faq-cards.frame",
+      "tag": "section",
+      "top": 796,
+      "height": 1028,
+      "words": 74,
+      "media": 0,
+      "middle": 98,
+      "heading": null,
+      "left": 258,
+      "right": 313,
+      "textLeft": 258,
+      "textRight": 313,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 1824,
+      "height": 873,
+      "words": 85,
+      "media": 1,
+      "middle": 92,
+      "heading": {
+       "text": "What a question looks like",
+       "size": 52,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 248,
+      "textLeft": 40,
+      "textRight": 258,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 2697,
+      "height": 630,
+      "words": 17,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Learned around one table",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 396,
+      "right": 396,
+      "textLeft": 396,
+      "textRight": 396,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3327,
+      "height": 627,
+      "words": 103,
+      "media": 0,
+      "middle": 264,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 40,
+       "tag": "p"
+      },
+      "left": 98,
+      "right": 100,
+      "textLeft": 98,
+      "textRight": 451,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Questions about Recalls Tutor",
+      "size": 92,
+      "top": 332,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 40,
+      "n": 2
+     },
+     {
+      "x": 98,
+      "n": 2
+     },
+     {
+      "x": 286,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.14,
+    "voidBox": {
+     "x": 720,
+     "y": 120,
+     "w": 240,
+     "h": 780
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.54,
+    0.7,
+    0.75,
+    0.54,
+    0.51
+   ],
+   "motion": {
+    "elements": 9,
+    "css": 0,
+    "transitions": 7,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 4119,
+     "screens": 4,
+     "words": 320,
+     "img": 4,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 1,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 1,
+     "pictureSamples": [
+      "a-medical-student-starting-out-plate-12.jpg",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Questions about Recalls Tutor",
+     "words": 4,
+     "chars": 29,
+     "lines": 1,
+     "size": 49.2,
+     "vw": 6.4,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.86,
+     "top": 165,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Questions about Recalls Tutor",
+     "words": 4,
+     "lines": 1,
+     "size": 49.2,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "Georgia",
+      "weight": 650,
+      "tracking": -0.034,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 16,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Questions about Recalls Tutor",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 165,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "What a question looks like",
+      "words": 5,
+      "chars": 26,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 1922,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Learned around one table",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.85,
+      "top": 3173,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.86,
+      "top": 3439,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 1,
+     "medianWords": 5,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.79,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.21,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      28,
+      29,
+      30,
+      34,
+      49
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12.7
+     },
+     "measureChars": 78,
+     "max": {
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Georgia",
+      "text": "Questions about Recalls Tutor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.3,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 76,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 134,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 1850,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 2025,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 2637,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.59
+      },
+      {
+       "color": "#465650",
+       "share": 0.25
+      },
+      {
+       "color": "#59665f",
+       "share": 0.09
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.07
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f6f5ef",
+      "hsl": {
+       "h": 51,
+       "s": 0.28,
+       "l": 0.95
+      },
+      "fg": "#16261f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 7,
+     "inHero": 2,
+     "radius": 0,
+     "height": 56,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 2,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.22
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 76,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 4119,
+    "margins": {
+     "left": 22,
+     "right": 47
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero.faq-hero",
+      "tag": "section",
+      "top": 76,
+      "height": 818,
+      "words": 24,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Questions about Recalls Tutor",
+       "size": 49,
+       "tag": "h1"
+      },
+      "left": 52,
+      "right": 52,
+      "textLeft": 52,
+      "textRight": 125,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.faq-cards.frame",
+      "tag": "section",
+      "top": 894,
+      "height": 956,
+      "words": 74,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 138,
+      "right": 166,
+      "textLeft": 138,
+      "textRight": 166,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 1850,
+      "height": 786,
+      "words": 85,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "What a question looks like",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 47,
+      "textLeft": 22,
+      "textRight": 57,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 2637,
+      "height": 717,
+      "words": 17,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 62,
+      "right": 62,
+      "textLeft": 62,
+      "textRight": 62,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3353,
+      "height": 766,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 52,
+      "right": 55,
+      "textLeft": 52,
+      "textRight": 115,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Questions about Recalls Tutor",
+      "size": 49,
+      "top": 165,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 22,
+      "n": 2
+     },
+     {
+      "x": 52,
+      "n": 2
+     },
+     {
+      "x": 166,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.76,
+    0.7,
+    0.85,
+    0.82,
+    0.58,
+    0.5
+   ],
+   "motion": {
+    "elements": 9,
+    "css": 0,
+    "transitions": 7,
+    "scripted": 2,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 4501,
+     "screens": 5.3,
+     "words": 320,
+     "img": 4,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 1,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 1,
+     "pictureSamples": [
+      "a-medical-student-starting-out-plate-12.jpg",
+      "the-anatomical-lesson-of-professor-pauw.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Questions about Recalls Tutor",
+     "words": 4,
+     "chars": 29,
+     "lines": 2,
+     "size": 46,
+     "vw": 11.8,
+     "font": "Georgia",
+     "weight": 400,
+     "tracking": -0.045,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.92,
+     "top": 203,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Questions about Recalls Tutor",
+     "words": 4,
+     "lines": 2,
+     "size": 46,
+     "font": "Georgia"
+    },
+    "headings": [
+     {
+      "text": "r. recalls tutor",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 650,
+      "tracking": -0.036,
+      "leading": 1.55,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 14,
+      "mixedFonts": [
+       "-apple-system",
+       "Georgia"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Questions about Recalls Tutor",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 203,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "What a question looks like",
+      "words": 5,
+      "chars": 26,
+      "lines": 2,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2000,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Learned around one table",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 34,
+      "vw": 8.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.035,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 3291,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Good luck with your exam.",
+      "words": 5,
+      "chars": 25,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Georgia",
+      "weight": 400,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.58,
+      "top": 3608,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 1,
+     "medianWords": 5,
+     "mixedFontHeadings": 1
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.79,
+       "mono": false
+      },
+      {
+       "family": "Georgia",
+       "share": 0.21,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      19,
+      20,
+      25,
+      28,
+      30,
+      34,
+      46
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12.7
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 46,
+      "vw": 11.8,
+      "font": "Georgia",
+      "text": "Questions about Recalls Tutor"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.3,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f6f5ef",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.28,
+      "l": 0.95
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#183f32",
+       "top": 119,
+       "hsl": {
+        "h": 160,
+        "s": 0.45,
+        "l": 0.17
+       }
+      },
+      {
+       "color": "#f6f5ef",
+       "top": 171,
+       "hsl": {
+        "h": 51,
+        "s": 0.28,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#e3e9d8",
+       "top": 1928,
+       "hsl": {
+        "h": 81,
+        "s": 0.28,
+        "l": 0.88
+       }
+      },
+      {
+       "color": "#fffefa",
+       "top": 2163,
+       "hsl": {
+        "h": 48,
+        "s": 1,
+        "l": 0.99
+       }
+      },
+      {
+       "color": "#2a2a24",
+       "top": 2937,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.15
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#16261f",
+       "share": 0.59
+      },
+      {
+       "color": "#465650",
+       "share": 0.25
+      },
+      {
+       "color": "#59665f",
+       "share": 0.09
+      },
+      {
+       "color": "#f6f5ef",
+       "share": 0.07
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f6f5ef",
+      "hsl": {
+       "h": 51,
+       "s": 0.28,
+       "l": 0.95
+      },
+      "fg": "#16261f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 7,
+     "inHero": 2,
+     "radius": 0,
+     "height": 56,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Sign in"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 2,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.4
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": false,
+     "height": 119,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 4501,
+    "margins": {
+     "left": 16,
+     "right": 21
+    },
+    "sections": [
+     {
+      "sel": "section.page-hero.faq-hero",
+      "tag": "section",
+      "top": 119,
+      "height": 882,
+      "words": 24,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Questions about Recalls Tutor",
+       "size": 46,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.faq-cards.frame",
+      "tag": "section",
+      "top": 1001,
+      "height": 928,
+      "words": 74,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 16,
+      "right": 57,
+      "textLeft": 16,
+      "textRight": 57,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.band.sage",
+      "tag": "section",
+      "top": 1928,
+      "height": 1008,
+      "words": 85,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "What a question looks like",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 21,
+      "textLeft": 16,
+      "textRight": 21,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.plate-band",
+      "tag": "section",
+      "top": 2937,
+      "height": 591,
+      "words": 17,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Learned around one table",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 54,
+      "right": 54,
+      "textLeft": 54,
+      "textRight": 54,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3528,
+      "height": 973,
+      "words": 103,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Good luck with your exam.",
+       "size": 30,
+       "tag": "p"
+      },
+      "left": 40,
+      "right": 38,
+      "textLeft": 40,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Questions about Recalls Tutor",
+      "size": 46,
+      "top": 203,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 4
+     },
+     {
+      "x": 34,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 5,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #f6f5ef, section #f6f5ef, section #fffefa).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "11 different font sizes (14, 17, 20, 22, 24, 28, 29, 40, 52, 60, 92).",
+   "fix": "A page needs about five: display, heading, lead, body, small."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 40px on the left, 98px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Little motion: 10 element(s) moved while the page loaded and scrolled.",
+   "fix": "Give every section an entrance for its parts (not one fade of the whole block) and add one moving picture: a looping clip or a slow move on a photograph."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\final-faq\\desktop-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\final-faq\\desktop-page-01.jpg",
+    "F:\\Recalls Tutor\\.taste-skill\\final-faq\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\final-faq\\tablet-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\final-faq\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "F:\\Recalls Tutor\\.taste-skill\\final-faq\\mobile-fold.jpg",
+   "pages": [
+    "F:\\Recalls Tutor\\.taste-skill\\final-faq\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
