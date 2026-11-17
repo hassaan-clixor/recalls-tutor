@@ -16,13 +16,13 @@ export type ExamSettings={durationMinutes?:number;passMarkPercent?:number;highYi
 // PRD TRIAL-1 defaults; every value is editable per exam by a Super Admin.
 export const TRIAL_DEFAULTS:TrialSettings={enabled:false,days:3,questionLimit:50,mockSize:25};
 export function trialSettings(settings:ExamSettings):TrialSettings {return {...TRIAL_DEFAULTS,...(settings?.trial??{})};}
-export type CatalogueExam={id:string;name:string;slug:string;questionCount:number|null;settings:ExamSettings;
+export type CatalogueExam={id:string;name:string;slug:string;questionCount:number|null;blueprintTypes:Record<string,number>;blueprintTopics:Record<string,number>;settings:ExamSettings;
  sittings:{id:string;label:string;slug:string;year:number;month:number|null;published:boolean;trialPool:boolean;questions:number}[];
  topics:{id:string;name:string;parentId:string|null;questions:number}[]};
 export async function getCatalogueAdmin(db:Database,actorId:string):Promise<CatalogueExam[]> {
  await requireRole(db,actorId,['reviewer',...MANAGERS]);
- const exams=await db.query<{id:string;name:string;slug:string;blueprint:{count?:number};settings:ExamSettings}>('SELECT id,name,slug,blueprint,settings FROM exams ORDER BY name');
- return Promise.all(exams.map(async e=>({id:e.id,name:e.name,slug:e.slug,settings:e.settings??{},questionCount:Number(e.blueprint?.count)>0?Number(e.blueprint.count):null,
+ const exams=await db.query<{id:string;name:string;slug:string;blueprint:{count?:number;types?:Record<string,number>;topics?:Record<string,number>};settings:ExamSettings}>('SELECT id,name,slug,blueprint,settings FROM exams ORDER BY name');
+ return Promise.all(exams.map(async e=>({id:e.id,name:e.name,slug:e.slug,settings:e.settings??{},questionCount:Number(e.blueprint?.count)>0?Number(e.blueprint.count):null,blueprintTypes:e.blueprint?.types??{},blueprintTopics:e.blueprint?.topics??{},
   sittings:await db.query(`SELECT s.id,s.label,s.slug,s.year,s.month,s.published,s.trial_pool AS "trialPool",(SELECT count(*)::int FROM question_sittings qs WHERE qs.sitting_id=s.id) AS questions FROM sittings s WHERE s.exam_id=$1 ORDER BY s.year DESC,s.month DESC NULLS LAST`,[e.id]),
   topics:await db.query(`SELECT t.id,t.name,t.parent_id AS "parentId",(SELECT count(*)::int FROM questions q WHERE q.topic_id=t.id) AS questions FROM topics t WHERE t.exam_id=$1 ORDER BY t.name`,[e.id])})));
 }
@@ -32,7 +32,7 @@ function optionalNumber(value:unknown,min:number,max:number,label:string,integer
  return n;
 }
 // Exam timing and pass marks are entered by the content team; nothing is assumed when a field is left blank.
-export async function updateExamSettings(db:Database,actorId:string,examId:string,input:{questionCount:unknown;durationMinutes:unknown;passMarkPercent:unknown;highYieldMin:unknown;needsExpertBelow:unknown;approvedSources:string[];styleNotes:string;trial?:{enabled:boolean;days:unknown;questionLimit:unknown;mockSize:unknown}}) {
+export async function updateExamSettings(db:Database,actorId:string,examId:string,input:{questionCount:unknown;durationMinutes:unknown;passMarkPercent:unknown;highYieldMin:unknown;needsExpertBelow:unknown;approvedSources:string[];styleNotes:string;blueprintTargets?:{types:Record<string,string>;topics:Record<string,string>};trial?:{enabled:boolean;days:unknown;questionLimit:unknown;mockSize:unknown}}) {
  requireId(examId);
  if(input.approvedSources.length>50||input.approvedSources.some(s=>s.length>300))throw new Error('Approved sources: up to 50 lines of 300 characters.');
  if(input.styleNotes.length>4000)throw new Error('Style notes must be under 4,000 characters.');
@@ -52,6 +52,21 @@ export async function updateExamSettings(db:Database,actorId:string,examId:strin
    settings.trial={enabled:input.trial.enabled===true,days:optionalNumber(input.trial.days,1,30,'Trial days')??TRIAL_DEFAULTS.days,questionLimit:optionalNumber(input.trial.questionLimit,1,500,'Trial question limit')??TRIAL_DEFAULTS.questionLimit,mockSize:optionalNumber(input.trial.mockSize,1,200,'Trial mini mock size')??TRIAL_DEFAULTS.mockSize};
   }
   const blueprint={...exam.blueprint};if(count===undefined)delete blueprint.count;else blueprint.count=count;
+  if(input.blueprintTargets){
+   const topTopics=await tx.query<{id:string}>('SELECT id::text AS id FROM topics WHERE exam_id=$1 AND parent_id IS NULL',[examId]);
+   const parseTargets=(values:Record<string,string>,allowed:string[],label:string)=>{
+    const entries=Object.entries(values).filter(([,v])=>v.trim()!=='');
+    if(entries.some(([key])=>!allowed.includes(key)))throw new Error(`Choose valid ${label} targets for this exam.`);
+    const result:Record<string,number>={};
+    for(const [key,value] of entries)result[key]=optionalNumber(value,0,1000,`${label} target`) as number;
+    if(entries.length&&(!count||Object.values(result).reduce((a,b)=>a+b,0)!==count))throw new Error(`${label} targets must add up to the paper question count.`);
+    return entries.length?result:undefined;
+   };
+   const types=parseTargets(input.blueprintTargets.types,['SBA','EMQ','MCQ','TRUE_FALSE'],'Question type');
+   const topics=parseTargets(input.blueprintTargets.topics,topTopics.map(t=>t.id),'Topic');
+   if(types)blueprint.types=types;else delete blueprint.types;
+   if(topics)blueprint.topics=topics;else delete blueprint.topics;
+  }
   await tx.query('UPDATE exams SET settings=$2::jsonb,blueprint=$3::jsonb WHERE id=$1',[examId,JSON.stringify(settings),JSON.stringify(blueprint)]);
   await audit(tx,actorId,examId,'exam.settings_updated',{settings:exam.settings,blueprint:exam.blueprint},{settings,blueprint});
  });

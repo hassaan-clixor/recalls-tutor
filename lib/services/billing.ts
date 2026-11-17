@@ -66,11 +66,50 @@ export async function startCheckout(db:Database,gateway:StripeGateway|null,userI
  const [sitting]=input.fromSitting&&/^[a-z0-9-]{1,80}$/.test(input.fromSitting)?await db.query<{id:string}>('SELECT id FROM sittings WHERE exam_id=$1 AND slug=$2 AND published',[plan.exam_id,input.fromSitting]):[];
  let [customer]=await db.query<{id:string}>('SELECT stripe_customer_id AS id FROM billing_customers WHERE user_id=$1',[userId]);
  if(!customer){const created=await stripe.createCustomer({email:user.email,name:user.name,userId});await db.query('INSERT INTO billing_customers(user_id,stripe_customer_id) VALUES($1,$2) ON CONFLICT(user_id) DO NOTHING',[userId,created.id]);[customer]=await db.query<{id:string}>('SELECT stripe_customer_id AS id FROM billing_customers WHERE user_id=$1',[userId]);}
- const session=await stripe.createCheckoutSession({customer:customer.id,price:plan.stripe_price_id,userId,planId:input.planId,promotionCode:coupon?.promotionCode??null,sittingId:sitting?.id??null,
+ const checkoutInput={customer:customer.id,price:plan.stripe_price_id,userId,planId:input.planId,promotionCode:coupon?.promotionCode??null,sittingId:sitting?.id??null,
   successUrl:`${input.siteUrl}/billing/confirm?session_id={CHECKOUT_SESSION_ID}`,cancelUrl:`${input.siteUrl}${input.cancelPath}`,
-  submitMessage:`Plans renew automatically until you turn auto-renew off in My plans. Refund policy: ${input.siteUrl}/refund-policy`});// BILL-5: refund policy shown at checkout
- if(!session.url)throw new Error('Stripe did not return a checkout page. Please retry.');
- return session.url;
+  submitMessage:`Plans renew automatically until you turn auto-renew off in My plans. Refund policy: ${input.siteUrl}/refund-policy`};// BILL-5: refund policy shown at checkout
+ // Persist the idempotency key and exact request before contacting Stripe. A retry after a lost
+ // response uses the same key and parameters rather than creating another payable session.
+ for(let attempt=0;attempt<2;attempt++){
+  await db.query(`INSERT INTO checkout_reservations(user_id,exam_id,checkout_input) VALUES($1,$2,$3::jsonb) ON CONFLICT(user_id,exam_id) DO NOTHING`,[userId,plan.exam_id,JSON.stringify(checkoutInput)]);
+  const result=await db.transaction(async tx=>{
+   const [reservation]=await tx.query<{attempt_id:string;session_id:string|null;checkout_input:typeof checkoutInput;too_old:boolean}>(`SELECT attempt_id,session_id,checkout_input,created_at<now()-interval '23 hours' AS too_old FROM checkout_reservations WHERE user_id=$1 AND exam_id=$2 FOR UPDATE`,[userId,plan.exam_id]);
+   // Another request may remove an expired reservation between our insert and row lock.
+   if(!reservation)return null;
+   if((await tx.query(`SELECT 1 FROM subscriptions WHERE user_id=$1 AND exam_id=$2 AND status IN ('active','trialing','past_due') AND access_hold IS NULL`,[userId,plan.exam_id])).length)throw new Error('You already have a plan for this exam. Manage it in My plans.');
+   if(reservation.session_id){
+    const session=await stripe.retrieveCheckoutSession(reservation.session_id);
+    if(session.customer!==customer.id||session.clientReferenceId!==userId)throw new Error('Your checkout could not be verified. Contact support.');
+    if(session.status==='expired'){await tx.query('DELETE FROM checkout_reservations WHERE user_id=$1 AND exam_id=$2',[userId,plan.exam_id]);return null;}
+    if(session.status==='complete'){
+     // Only permit a new purchase once both Stripe and our webhook mirror agree that the
+     // original subscription is canceled. A completed but unsynchronized checkout may still charge.
+     if(session.subscription){
+      const [mirrored]=await tx.query<{status:string}>('SELECT status FROM subscriptions WHERE stripe_subscription_id=$1 AND user_id=$2 AND exam_id=$3',[session.subscription,userId,plan.exam_id]);
+      if(mirrored?.status==='canceled'){
+       const previous=await stripe.retrieveSubscription(session.subscription);
+       if(previous.id===session.subscription&&previous.customer===customer.id&&previous.status==='canceled'){
+        await tx.query('DELETE FROM checkout_reservations WHERE user_id=$1 AND exam_id=$2',[userId,plan.exam_id]);return null;
+       }
+      }
+     }
+     throw new Error('Your checkout is complete and is being processed. Check My plans shortly.');
+    }
+    if(session.status!=='open'||!session.url)throw new Error('Your checkout could not be verified. Contact support.');
+    if(reservation.checkout_input.planId!==input.planId||reservation.checkout_input.promotionCode!==checkoutInput.promotionCode)throw new Error('An existing checkout is open for this exam. Complete it or wait for it to expire before choosing another plan or offer.');
+    return session.url;
+   }
+   if(reservation.too_old)throw new Error('Your earlier checkout could not be confirmed. Contact support before trying again.');
+   if(reservation.checkout_input.planId!==input.planId||reservation.checkout_input.promotionCode!==checkoutInput.promotionCode)throw new Error('An earlier checkout for this exam is being confirmed. Please retry the same plan and offer.');
+   const session=await stripe.createCheckoutSession({...reservation.checkout_input,idempotencyKey:`checkout-${reservation.attempt_id}`});
+   if(session.status!=='open'||!session.url||session.customer!==customer.id||session.clientReferenceId!==userId)throw new Error('Stripe did not return a valid checkout page. Please retry.');
+   await tx.query('UPDATE checkout_reservations SET session_id=$3 WHERE user_id=$1 AND exam_id=$2',[userId,plan.exam_id,session.id]);
+   return session.url;
+  });
+  if(result)return result;
+ }
+ throw new Error('Your checkout could not be restarted. Please retry.');
 }
 // The return page only reports what the webhook has already recorded.
 export async function checkoutStatus(db:Database,gateway:StripeGateway|null,userId:string,sessionId:string):Promise<'active'|'pending'|'not_found'> {
@@ -203,16 +242,17 @@ export async function processStripeEvent(db:Database,gateway:StripeGateway,event
 // BILL-4: record once, process, and report failure so Stripe retries. Repeat deliveries of a processed event do nothing.
 export async function receiveStripeEvent(db:Database,gateway:StripeGateway,event:StripeEvent):Promise<'processed'|'duplicate'|'failed'> {
  await db.query('INSERT INTO webhook_events(id,type,object_id) VALUES($1,$2,$3) ON CONFLICT(id) DO NOTHING',[event.id,event.type,event.objectId]);
- const [row]=await db.query<{processed_at:string|null}>('UPDATE webhook_events SET attempts=attempts+1 WHERE id=$1 AND processed_at IS NULL RETURNING processed_at',[event.id]);
- if(!row)return 'duplicate';
+ // A retry while another worker owns the event must receive a non-2xx response, not a false acknowledgement.
+ const [row]=await db.query<{claim_token:string}>(`UPDATE webhook_events SET attempts=attempts+1,claim_token=gen_random_uuid(),claim_until=now()+interval '15 minutes' WHERE id=$1 AND processed_at IS NULL AND (claim_until IS NULL OR claim_until<now()) RETURNING claim_token`,[event.id]);
+ if(!row){const [current]=await db.query<{processed_at:string|null}>('SELECT processed_at FROM webhook_events WHERE id=$1',[event.id]);return current?.processed_at?'duplicate':'failed';}
  try {
   await processStripeEvent(db,gateway,event);
-  await db.query('UPDATE webhook_events SET processed_at=now(),error=NULL WHERE id=$1',[event.id]);
-  return 'processed';
+  const completed=await db.query('UPDATE webhook_events SET processed_at=now(),error=NULL,claim_token=NULL,claim_until=NULL WHERE id=$1 AND claim_token=$2 RETURNING id',[event.id,row.claim_token]);
+  return completed.length?'processed':'failed';
  } catch(error) {
   const message=(error instanceof Error?error.message:'Processing failed').slice(0,500);
-  const [{attempts}]=await db.query<{attempts:number}>('UPDATE webhook_events SET error=$2 WHERE id=$1 RETURNING attempts',[event.id,message]);
-  if(attempts===3)await db.query(`INSERT INTO billing_alerts(kind,details) VALUES('webhook_failure',$1::jsonb)`,[JSON.stringify({eventId:event.id,type:event.type,error:message})]);
+  const [failed]=await db.query<{attempts:number}>('UPDATE webhook_events SET error=$2,claim_token=NULL,claim_until=NULL WHERE id=$1 AND claim_token=$3 RETURNING attempts',[event.id,message,row.claim_token]);
+  if(failed?.attempts===3)await db.query(`INSERT INTO billing_alerts(kind,details) VALUES('webhook_failure',$1::jsonb)`,[JSON.stringify({eventId:event.id,type:event.type,error:message})]);
   return 'failed';
  }
 }

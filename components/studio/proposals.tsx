@@ -10,7 +10,7 @@ function Notice({state}:{state:Result}){return <>{state.error&&<p className="stu
 // ADM-6: ask Claude to check a student's report and draft a fix. Nothing changes until a person accepts it.
 export function DraftFixButton({reportId}:{reportId:string}){
  const router=useRouter();const[busy,start]=useTransition();const[state,setState]=useState<Result>({});
- return <><button type="button" className="studio-button studio-button-secondary studio-button-small" disabled={busy} onClick={()=>start(async()=>{const r=await draftFix(reportId);setState(r);if(!r.error)router.refresh();})}>{busy?'Claude is checking…':'Draft a fix with Claude'}</button>{(state.error||state.success)&&<Notice state={state}/>}</>;
+ return <><button type="button" className="studio-button studio-button-secondary studio-button-small" disabled={busy} onClick={()=>start(async()=>{const r=await draftFix(reportId);setState(r);if(!r.error)router.refresh();})}>{busy?'AI is checking…':'Draft a fix with AI'}</button>{(state.error||state.success)&&<Notice state={state}/>}</>;
 }
 // One line of the before/after comparison; changed lines are marked so a reviewer sees them at a glance.
 function Line({label,before,after}:{label:string;before:string;after:string}){
@@ -38,7 +38,7 @@ function ProposalCard({p,canDecide}:{p:Proposal;canDecide:boolean}){
     <label className="studio-field">Correct answer<select name="correctAnswer" defaultValue={String(p.after.answer??0)}>{[0,1,2,3,4].map(i=><option key={i} value={i}>{L[i]}</option>)}</select></label>
     <label className="studio-field">Explanation<textarea name="explanation" rows={5} defaultValue={p.after.explanation} required/></label></div>}
    <div className="paper-actions"><button className="studio-button" disabled={pending||p.stale}>{pending?'Publishing…':edit?'Publish my edited version':'Accept and publish'}</button>
-    <button type="button" className="studio-button studio-button-secondary" onClick={()=>setEdit(!edit)} disabled={p.stale}>{edit?'Use Claude’s version':'Edit before accepting'}</button>
+    <button type="button" className="studio-button studio-button-secondary" onClick={()=>setEdit(!edit)} disabled={p.stale}>{edit?'Use AI version':'Edit before accepting'}</button>
     <button type="button" className="studio-link-button studio-danger-link" disabled={busy} onClick={()=>start(async()=>{const r=await dismissFix(p.id);setDismissed(r);if(!r.error)router.refresh();})}>Dismiss</button>
     <Link className="studio-link-button" href={`/studio?question=${p.questionId}`}>Open the question</Link></div>
    <Notice state={state}/><Notice state={dismissed}/></form>

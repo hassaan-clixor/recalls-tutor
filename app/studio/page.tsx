@@ -14,7 +14,10 @@ import {listProposals} from '@/lib/services/proposals';
 import {listPendingComments} from '@/lib/services/discussion';
 import {CommentQueue} from '@/components/studio/moderation';
 import {listQuestionReports} from '@/lib/services/student';
-import { RecallIntake, QuestionEditor, GrantAccess, RecallUpload, JobList } from '@/components/studio/workspace';
+import { RecallIntake, QuestionEditor, GrantAccess, RecallUpload, JobList, DuplicatePanel, CleanQuestionImport, BulkApprove } from '@/components/studio/workspace';
+import {BigUpload,BatchList} from '@/components/studio/big-upload';
+import {listUploadBatches} from '@/lib/services/upload-batches';
+import {configuredStorage} from '@/lib/integrations/storage';
 import './studio.css';
 export const metadata = { title: 'Recall Studio' };
 export const dynamic = 'force-dynamic';
@@ -28,8 +31,13 @@ export default async function StudioPage({ searchParams }: { searchParams: Promi
  if(access!=='allowed'||!actor)return <StudioShell current="queue" actor={actor} title="Staff access required." sub="Your account cannot access the content workspace."/>;
  const db=getDatabase(); const [exams,questions,jobs,catalogue,selected,reports]=await Promise.all([listExams(db),listStudioQuestions(db,actor.id),listStudioJobs(db,actor.id),getCatalogueAdmin(db,actor.id),searchParams,listQuestionReports(db,actor.id)]);
  const proposals=await listProposals(db,actor.id);
+ const batches=await listUploadBatches(db,actor.id);
+ const bigUploads=Boolean(configuredStorage());
  const pendingComments=await listPendingComments(db,actor.id);
  const question=selected.question?await getStudioQuestion(db,actor.id,selected.question):null;
+ const duplicate=question?.aiMeta?.duplicateOf?await getStudioQuestion(db,actor.id,question.aiMeta.duplicateOf):null;
+ const decided=question?(await db.query('SELECT 1 FROM duplicate_decisions WHERE source_question_id=$1 AND source_version_id=$2',[question.id,question.versionId])).length>0:false;
+ const evidence=question?await db.query<{id:string;label:string;text:string}>(`SELECT id,label,text FROM (SELECT s.id,s.source_label AS label,s.source_text AS text,x.created_at FROM question_extra_evidence x JOIN recall_sources s ON s.id=x.source_id WHERE x.target_question_id=$1 UNION ALL SELECT id,source_label AS label,source_text AS text,created_at FROM semantic_merge_evidence WHERE target_question_id=$1) evidence ORDER BY created_at`,[question.id]):[];
  const review=questions.filter(q=>q.status==='in_review').length,published=questions.filter(q=>q.status==='published').length;
  const manager=actor.role==='content_manager'||actor.role==='super_admin';
  const examOptions=exams.map(e=>({id:e.id,name:e.name,sittings:catalogue.find(c=>c.id===e.id)?.sittings.map(s=>({id:s.id,label:s.label}))??[]}));
@@ -39,6 +47,10 @@ export default async function StudioPage({ searchParams }: { searchParams: Promi
  const sub=[review?`${review} waiting for review`:'Nothing waiting for review',reports.length?`${reports.length} student ${reports.length===1?'report':'reports'} open`:null,count('approved')?`${count('approved')} approved, not yet published`:null,`${published} published`].filter(Boolean).join(' · ');
  return <StudioShell current="queue" actor={actor} title="Questions" sub={sub}><div className="studio-workspace"><aside className="studio-sidebar">
   {manager&&<details className="studio-intake" open={!questions.length}><summary>Upload recalls</summary><RecallUpload exams={examOptions}/></details>}
+  {manager&&bigUploads&&<details className="studio-intake"><summary>Upload a large batch (up to 500 MB)</summary><BigUpload exams={examOptions}/></details>}
+  {batches.length>0&&<><h2>Large uploads <small>{batches.length}</small></h2><BatchList batches={batches}/></>}
+  {manager&&<details className="studio-intake studio-intake-quiet"><summary>Import clean questions</summary><CleanQuestionImport exams={examOptions}/></details>}
+  <BulkApprove items={questions.filter(q=>q.status==='in_review'&&!q.needsExpert&&(q.confidence??0)>=80).map(q=>({id:q.id,versionId:q.versionId,stem:q.stem,confidence:q.confidence!}))}/>
   <h2>Question queue <small>{shown.length}{filter.key!=='all'?` of ${questions.length}`:''}</small></h2>
   <nav className="studio-filters" aria-label="Filter by status">{FILTERS.map(f=>{const n=f.key==='all'?questions.length:count(f.key);return <Link key={f.key} href={f.key==='all'?'/studio':`/studio?status=${f.key}`} aria-current={f.key===filter.key?'page':undefined}>{f.label} <small>{n}</small></Link>;})}</nav>
   {shown.length?<ul className="studio-queue">{shown.map(q=><li key={q.id}><Link href={`/studio?question=${q.id}${filter.key!=='all'?`&status=${filter.key}`:''}`} aria-current={q.id===question?.id?'page':undefined}><span>{q.examName}</span><strong>{q.stem||'Untitled recall draft'}</strong><span className="studio-queue-state"><b className={`is-${q.status}`}>{STATUS[q.status]??q.status}</b> v{q.version}{q.confidence!==null?` · ${q.confidence}% confidence`:''}{q.needsExpert&&q.ai?' · needs expert':''}{reports.some(r=>r.questionId===q.id)?` · ${reports.filter(r=>r.questionId===q.id).length} reported`:''}</span></Link></li>)}</ul>
@@ -48,5 +60,5 @@ export default async function StudioPage({ searchParams }: { searchParams: Promi
   <h2>Student reports <small>{reports.length}</small></h2><ReportList reports={question?[...reports.filter(r=>r.questionId===question.id),...reports.filter(r=>r.questionId!==question.id)]:reports} status={filter.key!=='all'?filter.key:undefined}/>
   <h2>AI jobs <small>{jobs.length}</small></h2><JobList jobs={jobs} manager={manager}/>
   {manager&&<details className="studio-intake studio-intake-quiet"><summary>Write a question manually</summary><RecallIntake exams={exams.map(e=>({id:e.id,name:e.name}))}/></details>}{actor.role==='super_admin'&&<details className="studio-intake studio-intake-quiet"><summary>Grant practice access</summary><GrantAccess exams={exams.map(e=>({id:e.id,name:e.name}))}/></details>}
- </aside><section className="studio-main" aria-label="Question workspace">{question?<QuestionEditor key={question.versionId} question={question} manager={manager} taxonomy={taxonomy!}/>:<div className="studio-empty"><h2>{selected.question?'Question not found.':'Every question starts with evidence.'}</h2><p>Select a draft to compare its source, shape the question and move it through human review.</p><ol><li><strong>Upload recalls.</strong> A chat export, PDF or Word file from candidates.</li><li><strong>Claude drafts.</strong> Each recall becomes a five-option question with an explanation and references.</li><li><strong>People review, approve, then publish.</strong> Nothing reaches students before that.</li></ol><p className="studio-help">Drafts and source evidence are private to authorised staff.</p></div>}</section></div></StudioShell>;
+ </aside><section className="studio-main" aria-label="Question workspace">{question?<><DuplicatePanel source={question} target={duplicate} decided={decided} evidence={evidence}/><QuestionEditor key={question.versionId} question={question} manager={manager} taxonomy={taxonomy!}/></>:<div className="studio-empty"><h2>{selected.question?'Question not found.':'Every question starts with evidence.'}</h2><p>Select a draft to compare its source, shape the question and move it through human review.</p><ol><li><strong>Upload recalls.</strong> A chat export, PDF or Word file from candidates.</li><li><strong>AI drafts.</strong> Recalls are turned into five-option questions for review.</li><li><strong>People review, approve, then publish.</strong> Nothing reaches students before that.</li></ol><p className="studio-help">Drafts and source evidence are private to authorised staff.</p></div>}</section></div></StudioShell>;
 }

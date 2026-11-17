@@ -1,8 +1,9 @@
 import type {Database} from '../db/client';
 import type {RecallModel} from '../integrations/llm/claude-cli';
-import {requireId,requireStaff} from './studio';
+import {lockQuestionBank,requireId,requireStaff} from './studio';
 import {DRAFT_SCHEMA,LETTERS,evidenceBlock,examContext,explanationText,referenceText,reviewFlags,systemPrompt,validDraft} from './ai-studio';
 import {createSitting} from './catalogue-admin';
+import {linkDuplicateEvidence} from './duplicate-resolution';
 // ADM-6 / AIS-12: proposed edits to existing questions. Claude drafts, a person decides. Accepting creates a new
 // version of the question; students already part-way through a session keep the version they started with.
 const FIX_SCHEMA={type:'object',additionalProperties:false,required:['needs_change','rationale','changes','draft'],properties:{
@@ -28,7 +29,7 @@ export async function draftReportFix(db:Database,actorId:string,reportId:string,
  const response=await model.complete({system:systemPrompt(exam),prompt,schema:FIX_SCHEMA});
  const out=response.output as {needs_change?:unknown;rationale?:unknown;changes?:unknown;draft?:unknown};
  const d=validDraft(out?.draft);
- if(!d||typeof out.needs_change!=='boolean')throw new Error('Claude returned a fix that failed validation. Try again.');
+ if(!d||typeof out.needs_change!=='boolean')throw new Error('The AI provider returned a fix that failed validation. Try again.');
  const rationale=typeof out.rationale==='string'?out.rationale.slice(0,4000):'';
  const changes=Array.isArray(out.changes)?out.changes.filter((c):c is string=>typeof c==='string').slice(0,20).map(c=>c.slice(0,500)):[];
  if(!out.needs_change){
@@ -58,11 +59,18 @@ export async function acceptProposal(db:Database,actorId:string,proposalId:strin
  requireId(proposalId);
  return db.transaction(async tx=>{
   await requireStaff(tx,actorId,true);
-  const [p]=await tx.query<{question_id:string;base_version_id:string;report_id:string|null;job_id:string|null;stem:string;options:string[];correct_answers:number[];explanation:string;references_json:string[];key_notes:string[];status:string}>('SELECT * FROM question_proposals WHERE id=$1 FOR UPDATE',[proposalId]);
+  const [identity]=await tx.query<{question_id:string}>('SELECT question_id FROM question_proposals WHERE id=$1',[proposalId]);
+  if(!identity)throw new Error('This proposal has already been decided.');
+  await lockQuestionBank(tx,identity.question_id);
+  const [p]=await tx.query<{question_id:string;base_version_id:string;report_id:string|null;job_id:string|null;source_question_id:string|null;source_version_id:string|null;stem:string;options:string[];correct_answers:number[];explanation:string;references_json:string[];key_notes:string[];status:string}>('SELECT * FROM question_proposals WHERE id=$1 FOR UPDATE',[proposalId]);
   if(!p||p.status!=='pending')throw new Error('This proposal has already been decided.');
   const [q]=await tx.query<{status:string;current_version_id:string;exam_id:string}>('SELECT status,current_version_id,exam_id FROM questions WHERE id=$1 FOR UPDATE',[p.question_id]);
   if(q.current_version_id!==p.base_version_id)throw new Error('The question was edited after this proposal was made. Dismiss it, or draft a new fix.');
   if(q.status!=='published')throw new Error('Only proposals for published questions can be accepted here. Edit drafts in the review queue.');
+  if(p.source_question_id){
+   const [source]=await tx.query<{status:string;current_version_id:string;exam_id:string}>('SELECT status,current_version_id,exam_id FROM questions WHERE id=$1 FOR UPDATE',[p.source_question_id]);
+   if(!source||source.exam_id!==q.exam_id||source.current_version_id!==p.source_version_id||!['raw','ai_refined','in_review','approved'].includes(source.status))throw new Error('The replacement draft changed or is no longer available. Dismiss this proposal and review it again.');
+  }
   const c=edits??{stem:p.stem,options:p.options,correctAnswer:p.correct_answers[0],explanation:p.explanation};
   if(!c.stem.trim()||c.stem.length>12000||c.options.length!==5||c.options.some(o=>!o.trim()||o.length>3000)||new Set(c.options.map(o=>o.trim().toLowerCase())).size!==5||!Number.isInteger(c.correctAnswer)||c.correctAnswer<0||c.correctAnswer>4||!c.explanation.trim()||c.explanation.length>20000)
    throw new Error('Complete the stem, five distinct options, the correct answer and the explanation.');
@@ -71,6 +79,7 @@ export async function acceptProposal(db:Database,actorId:string,proposalId:strin
    [p.question_id,c.stem.trim(),JSON.stringify(c.options.map(o=>o.trim())),JSON.stringify([c.correctAnswer]),c.explanation.trim(),JSON.stringify(p.references_json),JSON.stringify(p.key_notes),JSON.stringify({kind:'proposal',proposalId,edited:Boolean(edits)}),p.base_version_id]);
   await tx.query('UPDATE questions SET current_version_id=$1 WHERE id=$2',[v.id,p.question_id]);
   await tx.query(`UPDATE question_proposals SET status='accepted',decided_by=$2,decided_at=now(),applied_version_id=$3 WHERE id=$1`,[proposalId,actorId,v.id]);
+  if(p.source_question_id)await linkDuplicateEvidence(tx,actorId,p.source_question_id,p.question_id);
   // The report it answers is closed as fixed, and so are other open reports on the same version.
   await tx.query(`UPDATE question_reports SET status='resolved',resolved_by=$2,resolved_at=now() WHERE status='open' AND question_id=$1 AND version_id=$3`,[p.question_id,actorId,p.base_version_id]);
   // New evidence: keep the new recall with the question and tag the sitting it came from ("Seen in").
@@ -81,10 +90,14 @@ export async function acceptProposal(db:Database,actorId:string,proposalId:strin
  });
 }
 export async function dismissProposal(db:Database,actorId:string,proposalId:string) {
- requireId(proposalId);await requireStaff(db,actorId,true);
- const rows=await db.query<{question_id:string}>(`UPDATE question_proposals SET status='dismissed',decided_by=$2,decided_at=now() WHERE id=$1 AND status='pending' RETURNING question_id`,[proposalId,actorId]);
- if(!rows.length)throw new Error('This proposal has already been decided.');
- await db.query('INSERT INTO audit_log(actor_id,entity_id,action,after_json) VALUES($1,$2,$3,$4::jsonb)',[actorId,rows[0].question_id,'proposal.dismissed',JSON.stringify({proposalId})]);
+ requireId(proposalId);
+ return db.transaction(async tx=>{
+  await requireStaff(tx,actorId,true);
+  const [proposal]=await tx.query<{question_id:string;source_question_id:string|null;source_version_id:string|null}>(`UPDATE question_proposals SET status='dismissed',decided_by=$2,decided_at=now() WHERE id=$1 AND status='pending' RETURNING question_id,source_question_id,source_version_id`,[proposalId,actorId]);
+  if(!proposal)throw new Error('This proposal has already been decided.');
+  if(proposal.source_question_id&&proposal.source_version_id)await tx.query(`DELETE FROM duplicate_decisions WHERE source_question_id=$1 AND source_version_id=$2 AND target_question_id=$3 AND decision='replace'`,[proposal.source_question_id,proposal.source_version_id,proposal.question_id]);
+  await tx.query('INSERT INTO audit_log(actor_id,entity_id,action,after_json) VALUES($1,$2,$3,$4::jsonb)',[actorId,proposal.question_id,'proposal.dismissed',JSON.stringify({proposalId})]);
+ });
 }
 // ---- AIS-14: sittings mentioned by uploads ----
 export async function listSittingProposals(db:Database,actorId:string) {

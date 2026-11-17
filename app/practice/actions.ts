@@ -10,6 +10,7 @@ import {defaultRecallModel} from '@/lib/integrations/llm/anthropic';
 import {getCurrentActor} from '@/lib/auth/session';
 import {getDatabase} from '@/lib/db/client';
 import {reportQuestion,saveNote,setBookmark} from '@/lib/services/student';
+import {triggerGhlSync} from '@/lib/integrations/ghl-jobs';
 import {answerQuestion,grantComplimentaryAccess,setFlag,startAttempt,startPaperAttempt,startTrial,submitAttempt,type Confidence,type PracticeMode,type PracticePool} from '@/lib/services/practice';
 export type PracticeResult={error?:string;success?:string;attemptId?:string};
 function field(form:FormData,key:string) {const value=form.get(key);return typeof value==='string'?value:'';}
@@ -17,8 +18,8 @@ async function actorId() {const actor=await getCurrentActor();if(!actor||!actor.
 function all(form:FormData,key:string) {return form.getAll(key).filter((v):v is string=>typeof v==='string'&&v!=='');}
 function failure(error:unknown):PracticeResult {return {error:error instanceof Error && !('query' in error) && !('code' in error)?error.message:'Unable to save this change. Please retry.'};}
 export async function startPractice(_:PracticeResult,form:FormData):Promise<PracticeResult> {
- try {const id=await startAttempt(getDatabase(),await actorId(),{examId:field(form,'examId'),mode:field(form,'mode') as PracticeMode,pool:field(form,'pool') as PracticePool,count:Number(field(form,'count')),requestId:field(form,'requestId'),
-  filters:{topicIds:all(form,'topicIds'),sittingIds:all(form,'sittingIds'),difficulties:all(form,'difficulties'),highYield:field(form,'highYield')==='true',latestSitting:field(form,'latestSitting')==='true',bookmarked:field(form,'bookmarked')==='true',flagged:field(form,'flagged')==='true'}});return {attemptId:id};}catch(error){return failure(error);}
+ try {const id=await startAttempt(getDatabase(),await actorId(),{examId:field(form,'examId'),mode:field(form,'mode') as PracticeMode,pool:field(form,'pool') as PracticePool,count:Number(field(form,'count')),requestId:field(form,'requestId'),matchBlueprint:field(form,'matchBlueprint')==='true',
+  filters:{topicIds:all(form,'topicIds'),sittingIds:all(form,'sittingIds'),difficulties:all(form,'difficulties'),questionTypes:all(form,'questionTypes'),highYield:field(form,'highYield')==='true',latestSitting:field(form,'latestSitting')==='true',bookmarked:field(form,'bookmarked')==='true',flagged:field(form,'flagged')==='true'}});return {attemptId:id};}catch(error){return failure(error);}
 }
 export async function submitAnswer(_:PracticeResult,form:FormData):Promise<PracticeResult> {
  try {const confidence=field(form,'confidence');await answerQuestion(getDatabase(),await actorId(),field(form,'attemptId'),Number(field(form,'position')),{selected:field(form,'selected')===''?-1:Number(field(form,'selected')),confidence:confidence===''?null:confidence as Confidence,timeMs:Number(field(form,'timeMs'))});return {success:'Answer saved.'};}catch(error){return failure(error);}
@@ -43,7 +44,7 @@ async function trialSignals() {
  return {device:hashSignal(`device:${device}`),network:ip?hashSignal(`ip:${ip}`):null};
 }
 export async function beginTrial(examId:string):Promise<PracticeResult> {
- try {const ends=await startTrial(getDatabase(),await actorId(),examId,await trialSignals());revalidatePath('/practice');revalidatePath('/dashboard');return {success:`Your free trial is active until ${new Date(ends).toUTCString()}.`};}catch(error){return failure(error);}
+ try {const ends=await startTrial(getDatabase(),await actorId(),examId,await trialSignals());triggerGhlSync();revalidatePath('/practice');revalidatePath('/dashboard');return {success:`Your free trial is active until ${new Date(ends).toUTCString()}.`};}catch(error){return failure(error);}
 }
 export async function toggleBookmark(attemptId:string,position:number,bookmarked:boolean):Promise<PracticeResult> {
  try {await setBookmark(getDatabase(),await actorId(),attemptId,position,bookmarked);return {success:bookmarked?'Bookmarked.':'Bookmark removed.'};}catch(error){return failure(error);}

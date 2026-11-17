@@ -3,6 +3,8 @@
   "crons": [
     { "path": "/api/cron/partners", "schedule": "*/10 * * * *" },
     { "path": "/api/cron/billing", "schedule": "0 * * * *" },
+    { "path": "/api/cron/studio", "schedule": "*/10 * * * *" },
+    { "path": "/api/cron/ghl", "schedule": "*/10 * * * *" },
     { "path": "/api/cron/reconcile", "schedule": "30 2 * * *" }
   ]
 }

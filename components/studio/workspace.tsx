@@ -2,11 +2,28 @@
 import {SampleToggle} from './blog';
 import {useActionState,useEffect,useRef,useState} from 'react';
 import {useRouter} from 'next/navigation';
-import {createRecall,saveDraft,reviewQuestion,uploadRecalls,retryJob,refineWithAI,saveTags} from '@/app/studio/actions';
+import {createRecall,saveDraft,reviewQuestion,uploadRecalls,retryJob,refineWithAI,saveTags,decideDuplicate,importQuestions,bulkApprove} from '@/app/studio/actions';
 import {grantAccess} from '@/app/practice/actions';
 import type {StudioQuestion} from '@/lib/services/studio';
 import type {StudioJob} from '@/lib/services/ai-studio';
 function Result({state}:{state:{error?:string;success?:string}}){return <>{state.error&&<p className="studio-feedback studio-error" role="alert">{state.error}</p>}{state.success&&<p className="studio-feedback" role="status">{state.success}</p>}</>;}
+export function CleanQuestionImport({exams}:{exams:{id:string;name:string}[]}){
+ const[state,action,pending]=useActionState(importQuestions,{});const[requestId,setRequestId]=useState('');const[examId,setExamId]=useState('');const[sourceLabel,setSourceLabel]=useState('');const form=useRef<HTMLFormElement>(null);const router=useRouter();
+ useEffect(()=>setRequestId(crypto.randomUUID()),[]);
+ useEffect(()=>{if(state.success){const file=form.current?.querySelector<HTMLInputElement>('input[name=template]');if(file)file.value='';setExamId('');setSourceLabel('');setRequestId(crypto.randomUUID());router.refresh();}},[state,router]);
+ return <form ref={form} action={action} onReset={event=>event.preventDefault()}><input type="hidden" name="requestId" value={requestId}/><label className="studio-field">Exam<select name="examId" required value={examId} onChange={e=>setExamId(e.target.value)}><option value="" disabled>Choose an exam</option>{exams.map(e=><option key={e.id} value={e.id}>{e.name}</option>)}</select></label><label className="studio-field">Source label<input name="sourceLabel" required maxLength={200} value={sourceLabel} onChange={e=>setSourceLabel(e.target.value)}/></label><label className="studio-field">CSV or Excel template<input name="template" type="file" accept=".csv,.xlsx" required/></label><p className="studio-help">Use one worksheet and these column headers: stem, option_a, option_b, option_c, option_d, option_e, correct_answer, explanation, references. Correct answers use A–E. Up to 1,000 rows and 4 MB. All rows must pass validation; imports create drafts for human review. If validation fails, choose the corrected file again.</p><Result state={state}/>{state.rowErrors&&<ul className="studio-error">{state.rowErrors.map(error=><li key={error.row}>Row {error.row}: {error.message}</li>)}</ul>}<button className="studio-button" disabled={pending||!requestId||!exams.length}>{pending?'Validating and importing…':'Import drafts'}</button></form>;
+}
+export function DuplicatePanel({source,target,decided,evidence}:{source:StudioQuestion;target:StudioQuestion|null;decided:boolean;evidence:{id:string;label:string;text:string}[]}){
+ const[state,action,pending]=useActionState(decideDuplicate,{});const router=useRouter();useEffect(()=>{if(state.success)router.refresh();},[state,router]);
+ return <>
+  {evidence.length>0&&<details className="studio-evidence"><summary>Additional source evidence ({evidence.length})</summary>{evidence.map(e=><article key={e.id}><strong>{e.label}</strong><pre>{e.text}</pre></article>)}</details>}
+  {target&&<section className="studio-ai"><h3>Compare possible duplicate</h3><p className="studio-help">Compare the questions and their sources before deciding. Merging keeps the matching question and links this draft’s evidence and sittings; it does not publish or change the matching question’s content.</p>
+   <div className="studio-editor-columns"><article><h4>Current draft</h4><p>{source.stem}</p><ol>{source.options.map((option,i)=><li key={i}>{option}</li>)}</ol><p>Answer: {source.correctAnswer===null?'Not set':String.fromCharCode(65+source.correctAnswer)}</p><pre>{source.sourceText}</pre></article>
+    <article><h4>Possible match · {target.status}</h4><p>{target.stem}</p><ol>{target.options.map((option,i)=><li key={i}>{option}</li>)}</ol><p>Answer: {target.correctAnswer===null?'Not set':String.fromCharCode(65+target.correctAnswer)}</p><pre>{target.sourceText}</pre></article></div>
+   {decided?<p className="studio-feedback">This version has already been reviewed for duplication.</p>:['raw','ai_refined','in_review','approved'].includes(source.status)&&<form action={action}><input type="hidden" name="sourceId" value={source.id}/><input type="hidden" name="sourceVersionId" value={source.versionId}/><input type="hidden" name="targetId" value={target.id}/><input type="hidden" name="targetVersionId" value={target.versionId}/><button className="studio-button" name="decision" value="merge" disabled={pending}>Merge into match</button>{' '}<button className="studio-button studio-button-secondary" name="decision" value="keep_both" disabled={pending}>Keep both</button>{' '}{target.status==='published'&&<button className="studio-button studio-button-secondary" name="decision" value="replace" disabled={pending}>Propose replacement</button>}</form>}<p className="studio-help">A replacement requires content manager approval before it changes a published question.</p><Result state={state}/>
+  </section>}
+ </>;
+}
 export function RecallIntake({exams}:{exams:{id:string;name:string}[]}){
  const[state,action,pending]=useActionState(createRecall,{});const[requestId,setRequestId]=useState('');const form=useRef<HTMLFormElement>(null);const handled=useRef<string|undefined>(undefined);const router=useRouter();
  useEffect(()=>setRequestId(crypto.randomUUID()),[]);
@@ -65,12 +82,12 @@ export function RecallUpload({exams}:{exams:{id:string;name:string;sittings:{id:
  return <form ref={form} action={action}><input type="hidden" name="requestId" value={requestId}/>
   <label className="studio-field">Exam<select name="examId" required value={examId} onChange={e=>setExamId(e.target.value)}>{exams.map(e=><option key={e.id} value={e.id}>{e.name}</option>)}</select></label>
   <label className="studio-field"><span>Sitting <small>optional</small></span><select name="sittingId" defaultValue="" key={examId}><option value="">Not known</option>{sittings.map(s=><option key={s.id} value={s.id}>{s.label}</option>)}</select><span className="studio-help">Drafts are tagged with this sitting. Add sittings in the exam catalogue.</span></label>
-  <label className="studio-field">Recall files<input name="file" type="file" multiple accept=".txt,.csv,.tsv,.md,.pdf,.docx,.png,.jpg,.jpeg,.webp,.gif,text/plain,text/csv,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp,image/gif"/><span className="studio-help">Chat exports (.txt), PDF, Word (.docx), CSV or Markdown, plus scanned PDFs, photos and screenshots (PNG, JPG, WebP). Up to 10 files and 4 MB in total. Claude reads scans and images first; the files themselves are not stored.</span></label>
+  <label className="studio-field">Recall files<input name="file" type="file" multiple accept=".txt,.zip,.csv,.tsv,.md,.pdf,.docx,.xlsx,.png,.jpg,.jpeg,.webp,.gif,.heic,.heif,text/plain,text/csv,application/zip,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/png,image/jpeg,image/webp,image/gif,image/heic,image/heif"/><span className="studio-help">Chat exports, PDFs, Word, Excel, CSV and images, including HEIC. Scans are read locally; scanned PDFs are limited to 20 pages. Up to 10 files and 4 MB in total.</span></label>
   <label className="studio-field">Or paste recall text<textarea name="sourceText" rows={6} maxLength={60000}/></label>
   <label className="studio-field">Source label<input name="sourceLabel" maxLength={200} placeholder="e.g. September 2026 candidate group"/></label>
   <label className="studio-field"><span>Other sitting hint <small>optional</small></span><input name="sittingHint" maxLength={120} placeholder="e.g. September 2026"/></label>
-  <p className="studio-help">Names, phone numbers, emails, @mentions and links are removed before anything is stored or sent to Claude. Claude only drafts; every question needs human review and publication.</p>
-  <Result state={state}/><button className="studio-button" disabled={pending||!requestId||!exams.length}>{pending?'Uploading…':'Draft questions with Claude'}</button></form>;
+  <p className="studio-help">Common identifiers are removed before text is stored or sent to the configured AI provider. Check sources for personal information: automatic removal may miss some identifiers. Every question needs human review and publication.</p>
+  <Result state={state}/><button className="studio-button" disabled={pending||!requestId||!exams.length}>{pending?'Uploading…':'Draft questions with AI'}</button></form>;
 }
 const JOB_STEPS=['queued','extracting','refining','deduping','ready'];
 export function JobList({jobs,manager}:{jobs:StudioJob[];manager:boolean}){
@@ -82,8 +99,9 @@ export function JobList({jobs,manager}:{jobs:StudioJob[];manager:boolean}){
  return <>{notice&&<p className="studio-feedback studio-error" role="alert">{notice}</p>}<ul className="studio-jobs" aria-live="polite">{jobs.map(j=>{const step=JOB_STEPS.indexOf(j.status);return <li key={j.id} className={`studio-job is-${j.stalled?'failed':j.status}`}>
   <strong>{j.sourceLabel}</strong><span>{j.examName}{j.fileName?` · ${j.fileName}`:''}</span>
   {j.status==='failed'||j.stalled?<span className="studio-job-error">{j.stalled?'This job stopped responding.':j.error}</span>
-   :j.status==='ready'?<span>{j.draftCount} draft{j.draftCount===1?'':'s'} ready for review{j.redactions?` · ${j.redactions} identifier${j.redactions===1?'':'s'} removed`:''}</span>
-   :<span className="studio-job-progress"><span className="studio-job-bar" style={{width:`${Math.max(1,step)*25}%`}}/><em>{j.status==='queued'?'Queued':j.status==='extracting'?'Extracting recalls':j.status==='refining'?'Claude is drafting questions…':'Checking for duplicates'}</em></span>}
+   :j.status==='ready'?<span>{j.draftCount} draft{j.draftCount===1?'':'s'} ready for review{j.mergedCount?` · ${j.mergedCount} matched and linked`:''}{j.redactions?` · ${j.redactions} identifier${j.redactions===1?'':'s'} removed`:''}</span>
+   :<span className="studio-job-progress"><span className="studio-job-bar" style={{width:`${Math.max(1,step)*25}%`}}/><em>{j.status==='queued'?'Queued':j.status==='extracting'?'Extracting recalls':j.status==='refining'?'AI is drafting questions…':'Checking for duplicates'}</em></span>}
+  {j.status==='ready'&&j.warning&&<span className="studio-job-error" role="note">{j.warning}</span>}
   {(j.status==='failed'||j.stalled)&&manager&&<button type="button" className="studio-link-button" disabled={busy===j.id} onClick={async()=>{setBusy(j.id);const r=await retryJob(j.id);setBusy('');if(r.error)setNotice(r.error);else{setNotice('');router.refresh();}}}>{busy===j.id?'Retrying…':'Retry'}</button>}
  </li>;})}</ul></>;
 }
@@ -98,18 +116,29 @@ function AiPanel({question:q}:{question:StudioQuestion}){
 function RefinePanel({question:q,disabled}:{question:StudioQuestion;disabled:boolean}){
  const[state,action,pending]=useActionState(refineWithAI,{});const router=useRouter();const form=useRef<HTMLFormElement>(null);
  useEffect(()=>{if(state.success){form.current?.reset();router.refresh();}},[state,router]);
- return <section className="studio-refine"><div><h3>Ask Claude for a better draft</h3><p className="studio-help">Claude rewrites the question from the original evidence and your instructions. The result is a new version that still needs review.</p></div>
-  <form ref={form} action={action}><input type="hidden" name="questionId" value={q.id}/><input type="hidden" name="versionId" value={q.versionId}/><fieldset disabled={disabled||pending}><legend className="studio-sr-only">Refine with Claude</legend>
+ return <section className="studio-refine"><div><h3>Ask AI for a better draft</h3><p className="studio-help">AI rewrites the question from the original evidence and your instructions. The result is a new version that still needs review.</p></div>
+  <form ref={form} action={action}><input type="hidden" name="questionId" value={q.id}/><input type="hidden" name="versionId" value={q.versionId}/><fieldset disabled={disabled||pending}><legend className="studio-sr-only">Refine with AI</legend>
    <label className="studio-field"><span>Instructions <small>optional</small></span><textarea name="instruction" rows={3} maxLength={2000} placeholder="e.g. Make the distractors closer to the correct answer and shorten the stem."/></label>
-   <button className="studio-button studio-button-secondary">{pending?'Claude is working… (up to a minute)':'Refine with Claude'}</button></fieldset>
-   {disabled&&!pending&&<p className="studio-help">Save your changes before asking Claude.</p>}<Result state={state}/></form></section>;
+   <button className="studio-button studio-button-secondary">{pending?'AI is working…':'Refine with AI'}</button></fieldset>
+   {disabled&&!pending&&<p className="studio-help">Save your changes before asking AI.</p>}<Result state={state}/></form></section>;
 }
 function TagsPanel({question:q,taxonomy}:{question:StudioQuestion;taxonomy:Taxonomy}){
  const[state,action,pending]=useActionState(saveTags,{});const router=useRouter();useEffect(()=>{if(state.success)router.refresh();},[state,router]);
- return <section className="studio-tags"><div><h3>Topic and sittings</h3><p className="studio-help">Tags never change the question version or its status. “Seen in”, high-yield and year/diet filters come from the sittings.</p>{q.aiMeta?.proposedTopic&&<p className="studio-help">Claude proposed a new topic: “{q.aiMeta.proposedTopic}”. Add it in the exam catalogue if it belongs.</p>}</div>
+ return <section className="studio-tags"><div><h3>Topic and sittings</h3><p className="studio-help">Tags never change the question version or its status. “Seen in”, high-yield and year/diet filters come from the sittings.</p>{q.aiMeta?.proposedTopic&&<p className="studio-help">AI proposed a new topic: “{q.aiMeta.proposedTopic}”. Add it in the exam catalogue if it belongs.</p>}</div>
   <form action={action}><input type="hidden" name="questionId" value={q.id}/><fieldset disabled={pending}><legend className="studio-sr-only">Question tags</legend>
    <div className="catalogue-grid"><label className="studio-field">Topic<select name="topicId" defaultValue={q.topicId??''}><option value="">Untagged</option>{taxonomy.topics.map(t=><option key={t.id} value={t.id}>{t.label}</option>)}</select></label>
-    <label className="studio-field">Difficulty<select name="difficulty" defaultValue={q.difficulty??''}><option value="">Not set</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label></div>
+    <label className="studio-field">Difficulty<select name="difficulty" defaultValue={q.difficulty??''}><option value="">Not set</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
+    <label className="studio-field">Question type<select name="questionType" defaultValue={q.questionType??''}><option value="">Not classified</option><option value="SBA">SBA</option><option value="EMQ">EMQ</option><option value="MCQ">MCQ</option><option value="TRUE_FALSE">True / false</option></select><span className="studio-help">Classification only; the current editor and practice flow support single-answer questions.</span></label></div>
    <fieldset className="studio-sittings"><legend>Seen in sittings</legend>{taxonomy.sittings.length?taxonomy.sittings.map(s=><label key={s.id} className="studio-check"><input type="checkbox" name="sittingIds" value={s.id} defaultChecked={q.sittingIds.includes(s.id)}/>{s.label}</label>):<p className="studio-help">No sittings exist for this exam yet. Add them in the exam catalogue.</p>}</fieldset>
    <button className="studio-button studio-button-secondary">{pending?'Saving…':'Save tags'}</button></fieldset><Result state={state}/></form></section>;
+}
+
+export function BulkApprove({items}:{items:{id:string;versionId:string;stem:string;confidence:number}[]}){
+ const[state,action,pending]=useActionState(bulkApprove,{});const router=useRouter();useEffect(()=>{if(state.success)router.refresh();},[state,router]);
+ if(!items.length)return null;
+ return <details className="studio-intake studio-intake-quiet"><summary>Bulk approve high-confidence drafts ({items.length})</summary>
+  <form action={action}><p className="studio-help">Only drafts in review with confidence of 80 or more, no expert flag and no open duplicate are listed. Up to 25 at a time. Approval does not publish.</p>
+   <ul className="studio-queue">{items.slice(0,25).map(i=><li key={i.id}><label className="studio-check"><input type="checkbox" name="item" value={`${i.id}:${i.versionId}`}/> <strong>{i.stem.slice(0,110)||'Untitled'}</strong> <small>confidence {i.confidence}</small></label></li>)}</ul>
+   <label className="studio-check"><input type="checkbox" name="reviewed" value="true" required/> I skimmed the selected questions, answers and references.</label>
+   <Result state={state}/><button className="studio-button" disabled={pending}>{pending?'Approving…':'Approve selected'}</button></form></details>;
 }

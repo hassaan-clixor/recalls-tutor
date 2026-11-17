@@ -2,9 +2,10 @@ import Anthropic from '@anthropic-ai/sdk';
 import {spawn} from 'node:child_process';
 import os from 'node:os';
 import {childEnvironment,resolveClaudeBinary} from './claude-cli';
+import {localOcrReader} from './local-ocr';
 // AIS-1 (P1): OCR for scanned PDFs, photos and screenshots of recalls. The reader only transcribes; drafting,
 // PII removal and review happen afterwards exactly as for text uploads. File bytes are never stored.
-export type VisionMediaType='image/png'|'image/jpeg'|'image/webp'|'image/gif'|'application/pdf';
+export type VisionMediaType='image/png'|'image/jpeg'|'image/webp'|'image/gif'|'image/heic'|'application/pdf';
 export type VisionInput={mediaType:VisionMediaType;data:Uint8Array;fileName:string};
 export type VisionResult={text:string;model:string;costUsd:number|null};
 export interface VisionReader {name:string;read(input:VisionInput):Promise<VisionResult>}
@@ -16,6 +17,7 @@ const SYSTEM=['You transcribe scanned or photographed study material that medica
 const INSTRUCTION='Transcribe this file.';
 const TIMEOUT_MS=6*60*1000;
 function block(input:VisionInput):Anthropic.Beta.BetaContentBlockParam {
+ if(input.mediaType==='image/heic')throw new Error('HEIC requires the local OCR reader.');
  const data=Buffer.from(input.data).toString('base64');
  return input.mediaType==='application/pdf'?{type:'document',source:{type:'base64',media_type:'application/pdf',data}}:{type:'image',source:{type:'base64',media_type:input.mediaType,data}};
 }
@@ -59,5 +61,5 @@ export function claudeCliVisionReader(model=process.env.RECALLS_CLAUDE_MODEL||'s
   child.stdin.end(JSON.stringify({type:'user',message:{role:'user',content:[block(input),{type:'text',text:INSTRUCTION}]}})+'\n');
  })};
 }
-// The API is used whenever a key is configured; otherwise the local Claude login.
-export function defaultVisionReader():VisionReader {return process.env.ANTHROPIC_API_KEY?anthropicVisionReader():claudeCliVisionReader();}
+// Intake uses local, non-LLM OCR. Legacy readers remain available for migration tests only.
+export function defaultVisionReader():VisionReader {return localOcrReader();}

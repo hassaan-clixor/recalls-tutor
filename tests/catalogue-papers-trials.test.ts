@@ -12,6 +12,8 @@ import {createStudioJob,runStudioJob} from '../lib/services/ai-studio';
 import {addPaperQuestion,createPaper,getPaperAdmin,movePaperQuestion,paperCandidates,removePaperQuestion,setPaperState} from '../lib/services/papers';
 import {answerQuestion,getPracticeQuestion,getResults,listPracticeExams,listTrialOffers,startAttempt,startPaperAttempt,startTrial,submitAttempt} from '../lib/services/practice';
 import {extractUploadText} from '../lib/services/extract-text';
+import {resolveDuplicate} from '../lib/services/duplicate-resolution';
+import {acceptProposal,dismissProposal} from '../lib/services/proposals';
 import {listExams} from '../lib/services/catalogue';
 import type {RecallModel} from '../lib/integrations/llm/claude-cli';
 function zip(name:string,content:string) {
@@ -36,9 +38,20 @@ test('Uploads: text from Word and PDF files, with clear errors for unsupported o
  await assert.rejects(extractUploadText('scan.pdf',pdf('')),/no selectable text/);
  await assert.rejects(extractUploadText('fake.pdf',new TextEncoder().encode('hello')),/not a valid PDF/);
  await assert.rejects(extractUploadText('broken.docx',new TextEncoder().encode('not a zip')),/could not be read/);
+ const invalidWord=zip('word/document.xml','<w:p>test</w:p>');const wordView=new DataView(invalidWord.buffer,invalidWord.byteOffset,invalidWord.byteLength),wordDir=wordView.getUint32(invalidWord.length-22+16,true);wordView.setUint32(wordDir+42,0xffffffff,true);
+ await assert.rejects(extractUploadText('broken.docx',invalidWord),/could not be read/);
+ const forgedWord=zip('word/document.xml','<w:p>test</w:p>');const forgedView=new DataView(forgedWord.buffer,forgedWord.byteOffset,forgedWord.byteLength),forgedDir=forgedView.getUint32(forgedWord.length-22+16,true);forgedView.setUint32(forgedDir+24,1,true);
+ await assert.rejects(extractUploadText('broken.docx',forgedWord),/could not be read/);
  await assert.rejects(extractUploadText('old.doc',new Uint8Array(4)),/\.docx/);
  await assert.rejects(extractUploadText('photo.jpg',new Uint8Array(4)),/PNG, JPG/);
  assert.equal(await extractUploadText('chat.txt',new TextEncoder().encode('plain text')),'plain text');
+ assert.equal(await extractUploadText('chat.zip',zip('export/chat.txt','Synthetic WhatsApp recall')),'Synthetic WhatsApp recall');
+ await assert.rejects(extractUploadText('chat.zip',zip('image.jpg','not text')),/no readable/);
+ const encrypted=zip('chat.txt','secret');const v=new DataView(encrypted.buffer,encrypted.byteOffset,encrypted.byteLength);const end=encrypted.length-22,central=v.getUint32(end+16,true);v.setUint16(central+8,1,true);
+ await assert.rejects(extractUploadText('chat.zip',encrypted),/encrypted/);
+ const oversized=zip('chat.txt','text');const z=new DataView(oversized.buffer,oversized.byteOffset,oversized.byteLength);z.setUint32(z.getUint32(oversized.length-22+16,true)+24,21*1024*1024,true);
+ await assert.rejects(extractUploadText('chat.zip',oversized),/too large/);
+ await assert.rejects(extractUploadText('chat.zip',new Uint8Array([1,2,3])),/invalid/);
 });
 test('Catalogue, tags, filters, papers and free trial',async()=>{
  const db=embeddedDatabase(new PGlite());
@@ -77,8 +90,8 @@ test('Catalogue, tags, filters, papers and free trial',async()=>{
   const before=(await getStudioQuestion(db,reviewer,q[0]))!;
   await assert.rejects(setQuestionTags(db,student,q[0],{topicId:labour,difficulty:'hard',sittingIds:[sept]}),/permission/);
   await assert.rejects(setQuestionTags(db,reviewer,q[0],{topicId:foreignTopic,difficulty:null,sittingIds:[]}),/from this exam/);
-  await setQuestionTags(db,reviewer,q[0],{topicId:labour,difficulty:'hard',sittingIds:[sept,mar]});// high-yield: two sittings
-  await setQuestionTags(db,reviewer,q[1],{topicId:anatomy,difficulty:'easy',sittingIds:[sept]});// new this sitting
+  await setQuestionTags(db,reviewer,q[0],{topicId:labour,questionType:'SBA',difficulty:'hard',sittingIds:[sept,mar]});// high-yield: two sittings
+  await setQuestionTags(db,reviewer,q[1],{topicId:anatomy,questionType:'SBA',difficulty:'easy',sittingIds:[sept]});// new this sitting
   await setQuestionTags(db,reviewer,q[2],{topicId:obstetrics,difficulty:'medium',sittingIds:[mar]});// older sitting: trial pool
   await setQuestionTags(db,reviewer,q[3],{topicId:null,difficulty:null,sittingIds:[mar]});
   const tagged=(await getStudioQuestion(db,reviewer,q[0]))!;
@@ -88,10 +101,45 @@ test('Catalogue, tags, filters, papers and free trial',async()=>{
   let prompt='';const model:RecallModel={name:'mock',async complete(r){prompt=r.system;return {output:{drafts:[draft('Obstetrics › Labour'),draft('NEW: Genetics')],noise_summary:''},model:'mock',costUsd:null};}};
   const job=await createStudioJob(db,manager,{examId:exam.id,sourceLabel:'Synthetic',sourceText:'Synthetic recall text',fileName:null,sittingHint:'',sittingId:sept,requestId:randomUUID()});
   await assert.rejects(createStudioJob(db,manager,{examId:other.id,sourceLabel:'x',sourceText:'y',fileName:null,sittingHint:'',sittingId:sept,requestId:randomUUID()}),/from this exam/);
-  await runStudioJob(db,job,model);
+  await runStudioJob(db,job,model,{name:'mock-embeddings',async embed(texts){return texts.map(text=>text.startsWith('AI stem')||text==='Synthetic tagged stem 1'?[1,0]:[0,1]);}});
   assert.match(prompt,/controlled list: Anatomy; Obstetrics; Obstetrics › Labour/);
   const drafts=await db.query<{id:string;topic_id:string|null;difficulty:string;proposed:string|null;sittings:number}>(`SELECT q.id,q.topic_id,q.difficulty,v.ai_meta->>'proposedTopic' AS proposed,(SELECT count(*)::int FROM question_sittings qs WHERE qs.question_id=q.id AND qs.sitting_id=$2) AS sittings FROM questions q JOIN question_versions v ON v.id=q.current_version_id JOIN recall_sources s ON s.question_id=q.id WHERE s.job_id=$1 ORDER BY v.stem`,[job,sept]);
   assert.equal(drafts.find(d=>d.topic_id===labour)?.difficulty,'hard');assert.equal(drafts.find(d=>d.topic_id===null)?.proposed,'Genetics');assert.ok(drafts.every(d=>d.sittings===1));
+  const semantic=await db.query<{meta:{duplicateOf:string|null;issues:string[]}}>(`SELECT v.ai_meta AS meta FROM questions q JOIN question_versions v ON v.id=q.current_version_id JOIN recall_sources s ON s.question_id=q.id WHERE s.job_id=$1`,[job]);
+  assert.ok(semantic.every(d=>d.meta.duplicateOf&&d.meta.issues.some(issue=>issue.includes('semantic similarity'))));
+  const source=(await getStudioQuestion(db,reviewer,drafts[0].id))!,target=(await getStudioQuestion(db,reviewer,source.aiMeta!.duplicateOf!))!;
+  const earlier=await createRecall(db,manager,{examId:exam.id,sourceLabel:'Earlier evidence',sourceText:'Earlier recall',requestId:randomUUID()});
+  await db.query('INSERT INTO question_extra_evidence(target_question_id,source_question_id,source_id,decided_by) SELECT $1,$2,id,$3 FROM recall_sources WHERE question_id=$2',[source.id,earlier,reviewer]);
+  const decision={sourceId:source.id,sourceVersionId:source.versionId,targetId:target.id,targetVersionId:target.versionId,decision:'merge' as const};
+  await assert.rejects(resolveDuplicate(db,student,decision),/permission/);
+  await assert.rejects(resolveDuplicate(db,reviewer,{...decision,targetVersionId:randomUUID()}),/changed/);
+  await resolveDuplicate(db,reviewer,decision);
+  assert.equal((await getStudioQuestion(db,reviewer,source.id))!.status,'rejected');
+  assert.equal((await getStudioQuestion(db,reviewer,target.id))!.status,'published');
+  assert.equal((await db.query('SELECT 1 FROM question_extra_evidence WHERE target_question_id=$1 AND source_question_id=$2',[target.id,source.id])).length,1);
+  assert.equal((await db.query('SELECT 1 FROM question_extra_evidence WHERE target_question_id=$1 AND source_question_id=$2',[target.id,earlier])).length,1);
+  assert.equal((await db.query('SELECT 1 FROM question_sittings WHERE question_id=$1 AND sitting_id=$2',[target.id,sept])).length,1);
+  await assert.rejects(resolveDuplicate(db,reviewer,decision),/no longer available/);
+  const replacement=(await getStudioQuestion(db,reviewer,drafts.find(d=>d.id!==source.id)!.id))!;
+  await resolveDuplicate(db,reviewer,{sourceId:replacement.id,sourceVersionId:replacement.versionId,targetId:target.id,targetVersionId:target.versionId,decision:'replace'});
+  const [proposal]=await db.query<{id:string}>('SELECT id FROM question_proposals WHERE source_question_id=$1',[replacement.id]);
+  assert.ok(proposal);assert.equal((await getStudioQuestion(db,reviewer,target.id))!.versionId,target.versionId);
+  await assert.rejects(acceptProposal(db,reviewer,proposal.id),/permission/);
+  await dismissProposal(db,manager,proposal.id);
+  assert.equal((await db.query('SELECT 1 FROM duplicate_decisions WHERE source_question_id=$1',[replacement.id])).length,0);
+  await resolveDuplicate(db,reviewer,{sourceId:replacement.id,sourceVersionId:replacement.versionId,targetId:target.id,targetVersionId:target.versionId,decision:'replace'});
+  const [newProposal]=await db.query<{id:string}>("SELECT id FROM question_proposals WHERE source_question_id=$1 AND status='pending'",[replacement.id]);
+  const approvedVersion=await acceptProposal(db,manager,newProposal.id);
+  assert.equal((await getStudioQuestion(db,reviewer,target.id))!.versionId,approvedVersion);
+  assert.equal((await getStudioQuestion(db,reviewer,replacement.id))!.status,'rejected');
+  assert.equal((await db.query('SELECT 1 FROM question_extra_evidence WHERE target_question_id=$1 AND source_question_id=$2',[target.id,replacement.id])).length,1);
+  // If the bank changes while embeddings are computed, no drafts are committed from the stale comparison.
+  const staleJob=await createStudioJob(db,manager,{examId:exam.id,sourceLabel:'Synthetic stale check',sourceText:'Synthetic source',fileName:null,sittingHint:'',sittingId:null,requestId:randomUUID()});
+  await runStudioJob(db,staleJob,model,{name:'stale-mock',async embed(texts){await db.query("UPDATE questions SET status='rejected' WHERE id=$1",[q[4]]);return texts.map(()=>[1,0]);}});
+  const [staleResult]=await db.query<{status:string;error:string}>('SELECT status,error FROM studio_jobs WHERE id=$1',[staleJob]);
+  assert.equal(staleResult.status,'failed');assert.match(staleResult.error,/bank changed/);
+  assert.equal((await db.query('SELECT 1 FROM recall_sources WHERE job_id=$1',[staleJob])).length,0);
+  await db.query("UPDATE questions SET status='published' WHERE id=$1",[q[4]]);
   // Practice filters and "Seen in" badges.
   const exp=new Date(Date.now()+30*86400000).toISOString();
   await db.query("INSERT INTO entitlements(user_id,exam_id,source,starts_at,ends_at) VALUES($1,$2,'complimentary',now(),$3)",[student,exam.id,exp]);
@@ -100,6 +148,9 @@ test('Catalogue, tags, filters, papers and free trial',async()=>{
   assert.deepEqual(await ids(await run({topicIds:[obstetrics]})),[q[0],q[2]].sort());// parent topic includes children
   assert.deepEqual(await ids(await run({sittingIds:[mar]})),[q[0],q[2],q[3]].sort());
   assert.deepEqual(await ids(await run({difficulties:['easy']})),[q[1]]);
+  assert.deepEqual(await ids(await run({questionTypes:['SBA']})),[q[0],q[1]].sort());
+  assert.deepEqual(await ids(await run({questionTypes:['SBA','MCQ'],topicIds:[anatomy]})),[q[1]]);
+  await assert.rejects(run({questionTypes:['INVALID']}),/valid question type/);
   assert.deepEqual(await ids(await run({highYield:true})),[q[0]]);
   assert.deepEqual(await ids(await run({latestSitting:true})),[q[0],q[1]].sort());
   await assert.rejects(run({topicIds:[anatomy],difficulties:['hard']}),/No questions match/);
@@ -118,11 +169,44 @@ test('Catalogue, tags, filters, papers and free trial',async()=>{
   await assert.rejects(addPaperQuestion(db,manager,paper,q[0]),/already/);
   await movePaperQuestion(db,manager,paper,q[3],'up');await removePaperQuestion(db,manager,paper,q[0]);await addPaperQuestion(db,manager,paper,q[0]);
   let detail=(await getPaperAdmin(db,manager,paper))!;
-  assert.deepEqual(detail.items.map(i=>i.questionId),[q[1],q[3],q[2],q[0]]);assert.equal(detail.complete,true);assert.equal(detail.blueprintCount,4);
+  assert.deepEqual(detail.items.map(i=>i.questionId),[q[1],q[3],q[2],q[0]]);assert.equal(detail.complete,false);assert.equal(detail.blueprintCount,4);
+  await setPaperState(db,manager,paper,'lock');await assert.rejects(setPaperState(db,manager,paper,'publish'),/does not match/);await setPaperState(db,manager,paper,'unlock');
+  const configured={...settings,questionCount:'4',durationMinutes:'8',blueprintTargets:{types:{SBA:'4'},topics:{[obstetrics]:'2',[anatomy]:'2'}}};
+  await assert.rejects(updateExamSettings(db,manager,exam.id,{...configured,blueprintTargets:{types:{SBA:'3'},topics:{[obstetrics]:'2',[anatomy]:'2'}}}),/add up/);
+  await assert.rejects(updateExamSettings(db,manager,exam.id,{...configured,blueprintTargets:{types:{SBA:'4'},topics:{[foreignTopic]:'4'}}}),/valid Topic/);
+  await updateExamSettings(db,manager,exam.id,configured);
+  for(const [index,topic,sittings] of [[0,labour,[sept,mar]],[1,anatomy,[sept]],[2,obstetrics,[mar]],[3,anatomy,[mar]]] as [number,string,string[]][])await setQuestionTags(db,reviewer,q[index],{topicId:topic,questionType:'SBA',difficulty:null,sittingIds:sittings});
+  detail=(await getPaperAdmin(db,manager,paper))!;assert.equal(detail.complete,true);assert.deepEqual(detail.blueprintIssues,[]);
+  const matched=await startAttempt(db,student,{examId:exam.id,mode:'exam',pool:'all',count:1,requestId:randomUUID(),matchBlueprint:true});
+  assert.deepEqual(await ids(matched),[q[0],q[1],q[2],q[3]].sort());
+  await assert.rejects(startAttempt(db,student,{examId:exam.id,mode:'exam',pool:'all',count:1,requestId:randomUUID(),matchBlueprint:true,filters:{topicIds:[obstetrics]}}),/cannot match/);
+  await assert.rejects(startAttempt(db,student,{examId:exam.id,mode:'revision',pool:'all',count:1,requestId:randomUUID(),matchBlueprint:true}),/requires full exam access/);
   assert.deepEqual((await paperCandidates(db,manager,paper,{sittingId:null,topicId:null,text:''})).map(c=>c.id),[q[4]]);
   await assert.rejects(setPaperState(db,manager,paper,'publish'),/Lock/);
   await setPaperState(db,manager,paper,'lock');await assert.rejects(addPaperQuestion(db,manager,paper,q[4]),/Unlock/);
   await setPaperState(db,manager,paper,'publish');await assert.rejects(setPaperState(db,manager,paper,'unlock'),/Unpublish/);
+  await db.query("UPDATE questions SET status='retired' WHERE id=$1",[q[0]]);
+  assert.equal((await listPracticeExams(db,student)).find(e=>e.id===exam.id)!.papers.length,0);
+  await assert.rejects(startPaperAttempt(db,student,{paperId:paper,requestId:randomUUID()}),/temporarily unavailable/);
+  await db.query("UPDATE questions SET status='published' WHERE id=$1",[q[0]]);
+  // Published papers disappear when classifications drift away from the current blueprint.
+  await setQuestionTags(db,reviewer,q[0],{topicId:anatomy,questionType:'SBA',difficulty:null,sittingIds:[sept,mar]});
+  assert.equal((await listPracticeExams(db,student)).find(e=>e.id===exam.id)!.papers.length,0);
+  await assert.rejects(startPaperAttempt(db,student,{paperId:paper,requestId:randomUUID()}),/temporarily unavailable/);
+  await setQuestionTags(db,reviewer,q[0],{topicId:labour,questionType:'SBA',difficulty:null,sittingIds:[sept,mar]});
+  await setQuestionTags(db,reviewer,q[0],{topicId:labour,questionType:'EMQ',difficulty:null,sittingIds:[sept,mar]});
+  assert.equal((await listPracticeExams(db,student)).find(e=>e.id===exam.id)!.papers.length,0);
+  await assert.rejects(startPaperAttempt(db,student,{paperId:paper,requestId:randomUUID()}),/temporarily unavailable/);
+  await updateExamSettings(db,manager,exam.id,{...configured,blueprintTargets:{types:{SBA:'3',EMQ:'1'},topics:{[obstetrics]:'2',[anatomy]:'2'}}});
+  assert.equal((await getPaperAdmin(db,manager,paper))!.complete,true);
+  assert.equal((await listPracticeExams(db,student)).find(e=>e.id===exam.id)!.papers.length,0);
+  await assert.rejects(startPaperAttempt(db,student,{paperId:paper,requestId:randomUUID()}),/formats.*not yet available/);
+  await updateExamSettings(db,manager,exam.id,configured);
+  await setQuestionTags(db,reviewer,q[0],{topicId:labour,questionType:'SBA',difficulty:null,sittingIds:[sept,mar]});
+  await updateExamSettings(db,manager,exam.id,{...configured,blueprintTargets:{types:{SBA:'4'},topics:{[obstetrics]:'1',[anatomy]:'3'}}});
+  assert.equal((await listPracticeExams(db,student)).find(e=>e.id===exam.id)!.papers.length,0);
+  await assert.rejects(startPaperAttempt(db,student,{paperId:paper,requestId:randomUUID()}),/temporarily unavailable/);
+  await updateExamSettings(db,manager,exam.id,configured);
   const library=(await listPracticeExams(db,student)).find(e=>e.id===exam.id)!;
   assert.equal(library.papers.length,1);assert.equal(library.papers[0].sitting,'September 2026');
   const sitting=await startPaperAttempt(db,student,{paperId:paper,requestId:randomUUID()});

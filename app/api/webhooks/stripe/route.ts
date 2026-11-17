@@ -5,6 +5,7 @@ import {receiveStripeEvent} from '@/lib/services/billing';
 import {runLifecycle} from '@/lib/services/lifecycle';
 import {sendAuthMail} from '@/lib/auth/mail';
 import {siteUrl} from '@/lib/seo';
+import {triggerGhlSync} from '@/lib/integrations/ghl-jobs';
 export const dynamic='force-dynamic';
 // BILL-4: Stripe webhooks are the only thing that grants or removes paid access.
 export async function POST(request:Request) {
@@ -19,6 +20,8 @@ export async function POST(request:Request) {
  const result=await receiveStripeEvent(getDatabase(),gateway,{id:event.id,type:event.type,objectId:typeof event.data?.object?.id==='string'?event.data.object.id:null});
  // Receipts and failed-payment notices go out straight away; the hourly job retries anything that failed.
  if(result==='processed'&&/^(invoice\.|customer\.subscription\.)/.test(event.type))after(()=>runLifecycle(getDatabase(),gateway,sendAuthMail,siteUrl()).catch(e=>console.error('Billing emails failed',e)));
+ // Purchases, renewals, failed payments and cancellations reach GoHighLevel straight away; the cron job retries.
+ if(result==='processed')triggerGhlSync();
  // A non-2xx response makes Stripe retry the delivery with backoff.
  return result==='failed'?Response.json({received:false},{status:500}):Response.json({received:true,duplicate:result==='duplicate'});
 }

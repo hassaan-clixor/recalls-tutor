@@ -1,7 +1,14 @@
 import Anthropic from '@anthropic-ai/sdk';
 import {claudeCliModel,type RecallModel} from './claude-cli';
+import {fallbackModel,ModelUnavailableError,parseModelChain,parseRateLimits,retryAfterSeconds} from './fallback';
+import {openaiRecallModel} from './openai';
+import {groqRecallModel} from './groq';
+import {geminiRecallModel} from './gemini';
+import {databaseCooldowns,databaseRateLimits} from './cooldowns';
+import {getDatabase} from '../../db/client';
 // Production AI drafting: the Claude API through the official SDK, with JSON output constrained by the request's
-// schema (structured outputs) and server-side fallback if a request is declined. The local Claude app CLI remains
+// schema (structured outputs). The application controls availability fallback; refusals must stop the chain.
+// The local Claude app CLI remains
 // the fallback for development when no API key is set (decision 2026-11-01).
 const MODEL='claude-opus-5-5';
 // Structured outputs accept a subset of JSON Schema: numeric bounds and item counts above 1 are moved into the
@@ -20,16 +27,18 @@ export function apiSchema(schema:unknown):unknown {
 }
 // Claude Opus 5.5 list prices ($4 / $20 per million tokens) give an estimate for the job's cost column (AIS-13).
 const estimate=(usage:{input_tokens:number;output_tokens:number})=>Math.round((usage.input_tokens*4+usage.output_tokens*20)/1e6*10000)/10000;
-export function anthropicRecallModel(client=new Anthropic(),effort:'low'|'medium'|'high'='medium'):RecallModel {
- return {name:`anthropic:${MODEL}`,async complete(request) {
+export function anthropicRecallModel(client=new Anthropic({maxRetries:0}),effort:'low'|'medium'|'high'='medium',model=MODEL):RecallModel {
+ return {name:`anthropic:${model}`,async complete(request) {
   let message:Anthropic.Beta.BetaMessage;
+  const signal=AbortSignal.timeout(request.timeoutMs??120000);
   try {
-   message=await client.beta.messages.stream({model:MODEL,max_tokens:64000,betas:['server-side-fallback-2026-07-01'],fallbacks:'default',
+   message=await client.beta.messages.stream({model,max_tokens:64000,
     output_config:{effort,format:{type:'json_schema',schema:apiSchema(request.schema) as Record<string,unknown>}},
-    system:request.system,messages:[{role:'user',content:request.prompt}]}).finalMessage();
+    system:request.system,messages:[{role:'user',content:request.prompt}]},{signal}).finalMessage();
   } catch(error) {
+   if(signal.aborted)throw new ModelUnavailableError('Claude timed out.');
    if(error instanceof Anthropic.AuthenticationError)throw new Error('The Claude API key is not valid. Ask your administrator to check ANTHROPIC_API_KEY.');
-   if(error instanceof Anthropic.RateLimitError)throw new Error('Claude is busy right now. Press Retry in a minute.');
+   if(error instanceof Anthropic.RateLimitError || error instanceof Anthropic.APIConnectionError || (error instanceof Anthropic.APIError && (error.status===402 || (error.status??0)>=500 || (error.status===400 && /credit balance is too low/i.test(error.message)))))throw new ModelUnavailableError('Claude is temporarily unavailable.',retryAfterSeconds(error.headers?.get('retry-after')??null));
    if(error instanceof Anthropic.BadRequestError)throw new Error('Claude could not process this request. Try a shorter source.');
    if(error instanceof Anthropic.APIError)throw new Error('Claude could not be reached. Press Retry.');
    throw error;
@@ -39,8 +48,18 @@ export function anthropicRecallModel(client=new Anthropic(),effort:'low'|'medium
   const text=message.content.filter((b):b is Anthropic.Beta.BetaTextBlock=>b.type==='text').map(b=>b.text).join('').trim();
   let output:unknown;
   try{output=JSON.parse(text);}catch{throw new Error('Claude did not return structured output.');}
-  return {output,model:message.model,costUsd:estimate(message.usage)};
+  return {output,model:`anthropic:${message.model}`,costUsd:message.model===MODEL?estimate(message.usage):null};
  }};
 }
 // The API is used whenever a key is configured; otherwise the local Claude login.
-export function defaultRecallModel():RecallModel {return process.env.ANTHROPIC_API_KEY?anthropicRecallModel():claudeCliModel();}
+export function defaultRecallModel():RecallModel {
+ const configured=process.env.LLM_MODELS?.trim();
+ if(!configured){if(process.env.LLM_RATE_LIMITS?.trim())throw new Error('LLM_MODELS must be configured to use LLM_RATE_LIMITS.');return process.env.ANTHROPIC_API_KEY?anthropicRecallModel():claudeCliModel();}
+ const specs=parseModelChain(configured),limits=parseRateLimits(process.env.LLM_RATE_LIMITS??'',specs);
+ const models=specs.map(spec=>{
+  const key=spec.provider==='anthropic'?process.env.ANTHROPIC_API_KEY:spec.provider==='openai'?process.env.OPENAI_API_KEY:spec.provider==='groq'?process.env.GROQ_API_KEY:process.env.GEMINI_API_KEY;
+  if(!key)throw new Error(`Missing API key for configured ${spec.provider} model.`);
+  return spec.provider==='anthropic'?anthropicRecallModel(new Anthropic({apiKey:key,maxRetries:0}),'medium',spec.model):spec.provider==='openai'?openaiRecallModel(spec.model,key):spec.provider==='groq'?groqRecallModel(spec.model,key):geminiRecallModel(spec.model,key);
+ });
+ const db=getDatabase();return fallbackModel(models,databaseCooldowns(db),limits.size?databaseRateLimits(db,limits):undefined);
+}

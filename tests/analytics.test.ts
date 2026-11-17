@@ -52,6 +52,11 @@ test('Progress analytics: weekly trend, topics, high-yield split, pace and readi
   p=(await getProgress(db,student.id,exam.id))!;
   assert.equal(p.weeks.at(-1)!.answered,8);assert.equal(p.weeks.at(-1)!.correct,3);
   assert.ok(p.topics.every(t=>t.correct===0));assert.equal(p.pace.examMs,90000);assert.equal(p.readiness.recentAnswered,8);
+  const [reclassified]=await db.query<{question_id:string}>('SELECT question_id FROM practice_items WHERE attempt_id=$1 ORDER BY position LIMIT 1',[rev]);
+  await db.query("UPDATE questions SET question_type='EMQ' WHERE id=$1",[reclassified.question_id]);
+  p=(await getProgress(db,student.id,exam.id))!;
+  assert.equal(p.published,3);assert.equal(p.weeks.at(-1)!.answered,6);assert.equal(p.readiness.tried,3);assert.equal(p.readiness.recentAnswered,6);
+  assert.equal(p.topics.reduce((sum,t)=>sum+t.answered,0),3);assert.equal(p.highYield.hy.answered+p.highYield.other.answered,3);
   // Another student's answers never appear.
   const o=(await getProgress(db,other.id,exam.id))!;
   assert.equal(o.readiness.tried,0);assert.equal(o.topics.length,0);

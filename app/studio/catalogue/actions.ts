@@ -13,6 +13,7 @@ export async function saveExamSettings(_:CatalogueResult,form:FormData):Promise<
  try {
   await updateExamSettings(getDatabase(),await actorId(),field(form,'examId'),{questionCount:field(form,'questionCount'),durationMinutes:field(form,'durationMinutes'),passMarkPercent:field(form,'passMarkPercent'),highYieldMin:field(form,'highYieldMin'),needsExpertBelow:field(form,'needsExpertBelow'),
    approvedSources:field(form,'approvedSources').split('\n').map(s=>s.trim()).filter(Boolean),styleNotes:field(form,'styleNotes'),
+   blueprintTargets:{types:Object.fromEntries([...form.entries()].filter(([k,v])=>k.startsWith('typeTarget:')&&typeof v==='string').map(([k,v])=>[k.slice(11),v as string])),topics:Object.fromEntries([...form.entries()].filter(([k,v])=>k.startsWith('topicTarget:')&&typeof v==='string').map(([k,v])=>[k.slice(12),v as string]))},
    trial:form.has('trialDays')?{enabled:field(form,'trialEnabled')==='true',days:field(form,'trialDays'),questionLimit:field(form,'trialQuestionLimit'),mockSize:field(form,'trialMockSize')}:undefined});
   refresh();return {success:'Exam settings saved.'};
  }catch(error){return failure(error);}

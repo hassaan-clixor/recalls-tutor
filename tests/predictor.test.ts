@@ -46,14 +46,18 @@ test('Pass Predictor: unlock rules, prediction, trend, topics, daily target and 
    const id=await createRecall(db,manager.id,{examId:exam.id,sourceLabel:'Synthetic',sourceText:`SOURCE ${n}`,requestId:randomUUID()});
    const first=(await getStudioQuestion(db,reviewer.id,id))!;
    const v=await saveStudioDraft(db,reviewer.id,id,first.versionId,{stem:`Synthetic stem ${n}`,options:['A','B','C','D','E'],correctAnswer:1,explanation:'x',references:['ref']});
-   await setQuestionTags(db,manager.id,id,{topicId:topics[n%4].id,difficulty:null,sittingIds:[sitting.id]});
+   await setQuestionTags(db,manager.id,id,{topicId:topics[n%4].id,questionType:'SBA',difficulty:null,sittingIds:[sitting.id]});
    await reviewStudioQuestion(db,reviewer.id,id,v,'submit_review',false,'');await reviewStudioQuestion(db,reviewer.id,id,v,'approve',true,'');await reviewStudioQuestion(db,manager.id,id,v,'publish',false,'');ids.push(id);
   }
   await grantComplimentaryAccess(db,admin.id,{email:student.email,examId:exam.id,days:30});
+  await db.query('UPDATE exams SET blueprint=$2::jsonb WHERE id=$1',[exam.id,JSON.stringify({count:10,types:{SBA:10},topics:{[topics[0].id]:3,[topics[1].id]:3,[topics[2].id]:2,[topics[3].id]:2}})]);
   let p=(await getPrediction(db,student.id,exam.id))!;
   assert.equal(p.unlocked,false);assert.equal(p.estimate,null);assert.deepEqual(p.progress,{papers:0,answered:0});
-  // A complete timed set (as long as the real exam): 7 of 10 right, Alpha questions wrong.
-  const ex=await startAttempt(db,student.id,{examId:exam.id,mode:'exam',pool:'all',count:10,requestId:randomUUID()});
+  // A full-length unverified set does not count as a complete paper.
+  const unverified=await startAttempt(db,student.id,{examId:exam.id,mode:'exam',pool:'all',count:10,requestId:randomUUID()});await submitAttempt(db,student.id,unverified);
+  assert.equal((await getPrediction(db,student.id,exam.id))!.progress.papers,0);
+  // A blueprint-matched timed set: 7 of 10 right, Alpha questions wrong.
+  const ex=await startAttempt(db,student.id,{examId:exam.id,mode:'exam',pool:'all',count:10,requestId:randomUUID(),matchBlueprint:true});
   const order=await db.query<{position:number;topic:string}>('SELECT i.position,q.topic_id AS topic FROM practice_items i JOIN questions q ON q.id=i.question_id WHERE i.attempt_id=$1 ORDER BY i.position',[ex]);
   for(const o of order)await answerQuestion(db,student.id,ex,o.position,{selected:o.topic===topics[0].id?0:1,confidence:'sure',timeMs:100000});
   await submitAttempt(db,student.id,ex);

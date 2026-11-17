@@ -5,12 +5,27 @@ import {PGlite} from '@electric-sql/pglite';
 import {embeddedDatabase} from '../lib/db/client';
 import {migrate} from '../lib/db/migrate';
 import {seedCatalogue} from '../lib/db/seed';
-import {createStudioJob,listStudioJobs,refineQuestionWithAI,retryStudioJob,runStudioJob,sanitizeRecallText} from '../lib/services/ai-studio';
+import {createStudioJob,createStudioTextBatch,listStudioJobs,refineQuestionWithAI,retryStudioJob,runStudioJob,recoverQueuedStudioJob,sanitizeRecallText} from '../lib/services/ai-studio';
 import {getStudioQuestion,listStudioQuestions,reviewStudioQuestion,saveStudioDraft} from '../lib/services/studio';
+import {resolveDuplicate} from '../lib/services/duplicate-resolution';
 import type {ModelRequest,RecallModel} from '../lib/integrations/llm/claude-cli';
 import {listExams} from '../lib/services/catalogue';
 const draft=(n:number,over:Record<string,unknown>={})=>({evidence:`Recall ${n} evidence`,stem:`Synthetic AI stem number ${n} about alpha beta gamma delta ${n}`,options:['One','Two','Three','Four','Five'],correct_index:2,explanation:`Synthetic explanation ${n}`,distractor_rationales:['Not one','Not two','Correct answer','Not four','Not five'],key_notes:['Note a','Note b','Note c'],references:[{title:'Synthetic Guideline',source:'Synthetic Society',section:'Section 1'}],topic:'Synthetic topic',difficulty:'medium',confidence:90,needs_expert:false,answer_basis:'established_knowledge',issues:[],...over});
 function mock(outputs:unknown[]) {const requests:ModelRequest[]=[];const model:RecallModel={name:'mock',async complete(request){requests.push(request);const next=outputs.shift();if(next instanceof Error)throw next;return {output:next,model:'mock-model',costUsd:0.01};}};return {model,requests};}
+test('long text batches are sanitized, split atomically and idempotently queued',async()=>{
+ const db=embeddedDatabase(new PGlite());try{
+  await migrate(db);await seedCatalogue(db);const authId=randomUUID();
+  await db.query('INSERT INTO auth_users(id,name,email,email_verified,created_at,updated_at) VALUES($1,$2,$3,true,now(),now())',[authId,'Manager',`${authId}@example.test`]);
+  const manager=(await db.query<{id:string}>("INSERT INTO app_users(auth_id,role) VALUES($1,'content_manager') RETURNING id",[authId]))[0].id;
+  const exam=(await listExams(db))[0],text=('Synthetic recall line for a clinical question.\n').repeat(3000)+'Contact patient@example.test';
+  const input={examId:exam.id,sourceLabel:'Synthetic batch',sourceText:text,fileName:'test.txt',sittingHint:'',requestId:randomUUID()};
+  const jobs=await createStudioTextBatch(db,manager,input);assert.ok(jobs.length>2);assert.deepEqual(await createStudioTextBatch(db,manager,input),jobs);
+  await assert.rejects(createStudioTextBatch(db,manager,{...input,sourceText:text+' change'}),/different text batch/);
+  const rows=await db.query<{source_text:string;status:string}>('SELECT source_text,status FROM studio_jobs WHERE id=ANY($1::uuid[])',[jobs]);
+  assert.equal(rows.length,jobs.length);assert.ok(rows.every(r=>r.source_text.length<=50000&&r.status==='queued'&&!r.source_text.includes('patient@example.test')));
+  assert.equal(rows.map(r=>r.source_text.length).reduce((a,b)=>a+b,0),sanitizeRecallText(text).text.length);
+ }finally{await db.close();}
+});
 test('AI Studio: PII removal, job lifecycle, validation, flags, dedupe, refine and human-only publication',async()=>{
  // AIS-9: identifiers go, clinical values stay.
  const raw='12/09/2026, 21:14 - Dr Sara Khan: Q was about PPH, Hb 98 g/L, BP 140/90\n12/09/2026, 21:15 - +44 7700 900123: answer C? email me sara@example.com\n[12/09/2026, 21:16:02] Sara Khan: see https://x.example/a @Bilal\n12/09/2026, 21:17 - Omar: <Media omitted>';
@@ -60,6 +75,10 @@ test('AI Studio: PII removal, job lifecycle, validation, flags, dedupe, refine a
   await runStudioJob(db,failing,mock([{drafts:[draft(1,{stem:'Synthetic AI stem number 1 about alpha beta gamma delta 1 again'})],noise_summary:''}]).model);
   const dupe=(await listStudioQuestions(db,reviewer)).find(q=>q.stem.endsWith('again'))!;
   const dupeDetail=(await getStudioQuestion(db,reviewer,dupe.id))!;assert.equal(dupeDetail.aiMeta!.duplicateOf,high.id);assert.match(dupeDetail.aiMeta!.issues[0],/Possible duplicate/);
+  await reviewStudioQuestion(db,reviewer,dupe.id,dupeDetail.versionId,'submit_review',false,'');
+  await assert.rejects(reviewStudioQuestion(db,reviewer,dupe.id,dupeDetail.versionId,'approve',true,''),/Resolve the possible duplicate/);
+  await resolveDuplicate(db,reviewer,{sourceId:dupe.id,sourceVersionId:dupeDetail.versionId,targetId:high.id,targetVersionId:high.versionId,decision:'keep_both'});
+  await reviewStudioQuestion(db,reviewer,dupe.id,dupeDetail.versionId,'approve',true,'');
   const empty=await createStudioJob(db,manager,{...input,sourceText:'hello everyone, good luck',requestId:randomUUID()});
   await runStudioJob(db,empty,mock([{drafts:[],noise_summary:'Only greetings.'}]).model);
   assert.match((await listStudioJobs(db,manager)).find(j=>j.id===empty)!.error!,/No exam recalls were found. Only greetings/);
@@ -75,11 +94,28 @@ test('AI Studio: PII removal, job lifecycle, validation, flags, dedupe, refine a
   const after=(await getStudioQuestion(db,reviewer,low.id))!;
   assert.equal(after.versionId,refined);assert.equal(after.version,2);assert.equal(after.status,'ai_refined');assert.equal(after.aiMeta!.instruction,'Shorten the stem');
   await assert.rejects(refineQuestionWithAI(db,reviewer,low.id,low.versionId,'',mock([{draft:draft(5)}]).model),/changed/);
+  const concurrent:RecallModel={name:'concurrent',async complete(){
+   await reviewStudioQuestion(db,reviewer,low.id,after.versionId,'reject',false,'Rejected during refinement');
+   return {output:{draft:draft(6)},model:'concurrent',costUsd:null};
+  }};
+  await assert.rejects(refineQuestionWithAI(db,reviewer,low.id,after.versionId,'',concurrent),/changed/);
+  assert.equal((await getStudioQuestion(db,reviewer,low.id))?.status,'rejected');
   // A human edit keeps AI provenance and the full flow still publishes.
   const edited=await saveStudioDraft(db,reviewer,high.id,high.versionId,{stem:high.stem,options:high.options,correctAnswer:2,explanation:high.explanation,references:high.references,keyNotes:['Edited note']});
   const human=(await getStudioQuestion(db,reviewer,high.id))!;assert.equal(human.aiMeta!.editedByHuman,true);assert.deepEqual(human.keyNotes,['Edited note']);assert.equal(human.confidence,90);
   await reviewStudioQuestion(db,reviewer,high.id,edited,'submit_review',false,'');await reviewStudioQuestion(db,reviewer,high.id,edited,'approve',true,'');await reviewStudioQuestion(db,manager,high.id,edited,'publish',false,'');
   assert.equal((await listExams(db)).find(e=>e.id===exam.id)?.questionCount,1);
   assert.equal((await db.query("SELECT 1 FROM audit_log WHERE action='ai.draft_created'")).length,3);
+  // A recovered job fences off its old worker, even if that worker eventually responds.
+  const stale=await createStudioJob(db,manager,{...input,sourceText:'Synthetic interrupted job',requestId:randomUUID()});
+  let release!:()=>void,started!:()=>void;const startedPromise=new Promise<void>(resolve=>{started=resolve;});const gate=new Promise<void>(resolve=>{release=resolve;});
+  const old:RecallModel={name:'old',async complete(){started();await gate;return {output:{drafts:[draft(20)],noise_summary:''},model:'old',costUsd:null};}};
+  const oldRun=runStudioJob(db,stale,old,null);await startedPromise;
+  await db.query("UPDATE studio_jobs SET started_at=now()-interval '11 minutes' WHERE id=$1",[stale]);
+  assert.deepEqual(await recoverQueuedStudioJob(db,mock([{drafts:[draft(21)],noise_summary:''}]).model,null),{found:true});
+  release();await oldRun;
+  const [recovered]=await db.query<{status:string;model:string;draft_count:number}>('SELECT status,model,draft_count FROM studio_jobs WHERE id=$1',[stale]);
+  assert.deepEqual(recovered,{status:'ready',model:'mock-model',draft_count:1});
+  assert.equal((await db.query('SELECT 1 FROM recall_sources WHERE job_id=$1',[stale])).length,1);
  }finally{await db.close();}
 });

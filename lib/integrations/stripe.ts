@@ -14,7 +14,7 @@ export interface StripeGateway {
  createPrice(input:{product:string;unitAmount:number;months:number;planId:string}):Promise<{id:string}>;
  archivePrice(id:string):Promise<void>;
  createCustomer(input:{email:string;name:string;userId:string}):Promise<{id:string}>;
- createCheckoutSession(input:{customer:string;price:string;userId:string;planId:string;successUrl:string;cancelUrl:string;submitMessage:string;promotionCode?:string|null;sittingId?:string|null}):Promise<StripeCheckoutSession>;
+ createCheckoutSession(input:{customer:string;price:string;userId:string;planId:string;successUrl:string;cancelUrl:string;submitMessage:string;promotionCode?:string|null;sittingId?:string|null;idempotencyKey?:string}):Promise<StripeCheckoutSession>;
  retrieveCheckoutSession(id:string):Promise<StripeCheckoutSession>;
  retrieveSubscription(id:string):Promise<StripeSubscription>;
  setCancelAtPeriodEnd(id:string,cancel:boolean):Promise<StripeSubscription>;
@@ -49,26 +49,35 @@ function session(raw:Raw):StripeCheckoutSession {
  return {id:String(raw.id),url:(raw.url as string)??null,status:(raw.status as string)??null,subscription:str(raw.subscription),customer:str(raw.customer),clientReferenceId:(raw.client_reference_id as string)??null,metadata:(raw.metadata as Record<string,string>)??{}};
 }
 export class StripeError extends Error {constructor(message:string,public status:number){super(message);this.name='StripeError';}}
+function requiredStripeId(raw:Raw,prefix:string):string {
+ const value=raw.id;
+ if(typeof value!=='string'||!new RegExp(`^${prefix}_[A-Za-z0-9_]+$`).test(value))throw new StripeError('Stripe returned an invalid response.',502);
+ return value;
+}
 export function stripeRestGateway(secretKey:string,fetcher:typeof fetch=fetch):StripeGateway {
  async function call(method:'GET'|'POST'|'DELETE',path:string,body?:object,idempotencyKey?:string):Promise<Raw> {
   const query=method==='GET'&&body?`?${formEncode(body).join('&')}`:'';
-  const response=await fetcher(`https://api.stripe.com/v1${path}${query}`,{method,headers:{Authorization:`Bearer ${secretKey}`,'Stripe-Version':STRIPE_API_VERSION,'Content-Type':'application/x-www-form-urlencoded',...(idempotencyKey?{'Idempotency-Key':idempotencyKey}:{})},body:method==='POST'&&body?formEncode(body).join('&'):undefined});
-  const json=await response.json().catch(()=>({})) as {error?:{message?:string}}&Raw;
+  let response:Response;
+  try{response=await fetcher(`https://api.stripe.com/v1${path}${query}`,{method,headers:{Authorization:`Bearer ${secretKey}`,'Stripe-Version':STRIPE_API_VERSION,'Content-Type':'application/x-www-form-urlencoded',...(idempotencyKey?{'Idempotency-Key':idempotencyKey}:{})},body:method==='POST'&&body?formEncode(body).join('&'):undefined,signal:AbortSignal.timeout(15000)});}
+  catch{throw new StripeError('Stripe could not be reached. Please retry.',503);}
+  const json=await response.json().catch(()=>null) as ({error?:{message?:string}}&Raw)|null;
   // Stripe error messages can echo request details, so only a generic message leaves this adapter.
   if(!response.ok)throw new StripeError(response.status===401?'Stripe rejected the API key.':`Stripe request failed (${response.status}).`,response.status);
+  if(!json||typeof json!=='object'||Array.isArray(json))throw new StripeError('Stripe returned an invalid response.',502);
   return json;
  }
  return {
-  async createProduct({name,examId}) {return {id:String((await call('POST','/products',{name,metadata:{exam_id:examId}},`product-${examId}`)).id)};},
-  async createPrice({product,unitAmount,months,planId}) {return {id:String((await call('POST','/prices',{product,unit_amount:unitAmount,currency:'usd',recurring:{interval:'month',interval_count:months},metadata:{plan_id:planId}},`price-${planId}`)).id)};},
+  async createProduct({name,examId}) {return {id:requiredStripeId(await call('POST','/products',{name,metadata:{exam_id:examId}},`product-${examId}`),'prod')};},
+  async createPrice({product,unitAmount,months,planId}) {return {id:requiredStripeId(await call('POST','/prices',{product,unit_amount:unitAmount,currency:'usd',recurring:{interval:'month',interval_count:months},metadata:{plan_id:planId}},`price-${planId}`),'price')};},
   async archivePrice(id) {await call('POST',`/prices/${encodeURIComponent(id)}`,{active:false});},
-  async createCustomer({email,name,userId}) {return {id:String((await call('POST','/customers',{email,name,metadata:{user_id:userId}},`customer-${userId}`)).id)};},
+  async createCustomer({email,name,userId}) {return {id:requiredStripeId(await call('POST','/customers',{email,name,metadata:{user_id:userId}},`customer-${userId}`),'cus')};},
   async createCheckoutSession(input) {
    // BILL-6: a code chosen on our site is applied directly; otherwise students can type one on Stripe's page.
    const metadata={user_id:input.userId,plan_id:input.planId,...(input.sittingId?{sitting_id:input.sittingId}:{})};
-   return session(await call('POST','/checkout/sessions',{mode:'subscription',customer:input.customer,line_items:[{price:input.price,quantity:1}],client_reference_id:input.userId,
+   const raw=await call('POST','/checkout/sessions',{mode:'subscription',customer:input.customer,line_items:[{price:input.price,quantity:1}],client_reference_id:input.userId,
     ...(input.promotionCode?{discounts:[{promotion_code:input.promotionCode}]}:{allow_promotion_codes:true}),
-    metadata,subscription_data:{metadata},success_url:input.successUrl,cancel_url:input.cancelUrl,custom_text:{submit:{message:input.submitMessage}}}));
+    metadata,subscription_data:{metadata},success_url:input.successUrl,cancel_url:input.cancelUrl,custom_text:{submit:{message:input.submitMessage}}},input.idempotencyKey);
+   requiredStripeId(raw,'cs');return session(raw);
   },
   async retrieveCheckoutSession(id) {return session(await call('GET',`/checkout/sessions/${encodeURIComponent(id)}`));},
   async retrieveSubscription(id) {return subscription(await call('GET',`/subscriptions/${encodeURIComponent(id)}`));},

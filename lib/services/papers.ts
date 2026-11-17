@@ -1,5 +1,6 @@
 import type {Database} from '../db/client';
 import {requireId} from './studio';
+import {hasCompleteBlueprint,selectBlueprintQuestions,validatePaperBlueprint,validateStoredPaper,type PaperBlueprint} from './paper-blueprint';
 // QB-5: content managers build, reorder, lock, publish and unpublish papers.
 async function requireManager(db:Database,actorId:string) {
  const [actor]=await db.query<{role:string}>(`SELECT a.role FROM app_users a JOIN auth_users u ON u.id=a.auth_id WHERE a.id=$1 AND a.status='active' AND u.email_verified=true AND (a.role<>'super_admin' OR u.two_factor_enabled=true)`,[actorId]);
@@ -26,16 +27,16 @@ export async function createPaper(db:Database,actorId:string,input:{examId:strin
   return paper.id;
  });
 }
-export type PaperDetail=PaperSummary&{sittingId:string|null;blueprintCount:number|null;complete:boolean;
- items:{position:number;questionId:string;stem:string;status:string;topic:string|null}[]};
+export type PaperDetail=PaperSummary&{sittingId:string|null;blueprintCount:number|null;complete:boolean;blueprintIssues:string[];
+ items:{position:number;questionId:string;stem:string;status:string;topic:string|null;topicId:string|null;type:string|null}[]};
 export async function getPaperAdmin(db:Database,actorId:string,paperId:string):Promise<PaperDetail|null> {
  requireId(paperId);await requireManager(db,actorId);
- const [paper]=await db.query<PaperSummary&{sittingId:string|null;blueprint:{count?:number}}>(`SELECT p.id,p.exam_id AS "examId",e.name AS "examName",p.title,p.sitting_id AS "sittingId",s.label AS sitting,p.status,p.locked,p.time_limit_minutes AS minutes,e.blueprint,(SELECT count(*)::int FROM paper_questions pq WHERE pq.paper_id=p.id) AS questions FROM papers p JOIN exams e ON e.id=p.exam_id LEFT JOIN sittings s ON s.id=p.sitting_id WHERE p.id=$1`,[paperId]);
+ const [paper]=await db.query<PaperSummary&{sittingId:string|null;blueprint:PaperBlueprint}>(`SELECT p.id,p.exam_id AS "examId",e.name AS "examName",p.title,p.sitting_id AS "sittingId",s.label AS sitting,p.status,p.locked,p.time_limit_minutes AS minutes,e.blueprint,(SELECT count(*)::int FROM paper_questions pq WHERE pq.paper_id=p.id) AS questions FROM papers p JOIN exams e ON e.id=p.exam_id LEFT JOIN sittings s ON s.id=p.sitting_id WHERE p.id=$1`,[paperId]);
  if(!paper)return null;
- const items=await db.query<PaperDetail['items'][number]>(`SELECT pq.position,q.id AS "questionId",v.stem,q.status,COALESCE(pt.name||' › '||t.name,t.name) AS topic FROM paper_questions pq JOIN questions q ON q.id=pq.question_id JOIN question_versions v ON v.id=q.current_version_id LEFT JOIN topics t ON t.id=q.topic_id LEFT JOIN topics pt ON pt.id=t.parent_id WHERE pq.paper_id=$1 ORDER BY pq.position`,[paperId]);
+ const items=await db.query<PaperDetail['items'][number]>(`SELECT pq.position,q.id AS "questionId",v.stem,q.status,q.question_type AS type,COALESCE(pt.name||' › '||t.name,t.name) AS topic,COALESCE(t.parent_id,t.id)::text AS "topicId" FROM paper_questions pq JOIN questions q ON q.id=pq.question_id JOIN question_versions v ON v.id=q.current_version_id LEFT JOIN topics t ON t.id=q.topic_id LEFT JOIN topics pt ON pt.id=t.parent_id WHERE pq.paper_id=$1 ORDER BY pq.position`,[paperId]);
  const {blueprint,...rest}=paper;const blueprintCount=Number(blueprint?.count)>0?Number(blueprint.count):null;
- // A "Complete Paper" matches the blueprint question count (type mix and topic weights are not configured yet).
- return {...rest,blueprintCount,complete:blueprintCount!==null&&items.filter(i=>i.status==='published').length===blueprintCount,items};
+ const validation=validatePaperBlueprint(blueprint,items);
+ return {...rest,blueprintCount,complete:validation.complete,blueprintIssues:validation.issues,items};
 }
 export async function paperCandidates(db:Database,actorId:string,paperId:string,filter:{sittingId:string|null;topicId:string|null;text:string}) {
  requireId(paperId);if(filter.sittingId)requireId(filter.sittingId);if(filter.topicId)requireId(filter.topicId);
@@ -98,50 +99,37 @@ export async function setPaperState(db:Database,actorId:string,paperId:string,ac
   if(action==='unlock'&&paper.status==='published')throw new Error('Unpublish the paper before unlocking it.');
   if(action==='publish') {
    if(!paper.locked)throw new Error('Lock the paper before publishing it.');
-   if(!(await tx.query(`SELECT 1 FROM paper_questions pq JOIN questions q ON q.id=pq.question_id AND q.status='published' WHERE pq.paper_id=$1 LIMIT 1`,[paperId])).length)throw new Error('Add at least one published question first.');
+   const validation=await validateStoredPaper(tx,paperId,true);
+   if(!validation.complete)throw new Error(`Paper does not match the exam blueprint: ${validation.issues[0]}`);
   }
   const next={lock:{locked:true,status:paper.status},unlock:{locked:false,status:paper.status},publish:{locked:true,status:'published'},unpublish:{locked:paper.locked,status:'draft'}}[action];
   await tx.query('UPDATE papers SET locked=$2,status=$3 WHERE id=$1',[paperId,next.locked,next.status]);
   await audit(tx,actorId,paperId,`paper.${action}`,next);
  });
 }
-// QB-6: proposals for complete papers per sitting. One draft paper per published sitting that has no paper yet,
-// built only from questions recalled in that sitting. When a sitting has more questions than the blueprint count,
-// topics keep their share of the bank and high-yield, high-confidence questions come first. The content manager
-// then adjusts, locks and publishes as usual. Exam timing is never invented: without it there is no proposal.
+// Complete proposals use only published questions from the sitting and the confirmed blueprint.
 export type PaperProposal={paperId:string|null;sitting:string;questions:number;target:number|null;note:string};
 export async function proposePapers(db:Database,actorId:string,examId:string):Promise<PaperProposal[]> {
  requireId(examId);await requireManager(db,actorId);
- const [exam]=await db.query<{blueprint:{count?:number};settings:{durationMinutes?:number;highYieldMin?:number}}>('SELECT blueprint,settings FROM exams WHERE id=$1',[examId]);
+ const [exam]=await db.query<{blueprint:PaperBlueprint;settings:{durationMinutes?:number;highYieldMin?:number}}>('SELECT blueprint,settings FROM exams WHERE id=$1',[examId]);
  if(!exam)throw new Error('Exam not found.');
  const minutes=Number(exam.settings?.durationMinutes),count=Number(exam.blueprint?.count)>0?Number(exam.blueprint.count):null;
  if(!(minutes>0))throw new Error('Set this exam’s duration in the catalogue first. Paper time limits come from it.');
+ if(!hasCompleteBlueprint(exam.blueprint))throw new Error('Set the full question count, type mix and topic targets in the catalogue before proposing complete papers.');
  const sittings=await db.query<{id:string;label:string}>(`SELECT s.id,s.label FROM sittings s WHERE s.exam_id=$1 AND s.published AND NOT EXISTS(SELECT 1 FROM papers p WHERE p.sitting_id=s.id)
   AND EXISTS(SELECT 1 FROM question_sittings qs JOIN questions q ON q.id=qs.question_id AND q.status='published' WHERE qs.sitting_id=s.id) ORDER BY s.year DESC,s.month DESC NULLS LAST`,[examId]);
- const share=new Map((await db.query<{topic:string|null;n:number}>(`SELECT COALESCE(t.parent_id,t.id)::text AS topic,count(*)::int AS n FROM questions q LEFT JOIN topics t ON t.id=q.topic_id WHERE q.exam_id=$1 AND q.status='published' GROUP BY 1`,[examId])).map(r=>[r.topic,r.n]));
- const bank=[...share.values()].reduce((s,n)=>s+n,0)||1;
  const hyMin=Number(exam.settings?.highYieldMin)>=2?Number(exam.settings.highYieldMin):2;
  const out:PaperProposal[]=[];
  for(const s of sittings){
-  const pool=await db.query<{id:string;topic:string|null;seen:number;confidence:number|null}>(`SELECT q.id,COALESCE(t.parent_id,t.id)::text AS topic,(SELECT count(*)::int FROM question_sittings x WHERE x.question_id=q.id) AS seen,v.confidence
+  const pool=await db.query<{id:string;topicId:string|null;type:string|null;seen:number;confidence:number|null}>(`SELECT q.id,q.question_type AS type,COALESCE(t.parent_id,t.id)::text AS "topicId",(SELECT count(*)::int FROM question_sittings x WHERE x.question_id=q.id) AS seen,v.confidence
    FROM question_sittings qs JOIN questions q ON q.id=qs.question_id AND q.status='published' JOIN question_versions v ON v.id=q.current_version_id LEFT JOIN topics t ON t.id=q.topic_id WHERE qs.sitting_id=$1 ORDER BY q.id`,[s.id]);
   const rank=(a:typeof pool[number],b:typeof pool[number])=>Number(b.seen>=hyMin)-Number(a.seen>=hyMin)||(b.confidence??0)-(a.confidence??0)||a.id.localeCompare(b.id);
-  let chosen=pool;
-  if(count&&pool.length>count){
-   // Largest-remainder allocation of the blueprint count across topics, by their share of the whole bank.
-   const groups=new Map<string|null,typeof pool>();for(const q of pool)groups.set(q.topic,[...(groups.get(q.topic)??[]),q].sort(rank));
-   const quota=[...groups.keys()].map(t=>{const exact=count*(share.get(t)??0)/bank;return {t,n:Math.min(Math.floor(exact),groups.get(t)!.length),rem:exact-Math.floor(exact)};});
-   let left=count-quota.reduce((s,q)=>s+q.n,0);
-   for(const q of [...quota].sort((a,b)=>b.rem-a.rem))if(left>0&&q.n<groups.get(q.t)!.length){q.n++;left--;}
-   chosen=quota.flatMap(q=>groups.get(q.t)!.slice(0,q.n));
-   if(chosen.length<count)chosen=[...chosen,...pool.filter(q=>!chosen.includes(q)).sort(rank).slice(0,count-chosen.length)];
-  }
+  const chosen=selectBlueprintQuestions(exam.blueprint,[...pool].sort(rank));
+  if(!chosen){out.push({paperId:null,sitting:s.label,questions:pool.length,target:count,note:'The published, classified recalls in this sitting cannot satisfy the configured type and topic targets yet.'});continue;}
   // Mix topics through the paper rather than grouping them.
-  const byTopic=new Map<string|null,typeof pool>();for(const q of [...chosen].sort(rank))byTopic.set(q.topic,[...(byTopic.get(q.topic)??[]),q]);
+  const byTopic=new Map<string|null,typeof pool>();for(const q of chosen)byTopic.set(q.topicId,[...(byTopic.get(q.topicId)??[]),q]);
   const order:string[]=[];while(order.length<chosen.length)for(const list of byTopic.values()){const q=list.shift();if(q)order.push(q.id);}
-  const note=count===null?`All ${order.length} questions from this sitting. Set the blueprint question count to make complete papers.`
-   :order.length<count?`${order.length} of ${count} questions: this sitting does not have enough published recalls for a complete paper yet.`
-   :pool.length>count?`${count} of the sitting’s ${pool.length} questions, balanced across topics; high-yield and high-confidence first.`:`All ${count} questions from this sitting.`;
+  const note=`${order.length} questions match the configured type and topic targets. Review and publish the draft when ready.`;
   const paperId=await db.transaction(async tx=>{
    const [p]=await tx.query<{id:string}>('INSERT INTO papers(exam_id,title,sitting_id,time_limit_minutes,created_by) VALUES($1,$2,$3,$4,$5) RETURNING id',[examId,`${s.label} paper (proposed)`.slice(0,160),s.id,Math.round(minutes*(count&&order.length<count?order.length/count:1))||1,actorId]);
    for(const [i,q] of order.entries())await tx.query('INSERT INTO paper_questions(paper_id,exam_id,position,question_id) VALUES($1,$2,$3,$4)',[p.id,examId,i+1,q]);

@@ -4,10 +4,10 @@ import '@/app/studio/shell.css';
 import '@/app/studio/studio.css';
 // The Studio uses the same app shell as practice: one sidebar on the page ground with the product mark,
 // the workspace sections, the administration sections (Super Admin only), the student view and the user.
-type Key='overview'|'queue'|'papers'|'catalogue'|'website'|'students'|'partners'|'billing'|'security'|'team';
+type Key='overview'|'queue'|'papers'|'catalogue'|'website'|'students'|'partners'|'billing'|'integrations'|'security'|'team';
 const WORK:{key:Key;href:string;label:string}[]=[{key:'overview',href:'/studio/overview',label:'Overview'},{key:'queue',href:'/studio',label:'Questions'},{key:'papers',href:'/studio/papers',label:'Papers'},{key:'catalogue',href:'/studio/catalogue',label:'Exam catalogue'},{key:'website',href:'/studio/website',label:'Website'}];
-const ADMIN:{key:Key;href:string;label:string}[]=[{key:'students',href:'/studio/students',label:'Students'},{key:'partners',href:'/studio/partners',label:'Partners'},{key:'billing',href:'/studio/billing',label:'Billing'},{key:'security',href:'/studio/security',label:'Content protection'},{key:'team',href:'/studio/team',label:'Team and audit log'}];
-const TITLES:Record<Key,string>={overview:'Overview',students:'Students',partners:'Partners',team:'Team and audit log',queue:'Questions',papers:'Papers',catalogue:'Exam catalogue',website:'Website',billing:'Billing',security:'Content protection'};
+const ADMIN:{key:Key;href:string;label:string}[]=[{key:'students',href:'/studio/students',label:'Students'},{key:'partners',href:'/studio/partners',label:'Partners'},{key:'billing',href:'/studio/billing',label:'Billing'},{key:'integrations',href:'/studio/integrations',label:'Integrations'},{key:'security',href:'/studio/security',label:'Content protection'},{key:'team',href:'/studio/team',label:'Team and audit log'}];
+const TITLES:Record<Key,string>={overview:'Overview',students:'Students',partners:'Partners',team:'Team and audit log',queue:'Questions',papers:'Papers',catalogue:'Exam catalogue',website:'Website',billing:'Billing',integrations:'Integrations',security:'Content protection'};
 function initials(name:string){return name.split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]!.toUpperCase()).join('')||'?';}
 const role=(r:string)=>r.replaceAll('_',' ').replace(/^./,c=>c.toUpperCase());
 export function StudioShell({current,actor,title,sub,action,children}:{current:Key;actor:{name:string;email:string;role:string}|null;title:string;sub?:React.ReactNode;action?:React.ReactNode;children?:React.ReactNode}) {

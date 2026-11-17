@@ -5,7 +5,7 @@ import {PGlite} from '@electric-sql/pglite';
 import {embeddedDatabase} from '../lib/db/client';
 import {migrate} from '../lib/db/migrate';
 import {seedCatalogue} from '../lib/db/seed';
-import {createStudioJob,listStudioJobs,retryStudioJob,runStudioJob,transcribeStudioJob,type ScanFile} from '../lib/services/ai-studio';
+import {createStudioJob,listStudioJobs,retryStudioJob,runStudioJob,transcribeStudioJob,recoverQueuedStudioJob,type ScanFile} from '../lib/services/ai-studio';
 import {prepareUpload} from '../lib/services/extract-text';
 import {listExams} from '../lib/services/catalogue';
 import type {ModelRequest,RecallModel} from '../lib/integrations/llm/claude-cli';
@@ -15,11 +15,11 @@ const draft={evidence:'Scanned recall',stem:'Synthetic scanned stem about uterin
 function reader(texts:(string|Error)[]) {const seen:VisionInput[]=[];const r:VisionReader={name:'fake-vision',async read(input){seen.push(input);const next=texts.shift();if(next instanceof Error)throw next;return {text:next??'',model:'fake-vision-model',costUsd:0.02};}};return {r,seen};}
 function model() {const requests:ModelRequest[]=[];const m:RecallModel={name:'mock',async complete(request){requests.push(request);return {output:{drafts:[draft],noise_summary:''},model:'mock-model',costUsd:0.01};}};return {m,requests};}
 test('OCR: scans and images are detected, transcribed, stripped of PII, then drafted; files are never stored',async()=>{
- // Detection: images by extension and signature; renamed or iPhone HEIC files are refused before anything is sent.
+ // Detection rejects invalid image signatures before processing.
  assert.deepEqual(await prepareUpload('shot.png',PNG),{kind:'scan',mediaType:'image/png'});
  assert.deepEqual(await prepareUpload('photo.JPG',JPG),{kind:'scan',mediaType:'image/jpeg'});
  await assert.rejects(prepareUpload('fake.png',JPG),/not a valid image/);
- await assert.rejects(prepareUpload('IMG_0001.HEIC',new Uint8Array(8)),/HEIC/);
+ await assert.rejects(prepareUpload('IMG_0001.HEIC',new Uint8Array(8)),/not a valid image/);
  assert.deepEqual(await prepareUpload('chat.txt',new TextEncoder().encode('hello')),{kind:'text',text:'hello'});
  const db=embeddedDatabase(new PGlite());
  try {
@@ -62,5 +62,11 @@ test('OCR: scans and images are detected, transcribed, stripped of PII, then dra
   assert.equal(await transcribeStudioJob(db,mismatch,[scans[0]],reader(['x']).r),false);
   // A job that is not waiting for OCR is left alone.
   assert.equal(await transcribeStudioJob(db,id,scans,reader(['x']).r),false);
+  const queued=await job({scanFiles:0,sourceText:'Synthetic text awaiting processing'});
+  const recovery=model();assert.deepEqual(await recoverQueuedStudioJob(db,recovery.m,null),{found:false});
+  await db.query("UPDATE studio_jobs SET created_at=now()-interval '3 minutes' WHERE id=$1",[queued]);
+  assert.deepEqual(await recoverQueuedStudioJob(db,recovery.m,null),{found:true});assert.equal(recovery.requests.length,1);
+  assert.equal((await db.query<{status:string}>('SELECT status FROM studio_jobs WHERE id=$1',[queued]))[0].status,'ready');
+  assert.deepEqual(await recoverQueuedStudioJob(db,recovery.m,null),{found:false});
  } finally {await db.close();}
 });

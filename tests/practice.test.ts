@@ -5,7 +5,7 @@ import {PGlite} from '@electric-sql/pglite';
 import {embeddedDatabase} from '../lib/db/client';
 import {migrate} from '../lib/db/migrate';
 import {seedCatalogue} from '../lib/db/seed';
-import {createRecall,getStudioQuestion,saveStudioDraft,reviewStudioQuestion} from '../lib/services/studio';
+import {createRecall,getStudioQuestion,saveStudioDraft,reviewStudioQuestion,setQuestionTags} from '../lib/services/studio';
 import {answerQuestion,getPracticeQuestion,getResults,grantComplimentaryAccess,listAttemptHistory,listPracticeExams,setFlag,startAttempt,submitAttempt} from '../lib/services/practice';
 import {listExams} from '../lib/services/catalogue';
 test('Practice: entitlement gate, one question per call, feedback timing, exam deadline, mistakes deck and withdrawal',async()=>{
@@ -38,6 +38,14 @@ test('Practice: entitlement gate, one question per call, feedback timing, exam d
   const request=start();
   const attempt=await startAttempt(db,student.id,request);
   assert.equal(await startAttempt(db,student.id,request),attempt);
+  const [firstItem]=await db.query<{question_id:string}>('SELECT question_id FROM practice_items WHERE attempt_id=$1 AND position=1',[attempt]);
+  await setQuestionTags(db,reviewer.id,firstItem.question_id,{topicId:null,questionType:'EMQ',difficulty:null,sittingIds:[]});
+  assert.equal((await listPracticeExams(db,student.id))[0].published,2);
+  assert.equal((await getPracticeQuestion(db,student.id,attempt,1)).question.withdrawn,true);
+  await assert.rejects(answerQuestion(db,student.id,attempt,1,{selected:0,confidence:null,timeMs:100}),/no longer available/);
+  const filtered=await startAttempt(db,student.id,start());
+  assert.equal((await db.query('SELECT 1 FROM practice_items WHERE attempt_id=$1 AND question_id=$2',[filtered,firstItem.question_id])).length,0);
+  await setQuestionTags(db,reviewer.id,firstItem.question_id,{topicId:null,questionType:null,difficulty:null,sittingIds:[]});
   const view=await getPracticeQuestion(db,student.id,attempt,1);
   assert.equal(view.attempt.total,3);assert.equal(view.feedback,null);
   assert.ok(!JSON.stringify(view).includes('Synthetic explanation'));assert.ok(!JSON.stringify(view).includes('Synthetic reference'));
@@ -91,9 +99,13 @@ test('Practice: entitlement gate, one question per call, feedback timing, exam d
   const withdrawn=await getPracticeQuestion(db,student.id,timed,retiredItem.position);
   assert.equal(withdrawn.question.withdrawn,true);assert.equal(withdrawn.question.stem,'');assert.equal(withdrawn.feedback,null);
   assert.equal((await getResults(db,student.id,timed)).scored,2);
+  await setQuestionTags(db,reviewer.id,published[0].id,{topicId:null,questionType:'EMQ',difficulty:null,sittingIds:[]});
+  const reclassified=await getResults(db,student.id,timed);assert.equal(reclassified.scored,1);
+  assert.equal((await listAttemptHistory(db,student.id,{examId:exam.id})).rows.find(r=>r.id===timed)!.scored,reclassified.scored);
+  await setQuestionTags(db,reviewer.id,published[0].id,{topicId:null,questionType:null,difficulty:null,sittingIds:[]});
   // Session history scores each attempt exactly as its results report does, filters by mode and stays private.
   const history=await listAttemptHistory(db,student.id,{examId:exam.id});
-  assert.deepEqual([history.counts.all,history.counts.revision,history.counts.exam,history.counts.open],[5,4,1,0]);
+  assert.deepEqual([history.counts.all,history.counts.revision,history.counts.exam,history.counts.open],[6,5,1,1]);
   const timedRow=history.rows.find(r=>r.id===timed)!,timedReport=await getResults(db,student.id,timed);
   assert.equal(timedRow.scored,timedReport.scored);assert.equal(timedRow.percent,timedReport.percent);assert.equal(timedRow.passed,timedReport.passed);assert.ok(timedRow.finishedAt);
   // Question order is random, so the retired question may or may not be one this revision answered.

@@ -2,7 +2,7 @@ import {spawn} from 'node:child_process';
 import {existsSync,readdirSync,statSync} from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-export type ModelRequest={system:string;prompt:string;schema:object};
+export type ModelRequest={system:string;prompt:string;schema:object;timeoutMs?:number};
 export type ModelResponse={output:unknown;model:string;costUsd:number|null};
 export interface RecallModel {name:string;complete(request:ModelRequest):Promise<ModelResponse>}
 const TIMEOUT_MS=6*60*1000;

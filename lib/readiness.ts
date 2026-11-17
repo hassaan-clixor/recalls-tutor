@@ -1,11 +1,22 @@
 import type {Database} from './db/client';
 import {MIGRATIONS} from './db/migrate';
+import {parseModelChain,parseRateLimits} from './integrations/llm/fallback';
 // Deployment readiness: which services are configured, without revealing any secret. Used by /api/health
 // (when called with the cron secret) and by `pnpm readiness` before and after the first deploy.
 export type Check={name:string;ok:boolean;required:boolean;detail:string};
 const set=(k:string)=>Boolean(process.env[k]?.trim());
+function aiConfiguration():{ok:boolean;detail:string} {
+ const chain=process.env.LLM_MODELS?.trim();
+ if(!chain){if(set('LLM_RATE_LIMITS'))return {ok:false,detail:'LLM_MODELS is required when LLM_RATE_LIMITS is set'};return {ok:set('ANTHROPIC_API_KEY'),detail:set('ANTHROPIC_API_KEY')?'Default Anthropic API key is set':'Set LLM_MODELS and its provider keys, or ANTHROPIC_API_KEY for the default model'};}
+ try{
+  const models=parseModelChain(chain);parseRateLimits(process.env.LLM_RATE_LIMITS??'',models);const keys={anthropic:'ANTHROPIC_API_KEY',openai:'OPENAI_API_KEY',groq:'GROQ_API_KEY',gemini:'GEMINI_API_KEY'};
+  const missing=[...new Set(models.map(m=>keys[m.provider]).filter(key=>!set(key)))];
+  return {ok:missing.length===0,detail:missing.length?`Missing keys: ${missing.join(', ')}`:`${models.length} configured model(s); credentials present (not live-tested)`};
+ }catch{return {ok:false,detail:'LLM_MODELS or LLM_RATE_LIMITS is invalid; check the configured model chain and rate limits'};}
+}
 export async function readiness(db:Database|null):Promise<{ready:boolean;checks:Check[]}> {
  const site=process.env.NEXT_PUBLIC_SITE_URL??'',auth=process.env.BETTER_AUTH_URL??'',stripe=process.env.STRIPE_SECRET_KEY??'';
+ const ai=aiConfiguration();
  const checks:Check[]=[
   {name:'Database',required:true,ok:set('DATABASE_URL'),detail:set('DATABASE_URL')?'DATABASE_URL is set':'Add the hosted Postgres connection string (pooled) as DATABASE_URL'},
   {name:'Site address',required:true,ok:site.startsWith('https://'),detail:site.startsWith('https://')?site:'NEXT_PUBLIC_SITE_URL must be the https address of the site'},
@@ -15,7 +26,7 @@ export async function readiness(db:Database|null):Promise<{ready:boolean;checks:
   {name:'Stripe',required:true,ok:stripe.startsWith('sk_live_')||(stripe.startsWith('sk_test_')&&process.env.STRIPE_ALLOW_TEST_MODE==='true'),detail:stripe.startsWith('sk_live_')?'Live key':stripe.startsWith('sk_test_')?'Test key (staging only, needs STRIPE_ALLOW_TEST_MODE=true)':'STRIPE_SECRET_KEY is missing'},
   {name:'Stripe webhook',required:true,ok:set('STRIPE_WEBHOOK_SECRET'),detail:'STRIPE_WEBHOOK_SECRET from the endpoint /api/webhooks/stripe'},
   {name:'Scheduled jobs',required:true,ok:(process.env.CRON_SECRET??'').length>=24,detail:'CRON_SECRET: a random value of 24 characters or more (Vercel Cron sends it)'},
-  {name:'Claude API',required:true,ok:set('ANTHROPIC_API_KEY'),detail:'ANTHROPIC_API_KEY for AI drafting, scanned files, fixes and the tutor on the server'},
+  {name:'AI text models',required:true,ok:ai.ok,detail:ai.detail},
   {name:'Google sign-in',required:false,ok:set('GOOGLE_CLIENT_ID')&&set('GOOGLE_CLIENT_SECRET'),detail:'Optional: GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET'},
   {name:'Analytics',required:false,ok:set('NEXT_PUBLIC_GA_ID'),detail:'Optional: NEXT_PUBLIC_GA_ID'},
  ];

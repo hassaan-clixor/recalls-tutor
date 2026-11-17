@@ -5,9 +5,9 @@ import {PGlite} from '@electric-sql/pglite';
 import {embeddedDatabase} from '../lib/db/client';
 import {migrate} from '../lib/db/migrate';
 import {seedCatalogue} from '../lib/db/seed';
-import {createRecall,getStudioQuestion,saveStudioDraft,reviewStudioQuestion} from '../lib/services/studio';
+import {createRecall,getStudioQuestion,saveStudioDraft,reviewStudioQuestion,setQuestionTags} from '../lib/services/studio';
 import {answerQuestion,grantComplimentaryAccess,startAttempt,startPaperAttempt,submitAttempt} from '../lib/services/practice';
-import {createExam} from '../lib/services/catalogue-admin';
+import {createExam,createTopic} from '../lib/services/catalogue-admin';
 import {createPaper,addPaperQuestion,setPaperState} from '../lib/services/papers';
 import {paperPercentile,PEERS_MIN} from '../lib/services/percentile';
 import {receiveStripeEvent,setPlanPrice,startCheckout} from '../lib/services/billing';
@@ -42,6 +42,9 @@ test('Phase 3: monthly plans, new exams, percentiles, referrals, AI tutor and mo
    await reviewStudioQuestion(db,reviewer.id,id,v,'submit_review',false,'');await reviewStudioQuestion(db,reviewer.id,id,v,'approve',true,'');await reviewStudioQuestion(db,manager.id,id,v,'publish',false,'');ids.push(id);}
   const paper=await createPaper(db,manager.id,{examId:exam.id,title:'Synthetic paper',sittingId:null,minutes:4});
   for(const q of ids)await addPaperQuestion(db,manager.id,paper,q);
+  const topic=await createTopic(db,manager.id,{examId:exam.id,name:'Paper topic',parentId:null});
+  for(const q of ids)await setQuestionTags(db,reviewer.id,q,{topicId:topic,questionType:'SBA',difficulty:null,sittingIds:[]});
+  await db.query('UPDATE exams SET blueprint=$2::jsonb WHERE id=$1',[exam.id,JSON.stringify({count:2,types:{SBA:2},topics:{[topic]:2}})]);
   await setPaperState(db,manager.id,paper,'lock');await setPaperState(db,manager.id,paper,'publish');
   await grantComplimentaryAccess(db,admin.id,{email:student.email,examId:exam.id,days:30});
   const mine=await startPaperAttempt(db,student.id,{paperId:paper,requestId:randomUUID()});

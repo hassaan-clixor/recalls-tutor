@@ -70,7 +70,7 @@ export default async function OverviewPage() {
   </div>
   {ai&&<section className="catalogue-panel" aria-labelledby="ai-title"><h2 id="ai-title">AI usage this month</h2>
    <ul className="overview-grid"><Figure label="Spend" value={usd(ai.total)} note={ai.budget!==null?`of ${usd(ai.budget)} budget`:'no budget set'}/><Figure label="Drafts created" value={ai.drafts} note={ai.perDraft!==null?`${usd(ai.perDraft)} each on average`:`${ai.jobs} jobs`}/><Figure label="Refinements" value={ai.refines} note={`${usd(ai.refineCost)}`}/><Figure label="Scanned-file reading" value={usd(ai.ocr)} note={`${ai.failed} failed jobs`}/></ul>
-   <p className="studio-help">Estimated from Claude list prices for each request. Each draft’s share of its job’s cost is stored with that version.</p>
+   <p className="studio-help">Known costs are estimates; some providers and models do not yet report a cost here. Each draft’s share of a known job cost is stored with that version.</p>
    {superAdmin&&<AiBudgetForm budget={ai.budget}/>}</section>}
   <PredictorAccuracy/>
  </StudioShell>;

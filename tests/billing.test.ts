@@ -25,6 +25,41 @@ test('Stripe adapter: form encoding, signature checks and safe error messages',a
  const headers=seen!.init.headers as Record<string,string>;
  assert.equal(headers['Stripe-Version'],'2024-06-20');assert.equal(headers['Idempotency-Key'],'customer-u1');assert.match(String(seen!.init.body),/email=a%40b.test/);
 });
+test('Stripe adapter rejects successful responses missing valid resource IDs',async()=>{
+ for(const body of ['not json','{}','{"id":"undefined"}','{"id":"cus_wrong_type"}']){
+  const gateway=stripeRestGateway('sk_test_synthetic',async()=>new Response(body,{status:200}));
+  await assert.rejects(gateway.createProduct({name:'Synthetic exam',examId:'example'}),/invalid response/);
+ }
+ const gateway=stripeRestGateway('sk_test_synthetic',async()=>Response.json({id:'cus_valid123'}));
+ assert.deepEqual(await gateway.createCustomer({email:'test@example.test',name:'Test',userId:'example'}),{id:'cus_valid123'});
+ await assert.rejects(gateway.createPrice({product:'prod_valid',unitAmount:1000,months:3,planId:'example'}),/invalid response/);
+});
+test('Stripe connection failures are bounded and do not expose provider details',async()=>{
+ let signal:AbortSignal|undefined;
+ const gateway=stripeRestGateway('sk_test_synthetic',async(_url,init)=>{signal=init?.signal as AbortSignal;throw new Error('private network detail');});
+ await assert.rejects(gateway.createCustomer({email:'test@example.test',name:'Test',userId:'example'}),(error:Error)=>error.message==='Stripe could not be reached. Please retry.');
+ assert.ok(signal instanceof AbortSignal);assert.equal(signal.aborted,false);
+});
+test('overlapping checkout requests share a session and a canceled subscription can be purchased again',async()=>{
+ const db=embeddedDatabase(new PGlite()),stripe=new FakeStripe();
+ try{
+  await migrate(db);await seedCatalogue(db);
+  async function actor(role:string,mfa=false){const authId=randomUUID();await db.query('INSERT INTO auth_users(id,name,email,email_verified,two_factor_enabled,created_at,updated_at) VALUES($1,$2,$3,true,$4,now(),now())',[authId,role,`${authId}@example.test`,mfa]);return (await db.query<{id:string}>('INSERT INTO app_users(auth_id,role) VALUES($1,$2) RETURNING id',[authId,role]))[0].id;}
+  const admin=await actor('super_admin',true),student=await actor('student');const [exam]=await db.query<{id:string}>('SELECT id FROM exams LIMIT 1');
+  await setPlanPrice(db,stripe,admin,{examId:exam.id,months:3,priceCents:6000});
+  const [plan]=await db.query<{id:string}>('SELECT id FROM plans WHERE exam_id=$1 AND active',[exam.id]);
+  const customer=await stripe.createCustomer({email:'synthetic@example.test'});await db.query('INSERT INTO billing_customers(user_id,stripe_customer_id) VALUES($1,$2)',[student,customer.id]);
+  const input={planId:plan.id,siteUrl:'https://rt.test',cancelPath:'/'};
+  const [first,second]=await Promise.all([startCheckout(db,stripe,student,input),startCheckout(db,stripe,student,input)]);
+  assert.equal(first,second);assert.equal(stripe.sessions.size,1);
+  const paid=stripe.pay(first.split('/').pop()!,now(),now()+90*DAY);
+  await receiveStripeEvent(db,stripe,{id:'evt_first',type:'customer.subscription.updated',objectId:paid.sub});
+  stripe.subs.get(paid.sub)!.status='canceled';
+  await assert.rejects(startCheckout(db,stripe,student,input),/already have a plan/);
+  await receiveStripeEvent(db,stripe,{id:'evt_canceled',type:'customer.subscription.updated',objectId:paid.sub});
+  const next=await startCheckout(db,stripe,student,input);assert.notEqual(next,first);assert.equal(stripe.sessions.size,2);
+ }finally{await db.close();}
+});
 test('Billing: prices, checkout, webhooks to access, renewals, grace, refunds, disputes and reconciliation',async()=>{
  const db=embeddedDatabase(new PGlite());const stripe=new FakeStripe();
  try {
@@ -33,6 +68,12 @@ test('Billing: prices, checkout, webhooks to access, renewals, grace, refunds, d
   const admin=await actor('super_admin',{twoFactor:true}),manager=await actor('content_manager'),student=await actor('student'),unverified=await actor('student',{verified:false});
   const [exam]=await db.query<{id:string}>("SELECT id FROM exams WHERE slug='mrcog-part-1'");
   let event=0;const deliver=(type:string,objectId:string|null,id=`evt_${++event}`)=>receiveStripeEvent(db,stripe,{id,type,objectId});
+  // An active worker is never falsely acknowledged; an abandoned claim becomes retryable.
+  await db.query("INSERT INTO webhook_events(id,type,claim_token,claim_until) VALUES('evt_claimed','test.ignored',gen_random_uuid(),now()+interval '15 minutes')");
+  assert.equal(await deliver('test.ignored',null,'evt_claimed'),'failed');
+  await db.query("UPDATE webhook_events SET claim_until=now()-interval '1 second' WHERE id='evt_claimed'");
+  assert.equal(await deliver('test.ignored',null,'evt_claimed'),'processed');
+  assert.equal(await deliver('test.ignored',null,'evt_claimed'),'duplicate');
   const ent=async()=>(await db.query<{ends_at:string;revoked_at:string|null}>(`SELECT ends_at::text,revoked_at::text FROM entitlements WHERE user_id=$1 AND source='subscription'`,[student]))[0];
   // BILL-1: Super Admin only; one Product per exam; a price change makes a new Price and archives the old one.
   await assert.rejects(setPlanPrice(db,stripe,manager,{examId:exam.id,months:6,priceCents:9000}),/Super Admin/);
@@ -43,18 +84,31 @@ test('Billing: prices, checkout, webhooks to access, renewals, grace, refunds, d
   await setPlanPrice(db,stripe,admin,{examId:exam.id,months:6,priceCents:9000});await setPlanPrice(db,stripe,admin,{examId:exam.id,months:12,priceCents:14400});
   assert.equal(stripe.products.size,1);assert.equal(stripe.prices.size,3);
   const plan6=(await db.query<{id:string;stripe_price_id:string}>('SELECT id,stripe_price_id FROM plans WHERE months=6 AND active'))[0];
+  const retryUser=await actor('student');const originalCreate=stripe.createCheckoutSession.bind(stripe);let loseResponse=true;
+  stripe.createCheckoutSession=async input=>{const created=await originalCreate(input);if(loseResponse){loseResponse=false;throw new Error('simulated lost response');}return created;};
+  const retryInput={planId:plan6.id,siteUrl:'https://rt.test',cancelPath:'/'};
+  await assert.rejects(startCheckout(db,stripe,retryUser,retryInput),/lost response/);
+  const countAfterLoss=stripe.sessions.size,recoveredUrl=await startCheckout(db,stripe,retryUser,retryInput);
+  assert.equal(stripe.sessions.size,countAfterLoss);const recoveredId=recoveredUrl.split('/').pop()!;
+  stripe.sessions.get(recoveredId)!.expired=true;
+  const renewedUrl=await startCheckout(db,stripe,retryUser,retryInput);assert.notEqual(renewedUrl,recoveredUrl);
+  stripe.createCheckoutSession=originalCreate;
   assert.deepEqual((await getExamPage(db,'mrcog','part-1-recalls'))!.plans.map(p=>[p.months,p.highlighted,p.savingsPercent]),[[3,false,null],[6,true,25],[12,false,40]]);
   // BILL-2: verified account, plan must be in Stripe, one customer per account; checkout never grants access.
   await assert.rejects(startCheckout(db,stripe,unverified,{planId:plan6.id,siteUrl:'https://rt.test',cancelPath:'/mrcog/part-1-recalls'}),/Verify your email/);
   await assert.rejects(startCheckout(db,null,student,{planId:plan6.id,siteUrl:'https://rt.test',cancelPath:'/'}),/not configured/);
   const url=await startCheckout(db,stripe,student,{planId:plan6.id,siteUrl:'https://rt.test',cancelPath:'/mrcog/part-1-recalls#plans'});
   const sessionId=url.split('/').pop()!;const session=stripe.sessions.get(sessionId)!;
+  assert.equal(await startCheckout(db,stripe,student,{planId:plan6.id,siteUrl:'https://rt.test',cancelPath:'/'}),url);
+  const plan3=(await db.query<{id:string}>('SELECT id FROM plans WHERE months=3 AND active'))[0];
+  await assert.rejects(startCheckout(db,stripe,student,{planId:plan3.id,siteUrl:'https://rt.test',cancelPath:'/'}),/existing checkout/);
   assert.match(session.submitMessage,/rt\.test\/refund-policy/);assert.equal(session.price,plan6.stripe_price_id);assert.equal(session.userId,student);
   assert.equal(await hasExamAccess(db,student,exam.id),false);
   assert.equal(await checkoutStatus(db,stripe,student,sessionId),'pending');
   assert.equal(await checkoutStatus(db,stripe,manager,sessionId),'not_found');
   // Payment; the subscription.updated event arrives before checkout.session.completed (out of order).
   const start=now(),end=start+182*DAY;const paid=stripe.pay(sessionId,start,end);
+  await assert.rejects(startCheckout(db,stripe,student,{planId:plan6.id,siteUrl:'https://rt.test',cancelPath:'/'}),/being processed/);
   assert.equal(await deliver('customer.subscription.updated',paid.sub),'processed');
   assert.equal(await hasExamAccess(db,student,exam.id),true);
   assert.equal(await deliver('checkout.session.completed',sessionId,'evt_checkout'),'processed');

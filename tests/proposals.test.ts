@@ -85,10 +85,14 @@ test('Proposals: report fixes, new evidence, accept and dismiss, sittings, paper
   // QB-6: paper proposals need exam timing; then one draft per sitting with published questions and no paper.
   await assert.rejects(proposePapers(db,manager.id,exam.id),/duration/);
   await db.query(`UPDATE exams SET blueprint='{"count":4}',settings=settings||'{"durationMinutes":8}' WHERE id=$1`,[exam.id]);
+  await assert.rejects(proposePapers(db,manager.id,exam.id),/type mix and topic targets/);
+  await db.query('UPDATE exams SET blueprint=$2::jsonb WHERE id=$1',[exam.id,JSON.stringify({count:4,types:{SBA:4},topics:{[topics[0].id]:2,[topics[1].id]:2}})]);
+  const insufficient=await proposePapers(db,manager.id,exam.id);assert.equal(insufficient[0].paperId,null);assert.match(insufficient[0].note,/cannot satisfy/);
+  await db.query("UPDATE questions SET question_type='SBA' WHERE exam_id=$1 AND status='published'",[exam.id]);
   const papers=await proposePapers(db,manager.id,exam.id);
-  assert.equal(papers.length,1);assert.equal(papers[0].questions,4);assert.match(papers[0].note,/4 of the sitting’s 5 questions/);
+  assert.equal(papers.length,1);assert.equal(papers[0].questions,4);assert.match(papers[0].note,/match the configured/);
   const topicsInPaper=await db.query<{topic:string}>('SELECT q.topic_id AS topic FROM paper_questions pq JOIN questions q ON q.id=pq.question_id WHERE pq.paper_id=$1 ORDER BY pq.position',[papers[0].paperId]);
-  assert.deepEqual(topicsInPaper.map(t=>t.topic).sort(),[topics[0].id,topics[0].id,topics[1].id,topics[1].id].sort());// balanced by bank share (3:2 → 2:2 after rounding)
+  assert.deepEqual(topicsInPaper.map(t=>t.topic).sort(),[topics[0].id,topics[0].id,topics[1].id,topics[1].id].sort());// explicit blueprint, not bank share
   assert.notEqual(topicsInPaper[0].topic,topicsInPaper[1].topic);// topics are mixed through the paper
   assert.equal((await proposePapers(db,manager.id,exam.id)).length,0);// never twice for one sitting
   // AIS-13: costs add up, and the budget alert follows the Super Admin's setting.

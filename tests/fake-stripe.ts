@@ -3,7 +3,8 @@ import type {StripeGateway,StripeSubscription} from '../lib/integrations/stripe'
 export class FakeStripe implements StripeGateway {
  n=0;id=(p:string)=>`${p}_${++this.n}`;
  products=new Map<string,string>();prices=new Map<string,{product:string;amount:number;months:number;active:boolean}>();customers=new Map<string,string>();
- sessions=new Map<string,{customer:string;price:string;userId:string;planId:string;subscription:string|null;submitMessage:string;promotionCode?:string|null;sittingId?:string|null}>();
+ sessions=new Map<string,{customer:string;price:string;userId:string;planId:string;subscription:string|null;submitMessage:string;promotionCode?:string|null;sittingId?:string|null;expired?:boolean}>();
+ checkoutKeys=new Map<string,string>();
  subs=new Map<string,StripeSubscription>();invoices=new Map<string,{subscription:string;charge:string;status:string;reason:string;amount:number;discount:number;promo:string|null;coupon:string|null;paidAt:number}>();
  coupons=new Map<string,{name:string;percentOff:number|null;amountOffCents:number|null;products:string[]}>();promos=new Map<string,{coupon:string;code:string;active:boolean;customer:string|null;maxRedemptions:number|null}>();
  charges=new Map<string,{invoice:string;customer:string;amount:number;refunded:number}>();disputes=new Map<string,string>();refunds:string[]=[];
@@ -11,8 +12,8 @@ export class FakeStripe implements StripeGateway {
  async createPrice({product,unitAmount,months}:{product:string;unitAmount:number;months:number}){const id=this.id('price');this.prices.set(id,{product,amount:unitAmount,months,active:true});return {id};}
  async archivePrice(id:string){this.prices.get(id)!.active=false;}
  async createCustomer({email}:{email:string}){const id=this.id('cus');this.customers.set(id,email);return {id};}
- async createCheckoutSession(i:{customer:string;price:string;userId:string;planId:string;submitMessage:string;promotionCode?:string|null;sittingId?:string|null}){const id=this.id('cs');this.sessions.set(id,{...i,subscription:null});return {id,url:`https://checkout.stripe.test/${id}`,status:'open',subscription:null,customer:i.customer,clientReferenceId:i.userId,metadata:{}};}
- async retrieveCheckoutSession(id:string){const s=this.sessions.get(id);if(!s)throw new Error('no session');return {id,url:null,status:s.subscription?'complete':'open',subscription:s.subscription,customer:s.customer,clientReferenceId:s.userId,metadata:{user_id:s.userId,plan_id:s.planId}};}
+ async createCheckoutSession(i:{customer:string;price:string;userId:string;planId:string;submitMessage:string;promotionCode?:string|null;sittingId?:string|null;idempotencyKey?:string}){const prior=i.idempotencyKey&&this.checkoutKeys.get(i.idempotencyKey);if(prior)return this.retrieveCheckoutSession(prior);const id=this.id('cs');this.sessions.set(id,{...i,subscription:null});if(i.idempotencyKey)this.checkoutKeys.set(i.idempotencyKey,id);return {id,url:`https://checkout.stripe.test/${id}`,status:'open',subscription:null,customer:i.customer,clientReferenceId:i.userId,metadata:{}};}
+ async retrieveCheckoutSession(id:string){const s=this.sessions.get(id);if(!s)throw new Error('no session');return {id,url:s.subscription||s.expired?null:`https://checkout.stripe.test/${id}`,status:s.subscription?'complete':s.expired?'expired':'open',subscription:s.subscription,customer:s.customer,clientReferenceId:s.userId,metadata:{user_id:s.userId,plan_id:s.planId}};}
  async retrieveSubscription(id:string){const s=this.subs.get(id);if(!s)throw new Error('no subscription');return {...s};}
  async setCancelAtPeriodEnd(id:string,cancel:boolean){this.subs.get(id)!.cancelAtPeriodEnd=cancel;return {...this.subs.get(id)!};}
  async cancelSubscription(id:string){this.subs.get(id)!.status='canceled';}

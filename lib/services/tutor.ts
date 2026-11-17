@@ -38,7 +38,7 @@ export async function askTutor(db:Database,userId:string,input:{attemptId:string
   `Approved explanation:\n${item.explanation}`,item.key_notes.length?`Approved key notes:\n- ${item.key_notes.join('\n- ')}`:'',
   `<student_message>\n${prompt.replaceAll('</student_message>','</ student_message>')}\n</student_message>`].filter(Boolean).join('\n\n');
  try {
-  const response=await model.complete({system:SYSTEM,prompt:text,schema:SCHEMA});
+  const response=await model.complete({system:SYSTEM,prompt:text,schema:SCHEMA,timeoutMs:50000});
   const out=response.output as {answer?:unknown;outside_scope?:unknown};
   if(typeof out?.answer!=='string'||!out.answer.trim())throw new Error('The tutor could not answer. Try rephrasing.');
   const answer=out.answer.trim().slice(0,2000);
