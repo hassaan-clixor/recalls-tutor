@@ -8,6 +8,7 @@ import { getDatabase, type Database } from '../db/client';
 import * as schema from '../db/auth-schema';
 import { sendAuthMail, type AuthMail } from './mail';
 import { googleCredentials } from './providers';
+import { demoNoEmail } from './demo';
 
 export function createAuth(db:Database, options:{secret:string;baseURL:string;sendMail:(mail:AuthMail)=>Promise<void>;rateLimit?:boolean}) {
  if (options.secret.length<32) throw new Error('BETTER_AUTH_SECRET must contain at least 32 characters.');
@@ -15,11 +16,11 @@ export function createAuth(db:Database, options:{secret:string;baseURL:string;se
   appName:'Recalls Tutor', baseURL:options.baseURL, secret:options.secret,
   trustedOrigins:[new URL(options.baseURL).origin],
   database:drizzleAdapter(db.authOrm,{provider:'pg',schema,transaction:true}),
-  emailAndPassword:{enabled:true,minPasswordLength:12,maxPasswordLength:128,requireEmailVerification:true,
+  emailAndPassword:{enabled:true,minPasswordLength:12,maxPasswordLength:128,requireEmailVerification:!demoNoEmail(),autoSignIn:false,
    revokeSessionsOnPasswordReset:true,
    async sendResetPassword({user,url}) {await options.sendMail({to:user.email,subject:'Reset your Recalls Tutor password',text:`Reset your password using this link:\n${url}\nIf you did not request this, ignore this email.`});},
   },
-  emailVerification:{sendOnSignUp:true,sendOnSignIn:true,autoSignInAfterVerification:false,
+  emailVerification:{sendOnSignUp:!demoNoEmail(),sendOnSignIn:!demoNoEmail(),autoSignInAfterVerification:false,
    async sendVerificationEmail({user,url}) {await options.sendMail({to:user.email,subject:'Verify your Recalls Tutor email',text:`Verify your email address using this link:\n${url}`});},
   },
   // AUTH-3: a new address takes effect only after the link sent to it is opened.
@@ -48,7 +49,9 @@ export function getAuth() {
  if (authInstance) return authInstance;
  const secret=process.env.BETTER_AUTH_SECRET,baseURL=process.env.BETTER_AUTH_URL;
  if (!secret || !baseURL) throw new Error('Authentication is not configured.');
- if (process.env.NODE_ENV==='production' && (!baseURL.startsWith('https://') || !process.env.RESEND_API_KEY || !process.env.AUTH_EMAIL_FROM)) throw new Error('Production authentication requires HTTPS and email delivery.');
- authInstance=createAuth(getDatabase(),{secret,baseURL,sendMail:sendAuthMail});
+ const demo=demoNoEmail();
+ if (process.env.NODE_ENV==='production' && (!baseURL.startsWith('https://') || (!demo && (!process.env.RESEND_API_KEY || !process.env.AUTH_EMAIL_FROM)))) throw new Error('Production authentication requires HTTPS and email delivery.');
+ // In demo mode no verification mail is sent; password-reset mail is attempted only if delivery is configured.
+ authInstance=createAuth(getDatabase(),{secret,baseURL,sendMail:demo&&!process.env.RESEND_API_KEY?async()=>{}:sendAuthMail});
  return authInstance;
 }

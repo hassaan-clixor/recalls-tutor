@@ -48,15 +48,17 @@ export function SignInForm({ google = false }: { google?: boolean }) {
   }); }}><EmailField /><PasswordField /><Link className="auth-inline-link auth-forgot" href="/forgot-password">Forgot your password?</Link><Message error={error} /><Submit busy={busy}>Sign in</Submit></form><p className="auth-switch">New here? <Link href="/sign-up">Create an account</Link></p><p className="auth-small">Still waiting to verify your email? <Link href="/verify-email">Send a new link</Link></p></>;
 }
 
-export function SignUpForm({ google = false }: { google?: boolean }) {
+export function SignUpForm({ google = false, demo = false }: { google?: boolean; demo?: boolean }) {
   const { busy, error, run } = useRequest();
   const [email, setEmail] = useState('');
   if (email) return <><p className="auth-message" role="status">Check your inbox at <strong>{email}</strong>. Open the verification link before signing in.</p><VerificationForm initialEmail={email} /><p className="auth-switch"><Link href="/sign-in">Back to sign in</Link></p></>;
   return <>{google && <GoogleButton label="Sign up with Google" />}<form method="post" onSubmit={event => { const data = fields(event); void run(async () => {
     const address = value(data, 'email').trim();
     requireSuccess(await authClient.signUp.email({ name: value(data, 'name').trim(), email: address, password: value(data, 'password'), callbackURL: '/dashboard' }));
+    // Demo mode has no email step: sign in straight away.
+    if (demo) { requireSuccess(await authClient.signIn.email({ email: address, password: value(data, 'password'), callbackURL: '/dashboard' })); window.location.assign('/dashboard'); return; }
     setEmail(address);
-  }); }}><label className="auth-field">Full name<input name="name" autoComplete="name" required maxLength={100} pattern=".*\S.*" /></label><EmailField /><PasswordField fresh /><p className="auth-small">We’ll send a link to verify your email. Creating an account does not purchase an exam plan.</p><Message error={error} /><Submit busy={busy}>Create account</Submit></form><p className="auth-switch">Already have an account? <Link href="/sign-in">Sign in</Link></p></>;
+  }); }}><label className="auth-field">Full name<input name="name" autoComplete="name" required maxLength={100} pattern=".*\S.*" /></label><EmailField /><PasswordField fresh /><p className="auth-small">{demo ? 'Creating an account does not purchase an exam plan.' : 'We’ll send a link to verify your email. Creating an account does not purchase an exam plan.'}</p><Message error={error} /><Submit busy={busy}>Create account</Submit></form><p className="auth-switch">Already have an account? <Link href="/sign-in">Sign in</Link></p></>;
 }
 
 export function ForgotPasswordForm() {
