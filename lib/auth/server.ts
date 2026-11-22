@@ -33,7 +33,10 @@ export function createAuth(db:Database, options:{secret:string;baseURL:string;se
   // Better Auth skips origin checks when NODE_ENV=test; keep CSRF protection on in every environment.
   advanced:{database:{generateId:()=>randomUUID()},cookiePrefix:'recalls',disableOriginCheck:false},
   // PROT-5: a suspended account cannot start a new session.
-  databaseHooks:{session:{create:{async after(session){
+  databaseHooks:{
+   // Demo mode has no email step, so accounts are stored as verified; every service re-checks this column.
+   user:{create:{async before(user){return demoNoEmail()?{data:{...user,emailVerified:true}}:{data:user};}}},
+   session:{create:{async after(session){
    // PROT-6: one active session per student account. Signing in somewhere new ends the older sessions, which stops
    // an account being shared. Staff sessions are not limited.
    await db.query(`DELETE FROM auth_sessions s USING app_users a WHERE s.user_id=$1 AND s.id<>$2 AND a.auth_id=s.user_id AND a.role='student'`,[session.userId,session.id]).catch(()=>{});
