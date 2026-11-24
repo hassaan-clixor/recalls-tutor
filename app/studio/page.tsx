@@ -29,7 +29,8 @@ export default async function StudioPage({ searchParams }: { searchParams: Promi
  const actor=await getCurrentActor(); const access=staffAccess(actor);
  if(access==='unauthenticated')redirect('/sign-in'); if(access==='unverified')redirect('/verify-email'); if(access==='mfa_required')redirect('/account/security');
  if(access!=='allowed'||!actor)return <StudioShell current="queue" actor={actor} title="Staff access required." sub="Your account cannot access the content workspace."/>;
- const db=getDatabase(); const [exams,questions,jobs,catalogue,selected,reports]=await Promise.all([listExams(db),listStudioQuestions(db,actor.id),listStudioJobs(db,actor.id),getCatalogueAdmin(db,actor.id),searchParams,listQuestionReports(db,actor.id)]);
+ // Run one after another: a burst of parallel queries stalled the Supabase pooler on the live demo and left this page on "Loading…".
+ const db=getDatabase(); const selected=await searchParams; const exams=await listExams(db),questions=await listStudioQuestions(db,actor.id),jobs=await listStudioJobs(db,actor.id),catalogue=await getCatalogueAdmin(db,actor.id),reports=await listQuestionReports(db,actor.id);
  const proposals=await listProposals(db,actor.id);
  const batches=await listUploadBatches(db,actor.id);
  const bigUploads=Boolean(configuredStorage());
