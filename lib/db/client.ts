@@ -28,9 +28,11 @@ export function embeddedDatabase(client: PGlite): Database {
 function remoteDatabase(url: string): Database {
   const pooled = /pooler|:6543\b|pgbouncer=true/i.test(url);
   const sql = postgres(url, { max: 5, prepare: !pooled, idle_timeout: 20, connect_timeout: 15 });
+  // Drizzle can only wrap the pool, not a transaction handle (it reads connection options a transaction lacks).
+  const poolOrm = drizzleRemote(sql, {schema:authSchema});
   function wrap(connection: typeof sql): Database {
     return {
-      authOrm: drizzleRemote(connection, {schema:authSchema}),
+      authOrm: poolOrm,
       async query<T extends Record<string, unknown>>(query: string, params: unknown[] = []) {
         return await connection.unsafe(query, params as never[]) as unknown as T[];
       },
