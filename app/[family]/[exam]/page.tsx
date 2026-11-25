@@ -9,6 +9,7 @@ import {pageHeading,pageMetadata,siteUrl,SITE_NAME} from '@/lib/seo';
 import {JsonLd,breadcrumbs,faqSchema} from '@/components/seo/json-ld';
 import {PlanSelector,StickyBuy,TrustBlocks} from '@/components/seo/plans';
 import {SampleQuestion} from '@/components/public/sample-question';
+import {LeadForm} from '@/components/seo/lead-form';
 import {ArrowRight,Plus} from '@/components/site/icons';
 export const dynamic='force-dynamic';
 type Props={params:Promise<{family:string;exam:string}>;searchParams?:Promise<Record<string,string|string[]|undefined>>};
@@ -42,6 +43,7 @@ export default async function ExamPage({params,searchParams}:Props) {
      :<div className="glance-empty"><strong>In preparation</strong><p>Questions appear here once a reviewer has approved them.</p></div>}</aside></div>
   </div></section>
   <section className="hb-sec wrap split" aria-labelledby="sample-title"><div className="title"><h2 id="sample-title">Try a question</h2><p>Every question comes with the sittings it was recalled in, the answer, why each other option is wrong, and the key notes.</p></div><div className="body"><SampleQuestion /></div></section>
+  <section className="hb-sec wrap split" aria-labelledby="lead-title"><div className="title"><h2 id="lead-title">Not ready to start?</h2><p>Leave your email and we will keep you posted about new sittings and questions for {page.name}. No card needed for the free trial either.</p></div><LeadForm examSlug={page.seoSlug} examName={page.name}/></section>
   <section className="hb-sec wrap split" id="plans" aria-labelledby="plans-title"><div className="title"><h2 id="plans-title">Plans</h2><p>One exam, every sitting, including the ones added while your plan is active.</p></div>
    <div className="body"><PlanSelector plans={page.plans} examName={page.name} trial={page.trial} checkoutEnabled={Boolean(process.env.STRIPE_SECRET_KEY)} returnPath={`${path}${preview?.valid||fromSitting?`?${[preview?.valid?`code=${preview.code}`:"",fromSitting?`from=${fromSitting}`:""].filter(Boolean).join("&")}`:""}#plans`} promo={preview} fromSitting={fromSitting}/></div></section>
   <section className="hb-sec wrap split" aria-labelledby="sittings-title"><div className="title"><h2 id="sittings-title">Sittings</h2><p>Every sitting has its own page with what came up. Past sittings stay available.</p></div>
