@@ -12,6 +12,8 @@ const config:NextConfig={
   {key:'X-Frame-Options',value:'DENY'},
   // HTTPS everywhere (PRD 10.2): browsers remember to use https for two years. Ignored on plain http.
   {key:'Strict-Transport-Security',value:'max-age=63072000; includeSubDomains'},
+  // Content-Security-Policy, the safe subset: no framing, no plugins, no base-tag hijack. A full script policy needs a nonce pass first.
+  {key:'Content-Security-Policy',value:"frame-ancestors 'none'; object-src 'none'; base-uri 'self'"},
   {key:'Permissions-Policy',value:'camera=(), microphone=(), geolocation=(), payment=(), usb=()'},
  ]}];},
 };
