@@ -15,5 +15,7 @@
  }
  ::selection{background:#134e4a;color:#f1f5f9}
  img:not([src$=".svg"]){filter:brightness(.92)}
+ .hb-nav{background:rgba(11,18,32,.92);box-shadow:0 1px 0 var(--line)}
+ .sticky-buy{background:rgba(11,18,32,.92)}
  .practice-watermark{opacity:.5}
 }
