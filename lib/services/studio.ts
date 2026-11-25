@@ -95,6 +95,18 @@ export async function reviewStudioQuestion(db:Database,actorId:string,id:string,
    const [v]=await tx.query<DraftInput & {answers:number[]}>('SELECT stem,options,correct_answers AS answers,explanation,references_json AS references FROM question_versions WHERE id=$1',[versionId]);
    validateDraft({...v,correctAnswer:v.answers[0]??null},true);
   }
+  // Two-step approval (PRD 4.5): an exam can require a Reviewer's sign-off and then a Content Manager's approval.
+  if(action==='approve'){
+   const [setting]=await tx.query<{two:boolean;role:string}>(`SELECT COALESCE((e.settings->>'twoStepApproval')::boolean,false) AS two,(SELECT role FROM app_users WHERE id=$2) AS role FROM questions q JOIN exams e ON e.id=q.exam_id WHERE q.id=$1`,[id,actorId]);
+   if(setting?.two){
+    if(setting.role==='reviewer'){
+     await audit(tx,actorId,id,'review.recommend',{status:q.status,versionId},{status:q.status,versionId,reviewed,note:note.trim()});
+     return;
+    }
+    const signed=await tx.query(`SELECT 1 FROM audit_log WHERE entity_id=$1 AND action='review.recommend' AND after_json->>'versionId'=$2 AND actor_id<>$3 LIMIT 1`,[id,versionId,actorId]);
+    if(!signed.length)throw new Error('This exam needs a Reviewer sign-off before a Content Manager can approve.');
+   }
+  }
   await tx.query('UPDATE questions SET status=$1 WHERE id=$2',[transition.to,id]);
   await audit(tx,actorId,id,`review.${action}`,{status:q.status,versionId},{status:transition.to,versionId,reviewed,note:note.trim()});
  });

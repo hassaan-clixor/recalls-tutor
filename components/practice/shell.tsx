@@ -6,17 +6,19 @@ import '@/app/practice/practice.css';
 // navigation and the student at the bottom. On a phone it becomes a top bar with a menu plus a bottom tab bar,
 // so every core screen is one thumb away.
 export type ShellExam={id:string;name:string;access:'full'|'trial'};
-type Active='practice'|'session'|'results'|'progress'|'plan'|'plans'|'profile'|'account';
+type Active='practice'|'session'|'results'|'progress'|'plan'|'flashcards'|'recalls'|'plans'|'profile'|'account';
 const ICON:Record<Exclude<Active,'session'>,React.ReactNode>={
  practice:<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 7.5h6"/>,
  progress:<path d="M4 19l5-6 4 3 7-9"/>,
  plan:<path d="M4 5.5h16v14H4zM4 9.5h16M8.5 3v4M15.5 3v4"/>,
+ flashcards:<path d="M4 8h13v10H4zM7 5h13v10"/>,
+ recalls:<path d="M5 4h14v12H8l-3 3zM9 8.5h6M9 11.5h4"/>,
  results:<path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/>,
  plans:<path d="M3.5 7.5h17v11a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2zM3.5 7.5l2-4h13l2 4M9 12h6"/>,
  profile:<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4.5 20.5c.9-3.6 3.9-6 7.5-6s6.6 2.4 7.5 6"/>,
  account:<path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6z"/>,
 };
-const NAV:{key:Exclude<Active,'session'>;href:(q:string)=>string;label:string;short:string;sidebarOnly?:boolean}[]=[{key:'practice',href:q=>`/practice${q}`,label:'Practice',short:'Practice'},{key:'results',href:q=>`/practice/history${q}`,label:'Sessions and results',short:'Results'},{key:'progress',href:q=>`/practice/progress${q}`,label:'Progress',short:'Progress',sidebarOnly:true},{key:'plan',href:q=>`/practice/plan${q}`,label:'Study plan',short:'Plan',sidebarOnly:true},{key:'plans',href:()=>'/account/plans',label:'My plans',short:'Plans'},{key:'profile',href:()=>'/account/profile',label:'Profile',short:'Profile'},{key:'account',href:()=>'/account/security',label:'Account security',short:'Security'}];
+const NAV:{key:Exclude<Active,'session'>;href:(q:string)=>string;label:string;short:string;sidebarOnly?:boolean}[]=[{key:'practice',href:q=>`/practice${q}`,label:'Practice',short:'Practice'},{key:'results',href:q=>`/practice/history${q}`,label:'Sessions and results',short:'Results'},{key:'progress',href:q=>`/practice/progress${q}`,label:'Progress',short:'Progress',sidebarOnly:true},{key:'plan',href:q=>`/practice/plan${q}`,label:'Study plan',short:'Plan',sidebarOnly:true},{key:'flashcards',href:q=>`/practice/flashcards${q}`,label:'Flashcards',short:'Cards',sidebarOnly:true},{key:'recalls',href:()=>'/practice/recalls',label:'Share your recalls',short:'Recalls',sidebarOnly:true},{key:'plans',href:()=>'/account/plans',label:'My plans',short:'Plans'},{key:'profile',href:()=>'/account/profile',label:'Profile',short:'Profile'},{key:'account',href:()=>'/account/security',label:'Account security',short:'Security'}];
 function initials(name:string){return name.split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]!.toUpperCase()).join('')||'?';}
 export function StudentShell({active,title,actor,exams=[],examId,children}:{active:Active;title:string;actor:{name:string;email:string;role:string};exams?:ShellExam[];examId?:string;children:React.ReactNode}) {
  const q=examId?`?exam=${examId}`:'';

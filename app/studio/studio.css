@@ -138,7 +138,7 @@ fieldset:disabled .studio-button-secondary{background:var(--panel);color:var(--m
 .security-sub{font-size:15px;margin:24px 0 8px}.security-facts{padding-left:20px;font-size:14px;line-height:1.7}
 .website-intro{margin:0 0 20px}.website-intro a{text-decoration:underline}
 .website-add{border-top:1px solid var(--line);margin-top:16px;padding-top:6px}.website-add h3{font-size:15px;margin:12px 0}
-.website-preview{border:1px solid var(--line);background:#fff;padding:14px 16px;margin:0 0 18px;display:flex;flex-direction:column;gap:3px;font-family:Arial,sans-serif}
+.website-preview{border:1px solid var(--line);background:var(--surface,#fff);padding:14px 16px;margin:0 0 18px;display:flex;flex-direction:column;gap:3px;font-family:Arial,sans-serif}
 .website-preview strong{color:#1a0dab;font-weight:400;font-size:18px}.website-preview span{font-size:13px;color:#4d5156}.website-preview-url{color:#188038!important}
 .billing-exam{border-bottom:1px solid var(--line);padding:16px 0}.billing-exam h3{font-size:15px;margin-bottom:8px}
 .billing-price{display:flex;flex-wrap:wrap;gap:0 10px;align-items:flex-end}.billing-price .studio-field{flex:1 1 240px;margin-bottom:10px}.billing-price .studio-button{margin-bottom:10px}.billing-price .studio-feedback{flex-basis:100%}

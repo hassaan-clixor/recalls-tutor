@@ -12,7 +12,7 @@ async function audit(db:Database,actorId:string,entityId:string,action:string,be
 }
 export function slugify(value:string) {return value.toLowerCase().normalize('NFKD').replace(/[^\p{L}\d]+/gu,'-').replace(/^-+|-+$/g,'').slice(0,80);}
 export type TrialSettings={enabled:boolean;days:number;questionLimit:number;mockSize:number};
-export type ExamSettings={durationMinutes?:number;passMarkPercent?:number;highYieldMin?:number;needsExpertBelow?:number;duplicateFlagAbove?:number;approvedSources?:string[];styleProfile?:{tone?:string;stemLength?:string;guidelineSources?:string[];notes?:string};trial?:TrialSettings};
+export type ExamSettings={durationMinutes?:number;passMarkPercent?:number;highYieldMin?:number;needsExpertBelow?:number;duplicateFlagAbove?:number;approvedSources?:string[];styleProfile?:{tone?:string;stemLength?:string;guidelineSources?:string[];notes?:string};trial?:TrialSettings;twoStepApproval?:boolean};
 // PRD TRIAL-1 defaults; every value is editable per exam by a Super Admin.
 export const TRIAL_DEFAULTS:TrialSettings={enabled:false,days:3,questionLimit:50,mockSize:25};
 export function trialSettings(settings:ExamSettings):TrialSettings {return {...TRIAL_DEFAULTS,...(settings?.trial??{})};}
@@ -32,7 +32,7 @@ function optionalNumber(value:unknown,min:number,max:number,label:string,integer
  return n;
 }
 // Exam timing and pass marks are entered by the content team; nothing is assumed when a field is left blank.
-export async function updateExamSettings(db:Database,actorId:string,examId:string,input:{questionCount:unknown;durationMinutes:unknown;passMarkPercent:unknown;highYieldMin:unknown;needsExpertBelow:unknown;approvedSources:string[];styleNotes:string;blueprintTargets?:{types:Record<string,string>;topics:Record<string,string>};trial?:{enabled:boolean;days:unknown;questionLimit:unknown;mockSize:unknown}}) {
+export async function updateExamSettings(db:Database,actorId:string,examId:string,input:{questionCount:unknown;durationMinutes:unknown;passMarkPercent:unknown;highYieldMin:unknown;needsExpertBelow:unknown;approvedSources:string[];styleNotes:string;blueprintTargets?:{types:Record<string,string>;topics:Record<string,string>};trial?:{enabled:boolean;days:unknown;questionLimit:unknown;mockSize:unknown};twoStepApproval?:boolean}) {
  requireId(examId);
  if(input.approvedSources.length>50||input.approvedSources.some(s=>s.length>300))throw new Error('Approved sources: up to 50 lines of 300 characters.');
  if(input.styleNotes.length>4000)throw new Error('Style notes must be under 4,000 characters.');
@@ -47,6 +47,7 @@ export async function updateExamSettings(db:Database,actorId:string,examId:strin
   set('durationMinutes',duration);set('passMarkPercent',pass);set('highYieldMin',highYield);set('needsExpertBelow',expert);
   set('approvedSources',input.approvedSources.length?input.approvedSources:undefined);
   set('styleProfile',input.styleNotes.trim()?{...(settings.styleProfile??{}),notes:input.styleNotes.trim()}:undefined);
+  if(input.twoStepApproval!==undefined)set('twoStepApproval',input.twoStepApproval?true:undefined);
   if(input.trial) {
    if(role!=='super_admin')throw new Error('Only a Super Admin can change free-trial settings.');
    settings.trial={enabled:input.trial.enabled===true,days:optionalNumber(input.trial.days,1,30,'Trial days')??TRIAL_DEFAULTS.days,questionLimit:optionalNumber(input.trial.questionLimit,1,500,'Trial question limit')??TRIAL_DEFAULTS.questionLimit,mockSize:optionalNumber(input.trial.mockSize,1,200,'Trial mini mock size')??TRIAL_DEFAULTS.mockSize};

@@ -6,6 +6,7 @@ import {hashSignal} from '@/lib/services/lifecycle';
 import {recordOutcome} from '@/lib/services/predictor';
 import {askTutor} from '@/lib/services/tutor';
 import {listComments,postComment,type Comment} from '@/lib/services/discussion';
+import {submitStudentRecall} from '@/lib/services/student-recalls';
 import {defaultRecallModel} from '@/lib/integrations/llm/anthropic';
 import {getCurrentActor} from '@/lib/auth/session';
 import {getDatabase} from '@/lib/db/client';
@@ -69,4 +70,7 @@ export async function loadComments(attemptId:string,position:number):Promise<Pra
 }
 export async function addComment(attemptId:string,position:number,body:string):Promise<PracticeResult> {
  try {await postComment(getDatabase(),await actorId(),attemptId,position,body);return {success:'Thanks. Your comment appears to others once a moderator approves it.'};}catch(error){return failure(error);}
+}
+export async function sendRecall(_:PracticeResult,form:FormData):Promise<PracticeResult> {
+ try {await submitStudentRecall(getDatabase(),await actorId(),{examId:field(form,'examId'),sittingHint:field(form,'sittingHint'),body:field(form,'body')});return {success:'Thank you. Our team reviews every recall, and accepted ones help the whole community.'};}catch(error){return failure(error);}
 }

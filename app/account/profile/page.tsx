@@ -1,3 +1,4 @@
+import {PushToggle} from '@/components/practice/push-toggle';
 import Link from 'next/link';
 import {redirect} from 'next/navigation';
 import {getCurrentActor} from '@/lib/auth/session';
@@ -27,6 +28,7 @@ export default async function ProfilePage() {
   <section className="sheet account-sheet" aria-labelledby="about-title"><h2 id="about-title">About you</h2><ProfileForm profile={profile} exams={exams} zones={Intl.supportedValuesOf('timeZone')}/></section>
   <div className="grid12">
    <section className="panel span6" aria-labelledby="email-title"><div className="panel-head"><h2 id="email-title">Email address</h2></div><EmailForm email={profile.email}/></section>
+   <section className="panel span6" aria-labelledby="reminders-title"><div className="panel-head"><h2 id="reminders-title">Review reminders</h2></div><PushToggle publicKey={process.env.VAPID_PUBLIC_KEY??null}/></section>
    <section className="panel span6" aria-labelledby="security-title"><div className="panel-head"><h2 id="security-title">Password and two-step sign-in</h2></div><p className="account-note">Turn on two-step sign-in, or reset your password from the sign-in screen.</p><Link className="practice-ghost" href="/account/security">Account security</Link></section>
   </div>
   {partners.length>0&&<section className="panel" aria-labelledby="partners-title"><div className="panel-head"><h2 id="partners-title">Course providers</h2></div>

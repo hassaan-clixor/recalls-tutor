@@ -1,4 +1,5 @@
 'use client';
+import {LabValues} from './lab-values';
 import {TutorPanel} from './tutor';
 import {Discussion} from './discussion';
 import Link from 'next/link';
@@ -46,9 +47,18 @@ export function PracticeSession({view,watermark}:{view:PracticeView;watermark:st
   // Enter checks the chosen answer in Revision Mode, so a whole session runs from the keyboard.
   else if(e.key==='Enter'&&!exam&&!locked&&selected!==null&&!(e.target instanceof HTMLButtonElement)){e.preventDefault();form.current?.requestSubmit();}};
   window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey);});
+ // Swipe left for the next question and right for the previous one (touch screens only; mostly-vertical drags are scrolling).
+ useEffect(()=>{let x=0,y=0,t=0;
+  const start=(e:TouchEvent)=>{const p=e.touches[0];x=p.clientX;y=p.clientY;t=Date.now();};
+  const end=(e:TouchEvent)=>{const p=e.changedTouches[0],dx=p.clientX-x,dy=p.clientY-y;if(Date.now()-t>700||Math.abs(dx)<70||Math.abs(dy)>Math.abs(dx)*0.6)return;
+   if(e.target instanceof Element&&e.target.closest('input,textarea,select,.lab-values,.practice-tools'))return;
+   if(dx<0&&attempt.position<attempt.total)router.push(href(attempt.position+1));else if(dx>0&&attempt.position>1)router.push(href(attempt.position-1));};
+  window.addEventListener('touchstart',start,{passive:true});window.addEventListener('touchend',end,{passive:true});
+  return()=>{window.removeEventListener('touchstart',start);window.removeEventListener('touchend',end);};});
  return <div className="practice-session">
   <header className="practice-bar"><div><h1>Question {attempt.position} <small>of {attempt.total}</small></h1><p className="app-sub">{attempt.examName} · {attempt.paperTitle??(exam?(attempt.access==='trial'?'Trial mini mock':'Exam Mode'):'Revision Mode')}</p></div>
    <div className="practice-bar-actions">{exam&&!finished&&<Timer deadline={attempt.deadlineAt!} serverNow={attempt.serverNow} onExpire={finish}/>}
+    <LabValues/>
     {!q.withdrawn&&<button type="button" className="practice-ghost practice-bookmark" aria-pressed={bookmarked} onClick={bookmark} disabled={busy}><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 1.75h7v10.5L7 9.6l-3.5 2.65z" fill={bookmarked?'currentColor':'none'} stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>{bookmarked?'Bookmarked':'Bookmark'}</button>}
     {!finished&&<button type="button" className="practice-ghost" aria-pressed={flagged} onClick={flag} disabled={busy}>{flagged?'Flagged':'Flag'}</button>}
     {finished?<Link className="practice-button" href={`/practice/${attempt.id}/results`}>Results</Link>:<button type="button" className="practice-button" onClick={()=>exam?setConfirming(true):finish()} disabled={busy||confirming}>{exam?'Submit exam':'Finish'}</button>}</div>

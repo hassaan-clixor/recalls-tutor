@@ -4,3 +4,9 @@ export function googleCredentials() {
  return clientId&&clientSecret?{clientId,clientSecret}:null;
 }
 export const googleEnabled=()=>googleCredentials()!==null;
+// Apple sign-in: APPLE_CLIENT_ID is the Services ID; APPLE_CLIENT_SECRET is the signed JWT Apple requires (it expires, so renew it).
+export function appleCredentials() {
+ const clientId=process.env.APPLE_CLIENT_ID,clientSecret=process.env.APPLE_CLIENT_SECRET;
+ return clientId&&clientSecret?{clientId,clientSecret,...(process.env.APPLE_APP_BUNDLE_IDENTIFIER?{appBundleIdentifier:process.env.APPLE_APP_BUNDLE_IDENTIFIER}:{})}:null;
+}
+export const appleEnabled=()=>appleCredentials()!==null;

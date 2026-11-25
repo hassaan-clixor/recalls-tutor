@@ -7,7 +7,7 @@ import { randomUUID } from 'node:crypto';
 import { getDatabase, type Database } from '../db/client';
 import * as schema from '../db/auth-schema';
 import { sendAuthMail, type AuthMail } from './mail';
-import { googleCredentials } from './providers';
+import { googleCredentials, appleCredentials } from './providers';
 import { demoNoEmail } from './demo';
 
 export function createAuth(db:Database, options:{secret:string;baseURL:string;sendMail:(mail:AuthMail)=>Promise<void>;rateLimit?:boolean}) {
@@ -25,7 +25,8 @@ export function createAuth(db:Database, options:{secret:string;baseURL:string;se
   },
   // AUTH-3: a new address takes effect only after the link sent to it is opened.
   user:{changeEmail:{enabled:true}},
-  ...(googleCredentials()?{socialProviders:{google:{...googleCredentials()!,prompt:'select_account' as const}}}:{}),
+  ...(googleCredentials()||appleCredentials()?{socialProviders:{...(googleCredentials()?{google:{...googleCredentials()!,prompt:'select_account' as const}}:{}),...(appleCredentials()?{apple:appleCredentials()!}:{})}}:{}),
+  ...(appleCredentials()?{trustedOrigins:[new URL(options.baseURL).origin,'https://appleid.apple.com']}:{}),
   session:{expiresIn:60*60*24*7,updateAge:60*60*24,cookieCache:{enabled:false}},
   rateLimit:{enabled:options.rateLimit??true,storage:'database',window:60,max:100,
    customRules:{'/sign-in/email':{window:60,max:10},'/sign-up/email':{window:60,max:5},'/request-password-reset':{window:60,max:5},'/send-verification-email':{window:60,max:5}},

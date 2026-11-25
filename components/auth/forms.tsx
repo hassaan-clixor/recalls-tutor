@@ -36,9 +36,17 @@ function GoogleButton({ label }: { label: string }) {
     requireSuccess(await authClient.signIn.social({ provider: 'google', callbackURL: next && /^\/[a-z0-9/#?=&_-]*$/i.test(next) && !next.startsWith('//') ? next : '/dashboard' }));
   })}><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.1 5.3-4.6 7l7.3 5.6c4.3-3.9 7-9.7 7-17.1z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.6c-2 1.4-4.7 2.3-8.6 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>{busy ? 'Opening Google…' : label}</button><Message error={error} /><p className="auth-or"><span>or use your email</span></p></>;
 }
-export function SignInForm({ google = false }: { google?: boolean }) {
+// AUTH-1: Apple sign-in, shown only when Apple credentials are configured. Apple also returns a verified email.
+function AppleButton({ label, separator }: { label: string; separator: boolean }) {
   const { busy, error, run } = useRequest();
-  return <>{google && <GoogleButton label="Continue with Google" />}<form method="post" onSubmit={event => { const data = fields(event); void run(async () => {
+  return <><button className="auth-google auth-apple" type="button" disabled={busy} onClick={() => void run(async () => {
+    const next = new URLSearchParams(window.location.search).get('next');
+    requireSuccess(await authClient.signIn.social({ provider: 'apple', callbackURL: next && /^\/[a-z0-9/#?=&_-]*$/i.test(next) && !next.startsWith('//') ? next : '/dashboard' }));
+  })}><svg width="18" height="18" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.800-18.800-26.900-47.200-41.700-84.700-44.600-35.500-2.800-74.300 20.700-88.500 20.700-15 0-49.400-19.700-76.400-19.700C63.300 141.200 4 184.800 4 273.500q0 39.300 14.400 81.200c12.800 36.700 59 126.700 107.200 125.200 25.200-.6 43-17.900 75.800-17.900 31.800 0 48.300 17.900 76.400 17.900 48.600-.7 90.400-82.500 102.600-119.300-65.200-30.700-61.700-90-61.700-91.900zM259.100 87.300c27.300-32.400 24.800-61.900 24-72.500-24.100 1.400-52 16.400-67.900 34.900-17.500 19.800-27.800 44.300-25.600 71.900 26.100 2 49.900-11.400 69.500-34.300z"/></svg>{busy ? 'Opening Apple…' : label}</button><Message error={error} />{separator && <p className="auth-or"><span>or use your email</span></p>}</>;
+}
+export function SignInForm({ google = false, apple = false }: { google?: boolean; apple?: boolean }) {
+  const { busy, error, run } = useRequest();
+  return <>{apple && <AppleButton label="Continue with Apple" separator={!google} />}{google && <GoogleButton label="Continue with Google" />}<form method="post" onSubmit={event => { const data = fields(event); void run(async () => {
     const result = await authClient.signIn.email({ email: value(data, 'email').trim(), password: value(data, 'password'), callbackURL: '/dashboard' });
     requireSuccess(result);
     // Return to the page that asked for sign-in (e.g. the plan being bought); only same-site paths are allowed.
@@ -48,11 +56,11 @@ export function SignInForm({ google = false }: { google?: boolean }) {
   }); }}><EmailField /><PasswordField /><Link className="auth-inline-link auth-forgot" href="/forgot-password">Forgot your password?</Link><Message error={error} /><Submit busy={busy}>Sign in</Submit></form><p className="auth-switch">New here? <Link href="/sign-up">Create an account</Link></p><p className="auth-small">Still waiting to verify your email? <Link href="/verify-email">Send a new link</Link></p></>;
 }
 
-export function SignUpForm({ google = false, demo = false }: { google?: boolean; demo?: boolean }) {
+export function SignUpForm({ google = false, apple = false, demo = false }: { google?: boolean; apple?: boolean; demo?: boolean }) {
   const { busy, error, run } = useRequest();
   const [email, setEmail] = useState('');
   if (email) return <><p className="auth-message" role="status">Check your inbox at <strong>{email}</strong>. Open the verification link before signing in.</p><VerificationForm initialEmail={email} /><p className="auth-switch"><Link href="/sign-in">Back to sign in</Link></p></>;
-  return <>{google && <GoogleButton label="Sign up with Google" />}<form method="post" onSubmit={event => { const data = fields(event); void run(async () => {
+  return <>{apple && <AppleButton label="Sign up with Apple" separator={!google} />}{google && <GoogleButton label="Sign up with Google" />}<form method="post" onSubmit={event => { const data = fields(event); void run(async () => {
     const address = value(data, 'email').trim();
     requireSuccess(await authClient.signUp.email({ name: value(data, 'name').trim(), email: address, password: value(data, 'password'), callbackURL: '/dashboard' }));
     // Demo mode has no email step: sign in straight away.

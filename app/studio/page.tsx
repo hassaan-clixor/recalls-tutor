@@ -12,6 +12,8 @@ import {ReportList} from '@/components/studio/reports';
 import {ProposalList} from '@/components/studio/proposals';
 import {listProposals} from '@/lib/services/proposals';
 import {listPendingComments} from '@/lib/services/discussion';
+import {listPendingStudentRecalls} from '@/lib/services/student-recalls';
+import {StudentRecallQueue} from '@/components/studio/student-recalls';
 import {CommentQueue} from '@/components/studio/moderation';
 import {listQuestionReports} from '@/lib/services/student';
 import { RecallIntake, QuestionEditor, GrantAccess, RecallUpload, JobList, DuplicatePanel, CleanQuestionImport, BulkApprove } from '@/components/studio/workspace';
@@ -35,6 +37,7 @@ export default async function StudioPage({ searchParams }: { searchParams: Promi
  const batches=await listUploadBatches(db,actor.id);
  const bigUploads=Boolean(configuredStorage());
  const pendingComments=await listPendingComments(db,actor.id);
+ const studentRecalls=await listPendingStudentRecalls(db,actor.id);
  const question=selected.question?await getStudioQuestion(db,actor.id,selected.question):null;
  const duplicate=question?.aiMeta?.duplicateOf?await getStudioQuestion(db,actor.id,question.aiMeta.duplicateOf):null;
  const decided=question?(await db.query('SELECT 1 FROM duplicate_decisions WHERE source_question_id=$1 AND source_version_id=$2',[question.id,question.versionId])).length>0:false;
@@ -58,6 +61,7 @@ export default async function StudioPage({ searchParams }: { searchParams: Promi
    :<p className="studio-help">{questions.length?`Nothing is ${filter.label.toLowerCase()} right now.`:manager?'No questions yet. Upload recalls to begin.':'No questions yet. A content manager adds recalls for review.'}</p>}
   <h2>Proposed edits <small>{proposals.length}</small></h2><ProposalList proposals={proposals} canDecide={actor.role==='content_manager'||actor.role==='super_admin'}/>
   <h2>Comments to moderate <small>{pendingComments.length}</small></h2><CommentQueue comments={pendingComments}/>
+  <h2>Student recalls <small>{studentRecalls.length}</small></h2><StudentRecallQueue recalls={studentRecalls} manager={manager}/>
   <h2>Student reports <small>{reports.length}</small></h2><ReportList reports={question?[...reports.filter(r=>r.questionId===question.id),...reports.filter(r=>r.questionId!==question.id)]:reports} status={filter.key!=='all'?filter.key:undefined}/>
   <h2>AI jobs <small>{jobs.length}</small></h2><JobList jobs={jobs} manager={manager}/>
   {manager&&<details className="studio-intake studio-intake-quiet"><summary>Write a question manually</summary><RecallIntake exams={exams.map(e=>({id:e.id,name:e.name}))}/></details>}{actor.role==='super_admin'&&<details className="studio-intake studio-intake-quiet"><summary>Grant practice access</summary><GrantAccess exams={exams.map(e=>({id:e.id,name:e.name}))}/></details>}

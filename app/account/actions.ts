@@ -3,6 +3,7 @@ import {revalidatePath} from 'next/cache';
 import {getCurrentActor} from '@/lib/auth/session';
 import {getDatabase} from '@/lib/db/client';
 import {deleteAccount,saveProfile} from '@/lib/services/student';
+import {removePushSubscription,savePushSubscription} from '@/lib/services/push';
 export type AccountResult={error?:string;success?:string;deleted?:boolean};
 const field=(form:FormData,key:string)=>{const value=form.get(key);return typeof value==='string'?value:'';};
 function failure(error:unknown):AccountResult {return {error:error instanceof Error&&!('query' in error)&&!('code' in error)?error.message:'Unable to save this change. Please retry.'};}
@@ -13,4 +14,10 @@ export async function updateProfile(_:AccountResult,form:FormData):Promise<Accou
 }
 export async function removeAccount(_:AccountResult,form:FormData):Promise<AccountResult> {
  try {await deleteAccount(getDatabase(),await actorId(),field(form,'confirmEmail'));return {deleted:true};}catch(error){return failure(error);}
+}
+export async function subscribePush(endpoint:string):Promise<AccountResult> {
+ try {await savePushSubscription(getDatabase(),await actorId(),endpoint);return {success:'Reminders are on.'};}catch(error){return failure(error);}
+}
+export async function unsubscribePush(endpoint:string):Promise<AccountResult> {
+ try {await removePushSubscription(getDatabase(),await actorId(),endpoint);return {success:'Reminders are off.'};}catch(error){return failure(error);}
 }

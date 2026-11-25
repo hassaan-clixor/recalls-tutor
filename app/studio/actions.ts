@@ -13,6 +13,7 @@ import {defaultRecallModel} from '@/lib/integrations/llm/anthropic';
 import {defaultVisionReader} from '@/lib/integrations/llm/vision';
 import {acceptProposal,decideSittingProposal,dismissProposal,draftReportFix,setAiBudget} from '@/lib/services/proposals';
 import {moderateComment} from '@/lib/services/discussion';
+import {decideStudentRecall} from '@/lib/services/student-recalls';
 import {bulkApproveStudioQuestions} from '@/lib/services/studio';
 import {importCleanQuestions} from '@/lib/services/question-import';
 export type ActionResult={error?:string;success?:string;questionId?:string;jobId?:string;rowErrors?:{row:number;message:string}[]};
@@ -107,8 +108,8 @@ export async function saveAiBudget(_:ActionResult,form:FormData):Promise<ActionR
  try {const raw=field(form,'budget').trim();await setAiBudget(getDatabase(),await actorId(),raw===''?null:Number(raw));revalidatePath('/studio/overview');return {success:'AI budget saved.'};}catch(error){return failure(error);}
 }
 // STU-15: comment moderation.
-export async function moderate(commentId:string,approve:boolean):Promise<ActionResult> {
- try {await moderateComment(getDatabase(),await actorId(),commentId,approve);revalidatePath('/studio');return {success:approve?'Comment approved.':'Comment rejected.'};}catch(error){return failure(error);}
+export async function moderate(commentId:string,approve:boolean,best=false):Promise<ActionResult> {
+ try {await moderateComment(getDatabase(),await actorId(),commentId,approve,best);revalidatePath('/studio');return {success:approve?'Comment approved.':'Comment rejected.'};}catch(error){return failure(error);}
 }
 
 export async function bulkApprove(_:ActionResult,form:FormData):Promise<ActionResult> {
@@ -119,4 +120,7 @@ export async function bulkApprove(_:ActionResult,form:FormData):Promise<ActionRe
   const ok=results.filter(r=>r.ok).length,skipped=results.filter(r=>!r.ok);
   return {success:`${ok} approved.${skipped.length?` ${skipped.length} skipped: ${[...new Set(skipped.map(r=>r.message))].join(' ')}`:''} Approved questions still need a content manager to publish them.`};
  }catch(error){return failure(error);}
+}
+export async function decideRecall(id:string,accept:boolean):Promise<ActionResult> {
+ try {await decideStudentRecall(getDatabase(),await actorId(),id,accept);revalidatePath('/studio');return {success:accept?'Recall accepted and added to the queue.':'Recall declined.'};}catch(error){return failure(error);}
 }

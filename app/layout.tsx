@@ -1,3 +1,4 @@
+import { PwaRegister } from '@/components/pwa-register';
 import type { Metadata, Viewport } from 'next';
 import { Open_Sans, Poppins } from 'next/font/google';
 import { SiteFooter, SiteHeader } from '@/components/site-shell';
@@ -6,6 +7,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { siteUrl, SITE_NAME } from '@/lib/seo';
 import './globals.css';
 import './site.css';
+import './dark.css';
 import { PublicOnly } from '@/components/public/chrome';
 
 const display = Poppins({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-display', display: 'swap' });
@@ -27,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return <html lang="en" className={`${display.variable} ${body.variable}`}><body><a className="skip-link" href="#main">Skip to content</a>
     <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Organization', name: SITE_NAME, url: siteUrl(), description: 'Recall question banks for postgraduate medical licensing exams, updated after every sitting.' }} />
     <PublicOnly><SiteHeader /></PublicOnly>{children}<PublicOnly><SiteFooter /></PublicOnly>
+    <PwaRegister />
     <ConsentAndAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || null} />
   </body></html>;
 }

@@ -12,10 +12,10 @@ async function visibleItem(db:Database,userId:string,attemptId:string,position:n
  if(item.status!=='published')throw new Error('This question is no longer available.');
  return item.question_id;
 }
-export type Comment={id:string;body:string;createdAt:string;mine:boolean;status:string};
+export type Comment={id:string;body:string;createdAt:string;mine:boolean;status:string;best:boolean};
 export async function listComments(db:Database,userId:string,attemptId:string,position:number):Promise<Comment[]> {
  const questionId=await visibleItem(db,userId,attemptId,position);
- return db.query<Comment>(`SELECT id,body,created_at::text AS "createdAt",user_id=$2 AS mine,status FROM question_comments WHERE question_id=$1 AND (status='approved' OR (user_id=$2 AND status='pending')) ORDER BY created_at LIMIT 100`,[questionId,userId]);
+ return db.query<Comment>(`SELECT id,body,created_at::text AS "createdAt",user_id=$2 AS mine,status,best FROM question_comments WHERE question_id=$1 AND (status='approved' OR (user_id=$2 AND status='pending')) ORDER BY best DESC,created_at LIMIT 100`,[questionId,userId]);
 }
 export async function postComment(db:Database,userId:string,attemptId:string,position:number,raw:string) {
  const body=raw.trim();
@@ -33,9 +33,14 @@ export async function listPendingComments(db:Database,actorId:string) {
  return db.query<{id:string;questionId:string;examName:string;stem:string;body:string;createdAt:string}>(`SELECT c.id,c.question_id AS "questionId",e.name AS "examName",left(v.stem,140) AS stem,c.body,c.created_at::text AS "createdAt"
   FROM question_comments c JOIN questions q ON q.id=c.question_id JOIN exams e ON e.id=q.exam_id JOIN question_versions v ON v.id=q.current_version_id WHERE c.status='pending' ORDER BY c.created_at LIMIT 100`);
 }
-export async function moderateComment(db:Database,actorId:string,commentId:string,approve:boolean) {
+// A moderator can approve a comment as the question's best answer; only one comment per question holds the mark.
+export async function moderateComment(db:Database,actorId:string,commentId:string,approve:boolean,best=false) {
  requireId(commentId);await requireStaff(db,actorId);
  const rows=await db.query<{id:string}>(`UPDATE question_comments SET status=$2,moderated_by=$3,moderated_at=now() WHERE id=$1 AND status='pending' RETURNING id`,[commentId,approve?'approved':'rejected',actorId]);
  if(!rows.length)throw new Error('This comment has already been moderated.');
+ if(approve&&best)await db.transaction(async tx=>{
+  await tx.query(`UPDATE question_comments SET best=false WHERE best AND question_id=(SELECT question_id FROM question_comments WHERE id=$1)`,[commentId]);
+  await tx.query('UPDATE question_comments SET best=true WHERE id=$1',[commentId]);
+ });
  await db.query('INSERT INTO audit_log(actor_id,entity_id,action,after_json) VALUES($1,$2,$3,$4::jsonb)',[actorId,commentId,approve?'comment.approved':'comment.rejected','{}']);
 }

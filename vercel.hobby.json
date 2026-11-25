@@ -5,6 +5,7 @@
     { "path": "/api/cron/billing", "schedule": "0 7 * * *" },
     { "path": "/api/cron/studio", "schedule": "0 8 * * *" },
     { "path": "/api/cron/ghl", "schedule": "0 9 * * *" },
-    { "path": "/api/cron/reconcile", "schedule": "30 2 * * *" }
+    { "path": "/api/cron/reconcile", "schedule": "30 2 * * *" },
+    { "path": "/api/cron/push", "schedule": "0 16 * * *" }
   ]
 }
